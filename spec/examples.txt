@@ -1,5 +1,7 @@
-example_id                                   | status | run_time        |
--------------------------------------------- | ------ | --------------- |
-./spec/features/authentications_spec.rb[1:1] | passed | 0.02413 seconds |
-./spec/features/authentications_spec.rb[1:2] | passed | 0.21347 seconds |
-./spec/features/authentications_spec.rb[1:3] | failed | 0.07015 seconds |
+example_id                                   | status  | run_time        |
+-------------------------------------------- | ------- | --------------- |
+./spec/features/authentications_spec.rb[1:1] | passed  | 0.22954 seconds |
+./spec/features/authentications_spec.rb[1:2] | passed  | 0.02834 seconds |
+./spec/features/authentications_spec.rb[1:3] | pending | 0.00001 seconds |
+./spec/models/app_spec.rb[1:1]               | pending | 0.00003 seconds |
+./spec/requests/apps_spec.rb[1:1:1]          | passed  | 0.04085 seconds |

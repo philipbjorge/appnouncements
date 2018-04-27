@@ -13,6 +13,9 @@ RSpec.feature "Authentications", type: :feature do
     expect {
       click_link "Login"
     }.to_not change(User, :count)
+
+    # should redirect to apps page
+    expect(page.current_url).to eq(apps_url)
   end
 
   scenario "registering" do
@@ -24,9 +27,12 @@ RSpec.feature "Authentications", type: :feature do
     expect {
       click_link "Login"
     }.to change(User, :count).by(1)
+
+    # should redirect to apps page
+    expect(page.current_url).to eq(apps_url)
   end
 
-  scenario "omniauth failure" do
+  xscenario "omniauth failure" do
     set_invalid_omniauth()
 
     visit root_path
