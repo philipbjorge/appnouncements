@@ -15,9 +15,6 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'omniauth', '~> 1.8.1'
 gem 'omniauth-auth0', '~> 2.0.0'
 
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

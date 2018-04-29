@@ -6,7 +6,7 @@ class AppsController < ApplicationController
 
   # GET /apps
   def index
-    flash[:notice] = "Hello Flash!"
+    flash.now[:notice] = "Hello Flash!"
     @apps = App.all
   end
 
@@ -16,6 +16,7 @@ class AppsController < ApplicationController
 
   # GET /apps/new
   def new
+    flash.now[:error] = "error"
     @app = App.new
   end
 
