@@ -24,6 +24,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_link_to (1.0.5)
+      actionpack
+      addressable
     activejob (5.2.0)
       activesupport (= 5.2.0)
       globalid (>= 0.3.6)
@@ -58,6 +61,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
+    cancancan (2.2.0)
     capybara (3.0.2)
       addressable
       mini_mime (>= 0.1.3)
@@ -154,6 +158,8 @@ GEM
       method_source (~> 0.9.0)
     public_suffix (3.0.2)
     puma (3.11.4)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.5)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
@@ -223,6 +229,11 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     shellany (0.0.1)
+    shoulda-matchers (3.1.2)
+      activesupport (>= 4.0.0)
+    simple_form (4.0.0)
+      actionpack (> 4)
+      activemodel (> 4)
     slim (3.0.9)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 1.3.3, < 2.1)
@@ -265,10 +276,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_link_to
   better_errors
   binding_of_caller
   bootsnap (>= 1.1.0)
   byebug
+  cancancan
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
   dotenv-rails
@@ -279,10 +292,13 @@ DEPENDENCIES
   omniauth-auth0 (~> 2.0.0)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
+  pundit
   rails (~> 5.2.0)
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
+  shoulda-matchers
+  simple_form
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)

@@ -8,4 +8,10 @@ class Auth0Controller < ApplicationController
   def failure
     # TODO
   end
+
+  def signout
+    reset_session
+    # TODO redirect to auth0
+    redirect_to root_path
+  end
 end

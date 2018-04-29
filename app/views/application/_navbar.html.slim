@@ -16,8 +16,7 @@
                 a[href="#dropdowns"]
                   |  Settings 
               li.menu-item
-                a[href="#dropdowns"]
-                  |  Sign Out 
+                = link_to "Sign Out", auth_signout_path
         - else
           a.btn.btn-sm[href="#"]
             | Sign In
