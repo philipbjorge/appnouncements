@@ -9,6 +9,8 @@ class AppsController < ApplicationController
 
   # GET /apps/1
   def show
+    # TODO: Order by version
+    # TODO: Paginate (delay)
     authorize @app
   end
 
@@ -20,6 +22,7 @@ class AppsController < ApplicationController
 
   # GET /apps/1/edit
   def edit
+    authorize @app
   end
 
   # POST /apps
@@ -35,7 +38,7 @@ class AppsController < ApplicationController
 
   # PATCH/PUT /apps/1
   def update
-    # TODO: Pundit Support
+    authorize @app
     if @app.update(app_params)
       redirect_to @app, notice: 'App was successfully updated.'
     else
