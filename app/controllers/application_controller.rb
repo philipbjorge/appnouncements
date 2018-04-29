@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
+
   helper_method :current_user, :logged_in?
 
   def current_user

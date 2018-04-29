@@ -1,21 +1,21 @@
 class AppsController < ApplicationController
   include LoggedIn
-  # TODO: Scope app by user
-
   before_action :set_app, only: [:show, :edit, :update, :destroy]
 
   # GET /apps
   def index
-    @apps = App.all
+    @apps = policy_scope(App)
   end
 
   # GET /apps/1
   def show
+    authorize @app
   end
 
   # GET /apps/new
   def new
-    @app = App.new
+    @app = current_user.apps.build
+    authorize @app
   end
 
   # GET /apps/1/edit
@@ -25,6 +25,7 @@ class AppsController < ApplicationController
   # POST /apps
   def create
     @app = current_user.apps.build(app_params)
+    authorize @app
     if @app.save
       redirect_to @app, notice: 'App was successfully created.'
     else
@@ -34,6 +35,7 @@ class AppsController < ApplicationController
 
   # PATCH/PUT /apps/1
   def update
+    # TODO: Support
     if @app.update(app_params)
       redirect_to @app, notice: 'App was successfully updated.'
     else
@@ -43,6 +45,7 @@ class AppsController < ApplicationController
 
   # DELETE /apps/1
   def destroy
+    # TODO: Support
     @app.destroy
     redirect_to apps_url, notice: 'App was successfully destroyed.'
   end
