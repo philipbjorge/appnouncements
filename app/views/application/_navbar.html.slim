@@ -2,15 +2,14 @@
   .container.grid-lg
     header.navbar
       section.navbar-section
-        a.navbar-brand.mr-2[href="#"]
+        a.navbar-brand.mr-2 href="#"
           | Appnouncements
-        a.btn.btn-link[href="#"]
-          | TODO
+        = link_to "Apps", apps_url, class: "btn btn-link"
       section.navbar-section
         - if current_user
           .dropdown.dropdown-right
-            a.btn.btn-link.dropdown-toggle[tabindex="0"]
-              figure.bg-primary[data-initial="YZ"]
+            a.btn.btn-link.dropdown-toggle tabindex="0"
+              figure.avatar.avatar-sm.bg-primary data-initial="YZ"
               i.icon.icon-caret
             ul.menu
               li.menu-item

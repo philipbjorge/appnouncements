@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_28_135610) do
+ActiveRecord::Schema.define(version: 2018_04_29_074311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,12 +23,23 @@ ActiveRecord::Schema.define(version: 2018_04_28_135610) do
     t.index ["user_id"], name: "index_apps_on_user_id"
   end
 
+  create_table "releases", force: :cascade do |t|
+    t.string "version", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.bigint "app_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["app_id"], name: "index_releases_on_app_id"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string "auth0_id"
+    t.string "auth0_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["auth0_id"], name: "index_users_on_auth0_id", unique: true
   end
 
   add_foreign_key "apps", "users"
+  add_foreign_key "releases", "apps"
 end

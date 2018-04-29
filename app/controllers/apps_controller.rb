@@ -1,12 +1,11 @@
 class AppsController < ApplicationController
-  #include LoggedIn
+  include LoggedIn
   # TODO: Scope app by user
 
   before_action :set_app, only: [:show, :edit, :update, :destroy]
 
   # GET /apps
   def index
-    flash.now[:notice] = "Hello Flash!"
     @apps = App.all
   end
 
@@ -16,7 +15,6 @@ class AppsController < ApplicationController
 
   # GET /apps/new
   def new
-    flash.now[:error] = "error"
     @app = App.new
   end
 
@@ -26,8 +24,7 @@ class AppsController < ApplicationController
 
   # POST /apps
   def create
-    @app = App.new(app_params)
-
+    @app = current_user.apps.build(app_params)
     if @app.save
       redirect_to @app, notice: 'App was successfully created.'
     else

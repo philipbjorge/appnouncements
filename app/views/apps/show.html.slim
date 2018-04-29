@@ -1,7 +1,10 @@
-p
-  strong
-    | Display name:
-  = @app.display_name
-= link_to 'Edit', edit_app_path(@app)
-|  | 
-= link_to 'Back', apps_path
+
+.container.grid-lg
+  h2
+    = @app.display_name
+  = render partial: "tabs"
+  - if @app.releases.any?
+    .timeline
+      = render partial: "release_timeline_item", collection: @app.releases
+  - else
+    = render partial: "empty_releases"

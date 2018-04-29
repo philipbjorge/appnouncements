@@ -1,0 +1,9 @@
+.empty
+  .empty-icon
+    i.icon.icon-apps
+  p.empty-title.h5
+    | You have no releases
+  p.empty-subtitle
+    | Get started by adding a release
+  .empty-action
+    = link_to "Create a release", new_app_release_path(@app.id), class: "btn btn-primary"
