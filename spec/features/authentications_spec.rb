@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'feature_helpers'
 
 RSpec.feature "Authentications", type: :feature do
   fixtures :users

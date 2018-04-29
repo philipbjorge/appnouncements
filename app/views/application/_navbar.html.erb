@@ -1,0 +1,35 @@
+<div class="bg-secondary">
+  <div class="container grid-lg">
+    <header class="navbar">
+      <section class="navbar-section">
+        <a href="#" class="navbar-brand mr-2">Appnouncements</a>
+        <a href="#" class="btn btn-link">TODO</a>
+      </section>
+      <section class="navbar-section">
+        <% if current_user %>
+          <div class="dropdown dropdown-right">
+            <a class="btn btn-link dropdown-toggle" tabindex="0">
+              <figure class="avatar avatar-sm" data-initial="YZ" class="bg-primary"></figure>
+              <i class="icon icon-caret"></i>
+            </a>
+            <ul class="menu">
+              <li class="menu-item">
+                <a href="#dropdowns">
+                  Settings
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="#dropdowns">
+                  Sign Out
+                </a>
+              </li>
+            </ul>
+          </div>
+        <% else %>
+          <a href="#" class="btn btn-sm">Sign In</a>
+          <a href="#" class="btn btn-primary btn-sm ml-2">Sign Up</a>
+        <% end %>
+      </section>
+    </header>
+  </div>
+</div>

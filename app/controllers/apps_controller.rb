@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
-  include LoggedIn
+  #include LoggedIn
+  # TODO: Scope app by user
 
   before_action :set_app, only: [:show, :edit, :update, :destroy]
 

@@ -5,6 +5,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- intercooler -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intercooler-js/1.2.1/intercooler.min.js" integrity="sha256-0qA5DHh/k8rIfxmGml1gO70UwquPJYnnJl7sZJfPH1Q=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intercooler-js/1.2.1/intercooler-debugger.min.js" integrity="sha256-yH8ldshQJQeaBys5HtWguQey4qncv//rdJcHvJBuwqY=" crossorigin="anonymous"></script>
+
     <!-- Spectre -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.1/spectre.min.css" integrity="sha256-3bOqkUKlAH+YSBX+g4Op1ryi42nxlJb2gCWyMLSVNYQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.1/spectre-exp.min.css" integrity="sha256-tm/qZM4a4QQDQPV2LZejEYeq8ewsiiilMrDIJiLG3zo=" crossorigin="anonymous" />
@@ -15,7 +20,8 @@
   </head>
 
   <body>
-    <p>TODO: Nav</p>
+    <%# TODO: Test %>
+    <%= render :partial => 'navbar' %>
 
     <%# TODO: Animate %>
     <div class="container grid-lg">
