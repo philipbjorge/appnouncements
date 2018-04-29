@@ -1,5 +1,5 @@
-= form_with(model: [release.app, release], local: true) do |form|
-  - if release.errors.any?
+= form_with(model: [@release.app, @release], local: true) do |form|
+  - if @release.errors.any?
     #error_explanation
       h2
         = pluralize(release.errors.count, "error")

@@ -4,7 +4,11 @@
     = @app.display_name
   = render partial: "tabs"
   - if @app.releases.any?
-    .timeline
-      = render partial: "release_timeline_item", collection: @app.releases
+    .container.grid-lg
+      = link_to new_app_release_path(@app), class: "btn float-right tooltip tooltip-left", "data-tooltip": "Create a new release"
+        i.icon.icon-plus
+    .container.grid-lg
+      .timeline
+        = render partial: "release_timeline_item", collection: @app.releases
   - else
     = render partial: "empty_releases"

@@ -1,18 +1,25 @@
 class ReleasesController < ApplicationController
+  include LoggedIn
+
+  # TODO: Add Pundit
+
   before_action :set_app, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_release, only: [:edit, :update, :destroy]
 
   # GET /apps/1/releases/new
   def new
+    authorize @app
     @release = @app.releases.build
   end
 
   # GET /apps/1/edit
   def edit
+    authorize @app
   end
 
   # POST /apps
   def create
+    authorize @app
     @release = @app.releases.build(release_params)
     if @release.save
       redirect_to @app, notice: 'Release was successfully created.'
@@ -23,6 +30,7 @@ class ReleasesController < ApplicationController
 
   # PATCH/PUT /apps/1
   def update
+    authorize @app
     if @release.update(release_params)
       redirect_to @app, notice: 'Release was successfully updated.'
     else

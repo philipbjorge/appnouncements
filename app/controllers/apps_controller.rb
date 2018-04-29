@@ -35,7 +35,7 @@ class AppsController < ApplicationController
 
   # PATCH/PUT /apps/1
   def update
-    # TODO: Support
+    # TODO: Pundit Support
     if @app.update(app_params)
       redirect_to @app, notice: 'App was successfully updated.'
     else
@@ -45,7 +45,7 @@ class AppsController < ApplicationController
 
   # DELETE /apps/1
   def destroy
-    # TODO: Support
+    # TODO: Pundit Support
     @app.destroy
     redirect_to apps_url, notice: 'App was successfully destroyed.'
   end
