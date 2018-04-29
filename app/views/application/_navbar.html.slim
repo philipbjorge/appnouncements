@@ -1,0 +1,26 @@
+.bg-secondary
+  .container.grid-lg
+    header.navbar
+      section.navbar-section
+        a.navbar-brand.mr-2[href="#"]
+          | Appnouncements
+        a.btn.btn-link[href="#"]
+          | TODO
+      section.navbar-section
+        - if current_user
+          .dropdown.dropdown-right
+            a.btn.btn-link.dropdown-toggle[tabindex="0"]
+              figure.bg-primary[data-initial="YZ"]
+              i.icon.icon-caret
+            ul.menu
+              li.menu-item
+                a[href="#dropdowns"]
+                  |  Settings 
+              li.menu-item
+                a[href="#dropdowns"]
+                  |  Sign Out 
+        - else
+          a.btn.btn-sm[href="#"]
+            | Sign In
+          a.btn.btn-primary.btn-sm.ml-2[href="#"]
+            | Sign Up

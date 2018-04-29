@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ApplicationHelper
   def toast_class_for(flash_type)
     mapping = {

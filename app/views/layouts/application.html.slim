@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title
+      | Appnouncements
+    = csrf_meta_tags
+    = csp_meta_tag
+    script[src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"]
+    script[src="https://cdnjs.cloudflare.com/ajax/libs/intercooler-js/1.2.1/intercooler.min.js" integrity="sha256-0qA5DHh/k8rIfxmGml1gO70UwquPJYnnJl7sZJfPH1Q=" crossorigin="anonymous"]
+    script[src="https://cdnjs.cloudflare.com/ajax/libs/intercooler-js/1.2.1/intercooler-debugger.min.js" integrity="sha256-yH8ldshQJQeaBys5HtWguQey4qncv//rdJcHvJBuwqY=" crossorigin="anonymous"]
+    link[rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.1/spectre.min.css" integrity="sha256-3bOqkUKlAH+YSBX+g4Op1ryi42nxlJb2gCWyMLSVNYQ=" crossorigin="anonymous"]
+    link[rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.1/spectre-exp.min.css" integrity="sha256-tm/qZM4a4QQDQPV2LZejEYeq8ewsiiilMrDIJiLG3zo=" crossorigin="anonymous"]
+    link[rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.1/spectre-icons.min.css" integrity="sha256-HzYZh0DS3XmkQALc9+6+LEOra1w//WC35x3TGnxDhys=" crossorigin="anonymous"]
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    = render :partial => 'navbar'
+
+    / TODO: Animate
+    .container.grid-lg
+      - flash.each do |type, message|
+        div class=['toast', 'my-2', toast_class_for(type)].join(' ')
+          button.btn.btn-clear.float-right
+          = message
+
+    == yield
