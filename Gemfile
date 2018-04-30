@@ -17,10 +17,11 @@ gem 'omniauth-auth0', '~> 2.0.0'
 
 gem 'simple_form'
 gem 'active_link_to'
-#gem 'cancancan'
 gem 'pundit'
 gem 'shoulda-matchers'
-#gem 'pundit-matchers'
+gem 'pundit-matchers'
+gem 'redcarpet'
+gem 'kramdown'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

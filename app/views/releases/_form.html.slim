@@ -1,19 +1,10 @@
-= form_with(model: [@release.app, @release], local: true) do |form|
-  - if @release.errors.any?
-    #error_explanation
-      h2
-        = pluralize(release.errors.count, "error")
-        |  prohibited this release from being saved:
-      ul
-        - release.errors.full_messages.each do |message|
-          li
-            = message
-  .field
-    = form.label :version
-    = form.text_field :version
-    = form.label :title
-    = form.text_field :title
-    = form.label :body
-    = form.text_field :body
-  .actions
-    = form.submit
+.container.grid-lg
+  = simple_form_for [@release.app, @release] do |f|
+    = f.input :version
+    = f.input :title
+    #wmd-button-bar
+    = f.input :body, input_html: { class: "wmd-input", id: "wmd-input", rows: 20 }
+    = f.input :draft
+    = f.button :submit
+  javascript:
+      new Markdown.Editor(Markdown.getSanitizingConverter()).run();

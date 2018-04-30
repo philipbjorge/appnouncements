@@ -1,5 +1,5 @@
 .container.grid-lg.my-2
   - flash.each do |type, message|
     div class=['toast', 'my-2', toast_class_for(type)].join(' ')
-      button.btn.btn-clear.float-right ic-action="slideUp;remove" ic-action-target="closest .toast"
+      button.btn.btn-clear.float-right
       = message

@@ -13,3 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+//= require jquery
+//= require Markdown.Converter
+//= require Markdown.Sanitizer
+//= require Markdown.Editor

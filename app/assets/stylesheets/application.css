@@ -12,4 +12,9 @@
  *
  *= require_tree .
  *= require_self
+ *= require spectre
+ *= require spectre-exp
+ *= require spectre-icons
+ *= require devices
+ *= require Markdown.Editor
  */

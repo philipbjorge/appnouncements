@@ -28,5 +28,5 @@ example_id                                               | status  | run_time   
 ./spec/views/application/_navbar.html.erb_spec.rb[1:1:1] | passed  | 0.00209 seconds |
 ./spec/views/application/_navbar.html.erb_spec.rb[1:1:2] | passed  | 0.04903 seconds |
 ./spec/views/application/_navbar.html.erb_spec.rb[1:2:1] | passed  | 0.00144 seconds |
-./spec/views/releases/edit.html.slim_spec.rb[1:1]        | failed  | 0.03471 seconds |
-./spec/views/releases/new.html.slim_spec.rb[1:1]         | failed  | 0.16765 seconds |
+./spec/views/releases/edit.html.slim_spec.rb[1:1]        | failed  | 0.03088 seconds |
+./spec/views/releases/new.html.slim_spec.rb[1:1]         | failed  | 0.20462 seconds |
