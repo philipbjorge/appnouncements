@@ -39,6 +39,11 @@ module ApplicationHelper
 
   private
     def should_parse_video link
+      # TODO: We might want to make this optional because this will require turning on JS
+      # for users devices which will slow things down
+      # or lazy load?
+      # https://github.com/ApoorvSaxena/lozad.js
+      # https://www.npmjs.com/package/intersection-observer
       return (
         link.include? "youtube.com/" or
         link.include? "youtu.be/" or

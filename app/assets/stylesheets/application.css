@@ -10,11 +10,13 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ * TODO: Require simplemde only on editor page
+ *
  *= require_tree .
  *= require_self
- *= require spectre
- *= require spectre-exp
- *= require spectre-icons
- *= require devices
- *= require Markdown.Editor
+ *= require 'spectre.css/dist/spectre'
+ *= require 'spectre.css/dist/spectre-exp'
+ *= require 'spectre.css/dist/spectre-icons'
+ *= require 'devices.css/dist/devices.css'
+ *= require 'simplemde/dist/simplemde.min'
  */

@@ -2,9 +2,8 @@
   = simple_form_for [@release.app, @release] do |f|
     = f.input :version
     = f.input :title
-    #wmd-button-bar
-    = f.input :body, input_html: { class: "wmd-input", id: "wmd-input", rows: 20 }
+    = f.input :body, input_html: { id: "simple-mde", rows: 20 }
     = f.input :draft
     = f.button :submit
   javascript:
-      new Markdown.Editor(Markdown.getSanitizingConverter()).run();
+      new SimpleMDE({ element: document.getElementById("simple-mde") });

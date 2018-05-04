@@ -1,0 +1,10 @@
+/ span.label.label-primary
+/   = release.title
+/ span.label.label-secondary.float-right
+/   = release.version
+.toast.toast-primary.my-2
+  = "#{release.title}"
+  .span.label.label-secondary.float-right
+    = release.version
+.px-2
+  = render_markdown(release.body)

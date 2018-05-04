@@ -10,9 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//
+// TODO: Require simplemde only on editor
+//
 //= require rails-ujs
 //= require_tree .
-//= require jquery
-//= require Markdown.Converter
-//= require Markdown.Sanitizer
-//= require Markdown.Editor
+//= require 'simplemde/dist/simplemde.min'
