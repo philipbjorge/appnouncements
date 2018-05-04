@@ -21,7 +21,7 @@ gem 'pundit'
 gem 'shoulda-matchers'
 gem 'pundit-matchers'
 gem 'redcarpet'
-gem 'pretender'
+gem 'onebox'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

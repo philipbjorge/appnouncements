@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     resources :releases
   end
 
+  if Rails.env.development?
+    get '/login/:user_id' => "debug#login"
+  end
+
   # Auth0
   get "/auth/oauth2/callback" => "auth0#callback"
   get "/auth/failure" => "auth0#failure"

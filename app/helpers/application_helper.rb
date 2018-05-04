@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def render_markdown(md)
-    renderer = Redcarpet::Render::HTML.new(
+    renderer = FancyMarkdownRenderer.new(
         filter_html: true, no_images: false, no_links: false, no_styles: true, safe_links_only: true,
         with_toc_data: true, hard_wrap: true
     )
@@ -20,5 +20,34 @@ module ApplicationHelper
                             space_after_headers: false, superscript: true, underline: true, highlight: true, quote: false,
                             footnotes: false
     ).render(md).html_safe
+  end
+
+  class FancyMarkdownRenderer < Redcarpet::Render::HTML
+    def image(link, title, alt_text)
+      %(<img class="img-responsive" src="#{link}" title="#{title}" alt="#{alt_text}" />)
+    end
+
+    def autolink(link, link_type)
+      return responsive_video(link) if should_parse_video(link)
+      %(<a href="#{link}">#{link}</a>)
+    end
+
+    def link(link, title, content)
+      return responsive_video(link) if should_parse_video(link)
+      %(<a href="#{link}" title="#{title}">#{content}</a>)
+    end
+
+  private
+    def should_parse_video link
+      return (
+        link.include? "youtube.com/" or
+        link.include? "youtu.be/" or
+        link.include? "vimeo.com/"
+      )
+    end
+
+    def responsive_video link
+      '<div class="video-responsive">' + Onebox.preview(link).to_s + '</div>'
+    end
   end
 end
