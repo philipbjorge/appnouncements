@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
+  # Pundit
   include Pundit
-
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
+  impersonates :user
   helper_method :current_user, :logged_in?
 
   def current_user
