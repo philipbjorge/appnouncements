@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title
+      = @app.display_name
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'webview', media: 'all'
+  body
+    == yield

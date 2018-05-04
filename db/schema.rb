@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_29_082158) do
+ActiveRecord::Schema.define(version: 2018_05_04_060901) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "apps", force: :cascade do |t|
@@ -20,7 +21,9 @@ ActiveRecord::Schema.define(version: 2018_04_29_082158) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }
     t.index ["user_id"], name: "index_apps_on_user_id"
+    t.index ["uuid"], name: "index_apps_on_uuid", unique: true
   end
 
   create_table "releases", force: :cascade do |t|

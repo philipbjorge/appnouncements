@@ -58,4 +58,24 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  ### TEMPORARY SETTINGS START HERE
+  #
+  # # disables the default debug mode, which loads each JS dependency individually
+  # config.assets.debug = false
+  #
+  # # renames files with a unique cachebusting string.
+  # # generally useful in local development, and can expose issues that could appear on production
+  # config.assets.digest = true
+  #
+  # # enable live compilation, so there's no need to run precompile
+  # # this will slow down your pageloads when enabled
+  # config.assets.compile = true
+  #
+  # # enable gzip in development
+  # config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
+  #
+  # # compression
+  # config.assets.js_compressor = :uglifier
+  # config.assets.css_compressor = :scss
 end
