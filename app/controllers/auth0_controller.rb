@@ -12,7 +12,16 @@ class Auth0Controller < ApplicationController
   def signout
     skip_authorization
     reset_session
-    # TODO redirect to auth0
-    redirect_to root_path
+    redirect_to build_logout_url
+  end
+
+  private
+  def build_logout_url
+    request_params = {
+        returnTo: root_url,
+        client_id: Rails.application.credentials.auth0[:client_id]
+    }
+
+    URI::HTTPS.build(host: Rails.application.credentials.auth0[:domain], path: '/v2/logout', query: request_params.to_query).to_s
   end
 end

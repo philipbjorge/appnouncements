@@ -31,7 +31,6 @@ class ReleasesController < ApplicationController
   # PATCH/PUT /apps/1
   def update
     authorize @app
-    puts(release_params)
     if @release.update(release_params)
       redirect_to @app, notice: 'Release was successfully updated.'
     else

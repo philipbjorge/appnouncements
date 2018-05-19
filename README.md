@@ -7,6 +7,9 @@ application up and running.
 open /Applications/RubyMine.app
 ```
 
+# Secrets
+bin/rails credentials:edit/help
+
 Things you may want to cover:
 
 * Ruby version
