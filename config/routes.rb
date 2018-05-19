@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'welcome#index'
+  root "apps#index"
   resources :apps do
     resources :releases
   end

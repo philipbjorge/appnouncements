@@ -6,7 +6,7 @@ class Auth0Controller < ApplicationController
   end
 
   def failure
-    # TODO
+    # TODO (raising right now instead of redirecting here via OmniAuth.config.failure_raise_out_environments)
   end
 
   def signout
