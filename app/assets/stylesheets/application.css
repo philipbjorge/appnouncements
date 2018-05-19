@@ -12,8 +12,6 @@
  *
  * TODO: Require simplemde only on editor page
  *
- *= require_tree .
- *= require_self
  *= require 'spectre.css/dist/spectre'
  *= require 'spectre.css/dist/spectre-exp'
  *= require 'spectre.css/dist/spectre-icons'

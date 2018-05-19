@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_04_075327) do
+ActiveRecord::Schema.define(version: 2018_05_19_103604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2018_05_04_075327) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.uuid "uuid", default: -> { "gen_random_uuid()" }
+    t.string "color", default: "#727e96"
+    t.string "css"
     t.index ["user_id"], name: "index_apps_on_user_id"
     t.index ["uuid"], name: "index_apps_on_uuid", unique: true
   end
