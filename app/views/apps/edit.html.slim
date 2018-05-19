@@ -1,7 +1,5 @@
-= render partial: "tabs"
-h1
-  | Editing App
-= render 'form', app: @app
-= link_to 'Show', @app
-|  | 
-= link_to 'Back', apps_path
+.container.grid-lg
+  h2
+    = @app.display_name
+  = render partial: "tabs"
+  = render 'form', app: @app

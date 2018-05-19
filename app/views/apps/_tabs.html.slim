@@ -1,6 +1,5 @@
 ul.tab
   li.tab-item
-    a.active
-      | Releases
+    = active_link_to 'Releases', app_path(@app), active: :exclusive
   li.tab-item
-    = link_to 'Settings', edit_app_path(@app)
+    = active_link_to 'Settings', edit_app_path(@app)

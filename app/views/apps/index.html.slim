@@ -2,8 +2,7 @@
   - if @apps.length == 0
     = render partial: "empty_apps"
   - else
-    .container.grid-lg
-      = link_to new_app_path, class: "btn float-right tooltip tooltip-left", "data-tooltip": "Add a new app"
-        i.icon.icon-plus
-      .columns
-        = render @apps
+    = link_to new_app_path, class: "btn float-right tooltip tooltip-left", "data-tooltip": "Add a new app"
+      i.icon.icon-plus
+    .columns
+      = render @apps
