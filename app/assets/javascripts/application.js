@@ -14,5 +14,4 @@
 // TODO: Require simplemde only on editor
 //
 //= require rails-ujs
-//= require_tree .
 //= require 'simplemde/dist/simplemde.min'

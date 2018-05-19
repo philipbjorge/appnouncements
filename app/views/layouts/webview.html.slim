@@ -8,5 +8,8 @@ html
     meta content = "width=device-width, initial-scale=1" name = "viewport"
     style[type="text/css"]
       == @app.css
+    = javascript_include_tag 'webview'
   body
     == yield
+    javascript:
+      lozad().observe();

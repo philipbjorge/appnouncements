@@ -52,7 +52,11 @@ module ApplicationHelper
     end
 
     def responsive_video link
-      '<div class="video-responsive">' + Onebox.preview(link).to_s + '</div>'
+      iframe = Nokogiri::HTML.fragment(Onebox.preview(link).to_s)
+      iframe.search("iframe").add_class("lozad")
+      iframe.search("iframe")[0]["data-src"] = iframe.search("iframe")[0]["src"]
+      iframe.search("iframe")[0].delete("src")
+      '<div class="video-responsive">' + iframe.to_s + '</div>'
     end
   end
 end
