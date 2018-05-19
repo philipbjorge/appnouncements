@@ -6,7 +6,9 @@
 
 @import "node_modules/spectre.css/src/typography";
 @import "node_modules/spectre.css/src/asian";
+@import "node_modules/spectre.css/src/tables";  // TODO: Hook up table rendering with markdown (attach these classes)
 @import "node_modules/spectre.css/src/labels";
+@import "node_modules/spectre.css/src/codes";
 @import "node_modules/spectre.css/src/media";
 
 @import "node_modules/spectre.css/src/layout";

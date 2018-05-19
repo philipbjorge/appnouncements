@@ -10,6 +10,7 @@ class Auth0Controller < ApplicationController
   end
 
   def signout
+    skip_authorization
     reset_session
     # TODO redirect to auth0
     redirect_to root_path
