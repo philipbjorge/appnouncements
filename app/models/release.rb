@@ -5,5 +5,5 @@ class Release < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  default_scope { order("string_to_array(version, '.')::int[] DESC") }
+  default_scope { order(Arel.sql("string_to_array(version, '.')::int[] DESC")) }
 end
