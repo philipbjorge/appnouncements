@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
 
+  def authenticate_user!
+    redirect_to "/auth/auth0" unless logged_in?
+  end
+
   helper_method :current_user, :logged_in?
 
   def not_found

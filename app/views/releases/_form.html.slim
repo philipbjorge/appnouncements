@@ -1,7 +1,9 @@
 .container.grid-lg
-  = simple_form_for [@release.app, @release] do |f|
+  = simple_form_for [@release.app, @release], html: { id: "release_edit" } do |f|
     = f.input :version
     = f.input :title
     = f.input :body, input_html: { id: "simple-mde", rows: 20 }
     = f.input :draft
     = f.button :submit
+javascript:
+    init("#{@app.uuid}");

@@ -18,7 +18,6 @@ class ReleasesController < ApplicationController
   end
 
   def attach
-    # TODO Do something
     authorize @app
     attachment = @app.images.attach(params.require(:file))[0]
     render json: {filename: url_for(attachment)}
