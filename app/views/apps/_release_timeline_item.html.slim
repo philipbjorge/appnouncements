@@ -8,8 +8,6 @@
         = release_timeline_item.version
         br
         = release_timeline_item.title
-        br
-        = render_markdown(release_timeline_item.body)
       .tile-action
         = link_to edit_app_release_path(@app, release_timeline_item), class: "btn tooltip tooltip-left", "data-tooltip": "Edit these release notes"
           i.icon.icon-edit

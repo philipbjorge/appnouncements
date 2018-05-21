@@ -16,6 +16,10 @@ devices.css@^0.1.15:
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/devices.css/-/devices.css-0.1.15.tgz#6e4fa12c02b490f71011f8beeee9dae90ac3ad80"
 
+inline-attachment@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/inline-attachment/-/inline-attachment-2.0.3.tgz#5ee32374583fabd3b7206df2e20f251ba20c4306"
+
 intersection-observer@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/intersection-observer/-/intersection-observer-0.5.0.tgz#9fe8bee3953c755b1485c38efd9633d535775ea6"

@@ -1,9 +1,9 @@
 class ReleasesController < ApplicationController
   include LoggedIn
 
-  # TODO: Add Pundit
+  # TODO: Add Pundit, Fix Auth
 
-  before_action :set_app, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_app, only: [:new, :attach, :edit, :create, :update, :destroy,]
   before_action :set_release, only: [:edit, :update, :destroy]
 
   # GET /apps/1/releases/new
@@ -15,6 +15,12 @@ class ReleasesController < ApplicationController
   # GET /apps/1/edit
   def edit
     authorize @app
+  end
+
+  def attach
+    # TODO Do something
+    authorize @app
+    render json: {filename: "http://google.com"}
   end
 
   # POST /apps

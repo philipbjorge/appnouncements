@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   root "apps#index"
   resources :apps do
-    resources :releases
+    resources :releases do
+      post :attach, on: :member
+    end
   end
 
   if Rails.env.development?

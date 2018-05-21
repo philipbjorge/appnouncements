@@ -11,7 +11,4 @@
 // about supported directives.
 //
 //
-// TODO: Require simplemde only on editor
-//
 //= require rails-ujs
-//= require 'simplemde/dist/simplemde.min'
