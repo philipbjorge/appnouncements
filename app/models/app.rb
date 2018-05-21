@@ -3,6 +3,7 @@ class App < ApplicationRecord
 
   belongs_to :user
   has_many :releases
+  has_many_attached :images
 
   before_save :render_css
 

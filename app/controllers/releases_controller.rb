@@ -20,7 +20,8 @@ class ReleasesController < ApplicationController
   def attach
     # TODO Do something
     authorize @app
-    render json: {filename: "http://google.com"}
+    attachment = @app.images.attach(params.require(:file))[0]
+    render json: {filename: url_for(attachment)}
   end
 
   # POST /apps
