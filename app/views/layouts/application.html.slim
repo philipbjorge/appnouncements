@@ -15,5 +15,5 @@ html
         h2
           = @app.display_name
           = " - "
-          = @app.platform.titlecase
+          = format_platform(@app)
     == yield
