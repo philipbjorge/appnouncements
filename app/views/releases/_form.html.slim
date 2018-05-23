@@ -1,11 +1,25 @@
+= javascript_include_tag 'lib/markdown'
+
 .container.grid-lg
-  = simple_form_for [@release.app, @release], html: { id: "release_edit" } do |f|
-    = f.input :version
-    - if @app.platform == "android"
-      = f.input :display_version
-    = f.input :title
-    = f.input :body, input_html: { id: "simple-mde", rows: 20 }
-    = f.input :draft
-    = f.button :submit
+  .columns
+    .col-7
+      .container.grid-lg
+        = simple_form_for [@release.app, @release], html: { id: "release_edit" } do |f|
+          = f.input :version
+          - if @app.platform == "android"
+            = f.input :display_version
+          = f.input :title
+          = f.input :body, input_html: { id: "simple-mde", rows: 20 }
+          = f.input :draft
+          = f.button :submit
+    .col-5
+      .device[style="margin-left: 40px; transform: scale(0.9); position: fixed;" class=device_class(@app)]
+        .device-frame
+          iframe.device-content[id="preview" src=""]
+        .device-stripe
+        .device-header
+        .device-sensors
+        .device-btns
+        .device-power
 javascript:
     init("#{@app.uuid}");

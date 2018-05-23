@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'release_notes/:uuid' => "release_notes#show"
       patch 'release_notes/:uuid/preview' => "release_notes#preview"
+      post 'release_notes/:uuid/preview' => "release_notes#preview"
     end
   end
 

@@ -1,15 +1,2 @@
-= javascript_include_tag 'lib/markdown'
-.container.grid-lg
-  .columns
-    .col-7
-      == render 'form'
-    .col-5
-      .device[style="margin-left: 40px; transform: scale(0.9); position: fixed;" class=device_class(@app)]
-        .device-frame
-          iframe.device-content[id="preview" src=""]
-        .device-stripe
-        .device-header
-        .device-sensors
-        .device-btns
-        .device-power
-  =< link_to 'Back', @app
+== render 'form'
+=< link_to 'Back', @app
