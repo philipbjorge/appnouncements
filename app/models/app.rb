@@ -1,10 +1,18 @@
 class App < ApplicationRecord
   include ActiveModel::Dirty
 
+  # Validation
+  validates :display_name, presence: true
+  validates :platform, presence: true
+  validates :platform, inclusion: { in: %w(android ios), message: "must be an allowed platform type" }, if: lambda {|e| not e.platform.blank? }
+  validates :color, presence: true, css_hex_color: true
+
+  # Relations
   belongs_to :user
   has_many :releases
   has_many_attached :images
 
+  # Callbacks
   before_save :render_css
 
   private

@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-cash-dom@^2.1.6:
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/cash-dom/-/cash-dom-2.1.6.tgz#a1f1e75732f078f47cb0742d6961e054ce2e8c95"
-
 codemirror-spell-checker@*:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/codemirror-spell-checker/-/codemirror-spell-checker-1.1.2.tgz#1c660f9089483ccb5113b9ba9ca19c3f4993371e"
@@ -28,6 +24,10 @@ intersection-observer@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/intersection-observer/-/intersection-observer-0.5.0.tgz#9fe8bee3953c755b1485c38efd9633d535775ea6"
 
+jquery@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+
 lozad@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/lozad/-/lozad-1.4.0.tgz#78d29514608074a34645ba1c5c7747f82c14cbfc"
@@ -47,6 +47,10 @@ simplemde@^1.11.2:
 spectre.css@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/spectre.css/-/spectre.css-0.5.1.tgz#bd60345584bd88143f7d0930119c8f4bbd2822c7"
+
+spectrum-colorpicker@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/spectrum-colorpicker/-/spectrum-colorpicker-1.8.0.tgz#b926cf5002c0a77860b5f8351e1c093c65200107"
 
 typo-js@*:
   version "1.0.3"

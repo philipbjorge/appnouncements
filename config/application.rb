@@ -16,6 +16,8 @@ module Appnouncements
     # Raise for now in prod and handle error cases later
     OmniAuth.config.failure_raise_out_environments = %w(development production)
 
+    config.autoload_paths += %W["#{config.root}/app/validators/"]
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

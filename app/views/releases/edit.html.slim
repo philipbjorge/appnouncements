@@ -4,7 +4,7 @@
     .col-7
       == render 'form'
     .col-5
-      .device.device-iphone-8.device-spacegray[style="margin-left: 40px; margin-top: 40px; position: fixed;"]
+      .device[style="margin-left: 40px; transform: scale(0.9); position: fixed;" class=device_class(@app)]
         .device-frame
           iframe.device-content[id="preview" src=""]
         .device-stripe

@@ -12,4 +12,5 @@
 //
 //
 //= require rails-ujs
-//= require cash-dom/dist/cash
+//= require jquery/dist/jquery
+//= require spectrum-colorpicker/spectrum

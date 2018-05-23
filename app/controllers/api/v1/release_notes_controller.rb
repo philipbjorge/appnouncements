@@ -6,8 +6,8 @@ module Api::V1
       skip_authorization
 
       @app = App.find_by_uuid(params[:uuid])
-      not_found unless app
-      @releases = app.releases
+      not_found unless @app
+      @releases = @app.releases
 
       render layout: "webview"
     end
@@ -19,7 +19,8 @@ module Api::V1
       not_found unless @app
       authorize @app
 
-      @releases = [Release.new(params.require(:release).permit(:version, :title, :body))]
+      @preview = true
+      @releases = [Release.new(params.require(:release).permit(:version, :title, :body, :display_version))]
       render :show, layout: "webview"
     end
   end

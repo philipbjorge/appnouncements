@@ -10,4 +10,10 @@ html
   body
     = render :partial => 'navbar'
     = render :partial => 'toasts'
+    - if @app
+      .container.grid-lg
+        h2
+          = @app.display_name
+          = " - "
+          = @app.platform.titlecase
     == yield

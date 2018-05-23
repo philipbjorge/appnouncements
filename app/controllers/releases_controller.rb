@@ -61,6 +61,6 @@ class ReleasesController < ApplicationController
   end
 
   def release_params
-    params.require(:release).permit(:version, :title, :body, :draft)
+    params.require(:release).permit(:version, :title, :body, :draft, :display_version)
   end
 end
