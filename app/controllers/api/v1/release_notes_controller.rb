@@ -7,7 +7,11 @@ module Api::V1
 
       @app = App.find_by_uuid(params[:uuid])
       not_found unless @app
-      @releases = @app.releases
+
+      # TODO: Validate start/end_version
+      @releases = @app.releases.published
+      @releases = @releases.where("string_to_array(version, '.')::int[] >= string_to_array(?, '.')::int[]", params[:start_version]) if params[:start_version]
+      @releases = @releases.where("string_to_array(version, '.')::int[] <= string_to_array(?, '.')::int[]", params[:end_version]) if params[:end_version]
 
       render layout: "webview"
     end

@@ -20,6 +20,7 @@ class Release < ApplicationRecord
   validates :body, presence: true
 
   default_scope { order(Arel.sql("string_to_array(version, '.')::int[] DESC")) }
+  scope :published, -> { where(draft: false) }
 
   before_validation :set_display_version, if: :ios?
 
