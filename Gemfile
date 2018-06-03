@@ -14,6 +14,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'omniauth', '~> 1.8.1'
 gem 'omniauth-auth0', '~> 2.0.0'
+gem 'devise'
 
 gem 'simple_form'
 gem 'active_link_to'
