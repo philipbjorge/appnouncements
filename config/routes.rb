@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  mount StripeEvent::Engine, at: '/webhooks/stripe'
+  
   root "apps#index"
   resources :apps do
     resources :releases do
