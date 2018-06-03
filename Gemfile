@@ -12,9 +12,8 @@ gem "slim-rails"
 
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'omniauth', '~> 1.8.1'
-gem 'omniauth-auth0', '~> 2.0.0'
 gem 'devise'
+gem 'any_login'
 
 gem 'simple_form'
 gem 'active_link_to'
@@ -48,6 +47,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "awesome_print"
+  gem "letter_opener"
 end
 
 group :test do

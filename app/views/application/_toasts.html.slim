@@ -1,5 +1,14 @@
 .container.grid-lg.my-2
+  - if current_user && (!current_user.confirmed? || current_user.pending_reconfirmation?)
+    .toast.my-2.toast-warning
+      | Please check your email and confirm your email address.
+      br
+      | Didn't receive a confirmation link? 
+      = link_to "Click here", new_user_confirmation_path
+      |  to resend it.
   - flash.each do |type, message|
     div class=['toast', 'my-2', toast_class_for(type)].join(' ')
       button.btn.btn-clear.float-right
       = message
+javascript:
+  $(".toast .btn.btn-clear").on("click", function() { $(this).parent().slideUp(); });

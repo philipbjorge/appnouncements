@@ -1,8 +1,5 @@
 class ReleasesController < ApplicationController
-  include LoggedIn
-
-  # TODO: Add Pundit, Fix Auth
-
+  before_action :authenticate_user!
   before_action :set_app, only: [:new, :attach, :edit, :create, :update, :destroy,]
   before_action :set_release, only: [:edit, :update, :destroy]
 

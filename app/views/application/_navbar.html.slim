@@ -11,12 +11,6 @@
             i.icon.icon-caret
           ul.menu
             li.menu-item
-              a[href="#dropdowns"]
-                |  Settings
+              = link_to "Settings", edit_user_registration_path
             li.menu-item
-              = link_to "Sign Out", auth_signout_path
-      - else
-        a.btn.btn-sm[href="/auth/auth0"]
-          | Sign In
-        a.btn.btn-primary.btn-sm.ml-2[href="#"]
-          | Sign Up
+              = link_to 'Sign out', destroy_user_session_path, method: :delete

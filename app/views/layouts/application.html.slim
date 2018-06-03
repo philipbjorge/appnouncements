@@ -17,3 +17,4 @@ html
           = " - "
           = format_platform(@app)
     == yield
+    = any_login_here if defined?(AnyLogin)

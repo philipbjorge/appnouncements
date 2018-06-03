@@ -12,10 +12,7 @@ module Appnouncements
   class Application < Rails::Application
     config.load_defaults 5.2
     config.generators.javascript_engine = :js
-
-    # Raise for now in prod and handle error cases later
-    OmniAuth.config.failure_raise_out_environments = %w(development production)
-
+    
     config.autoload_paths += %W["#{config.root}/app/validators/"]
 
     # Settings in config/environments/* take precedence over those specified here.

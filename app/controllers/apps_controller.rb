@@ -1,5 +1,5 @@
 class AppsController < ApplicationController
-  include LoggedIn
+  before_action :authenticate_user!
   before_action :set_app, only: [:show, :edit, :update, :destroy]
 
   # GET /apps
