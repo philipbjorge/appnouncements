@@ -9,7 +9,7 @@ class App < ApplicationRecord
 
   # Relations
   belongs_to :user
-  has_many :releases
+  has_many :releases, dependent: :destroy
   has_many_attached :images
 
   # Callbacks
