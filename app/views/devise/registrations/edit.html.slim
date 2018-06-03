@@ -1,9 +1,17 @@
 / TODO
 .container.grid-lg
   .columns
-    .col-6
+    .column.col-3
+      ul.menu
+        li.divider data-content="Settings"
+        li.menu-item
+          = link_to "Profile", settings_profile_path, class: "active"
+        li.menu-item
+          = link_to "Billing", "/billing"
+    .column.col-9
       h2
-        | User Settings
+        | Profile
+      hr
       = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
         = f.error_notification
         .form-inputs
@@ -18,8 +26,6 @@
         .form-actions
           = f.button :submit, "Update"
       br
-      br
       hr
-      br
       br
       = link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-error"
