@@ -13,5 +13,6 @@ class User < ApplicationRecord
   
   private
   def create_customer
+    self.chargebee_id = (ChargeBee::Customer.create).customer.id
   end
 end

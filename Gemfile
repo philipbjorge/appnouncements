@@ -14,6 +14,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'devise'
 gem 'any_login'
+gem 'chargebee'
 
 gem 'simple_form'
 gem 'active_link_to'
