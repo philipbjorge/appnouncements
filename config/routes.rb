@@ -13,8 +13,6 @@ Rails.application.routes.draw do
       post 'release_notes/:uuid/preview' => "release_notes#preview"
     end
   end
-
-  mount StripeEvent::Engine, at: '/webhooks/stripe'
   
   root "apps#index"
   resources :apps do
