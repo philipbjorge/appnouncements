@@ -17,7 +17,7 @@ class App < ApplicationRecord
 
   private
   def render_css
-    if css.nil? or color_changed?
+    if css.nil? or will_save_change_to_color?
       # TODO: Optimize our imports
       template = <<-eos
         $primary-color: #{self.color};

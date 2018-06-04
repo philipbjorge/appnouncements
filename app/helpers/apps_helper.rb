@@ -5,6 +5,8 @@ module AppsHelper
   end
 
   def format_platform app
+    return "" unless app.platform
+    
     return "iOS" if app.platform == "ios"
     return app.platform.titlecase
   end
