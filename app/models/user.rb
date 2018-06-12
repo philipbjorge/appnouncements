@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  
   devise :database_authenticatable, :registerable, :recoverable,
                   :rememberable, :trackable, :validatable, :confirmable, :lockable,
                   send_email_changed_notification: true, send_password_change_notification: true,
@@ -9,11 +10,17 @@ class User < ApplicationRecord
 
   has_many :apps, dependent: :destroy
 
-  before_create :create_customer
+  # Added by ChargebeeRails.
+  include ChargebeeRails::Customer
+  has_one :subscription
+  serialize :chargebee_data, JSON
+  
+  after_create :chargebee_subscribe
   
   private
-  def create_customer
-    self.chargebee_id = (ChargeBee::Customer.create).customer.id
+  def chargebee_subscribe
+    
+    self.subscribe()
     # TODO: CB: Create a subscription to our "Base" plan - $0 and includes 1 free core app
   end
 end

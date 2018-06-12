@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/philipbjorge/chargebee-rails-subscriptions.git
-  revision: 43bf94ea34b08f371d6639d6ec64f2eb19ddcb69
+  revision: 4ba465aa93bdd65cd62fbd58214ad04440b0bc38
   specs:
     chargebee_rails (0.1.4)
       chargebee (~> 2.0, >= 2.0.5)

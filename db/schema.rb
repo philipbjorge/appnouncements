@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_03_093338) do
+ActiveRecord::Schema.define(version: 2018_06_12_203652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -50,6 +50,35 @@ ActiveRecord::Schema.define(version: 2018_06_03_093338) do
     t.index ["uuid"], name: "index_apps_on_uuid", unique: true
   end
 
+  create_table "event_sync_logs", id: :serial, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string "cb_customer_id"
+    t.boolean "auto_collection"
+    t.string "payment_type"
+    t.string "reference_id"
+    t.string "card_last4"
+    t.string "card_type"
+    t.string "status"
+    t.datetime "event_last_modified_at"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_payment_methods_on_subscription_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "name"
+    t.string "plan_id"
+    t.string "status"
+    t.text "chargebee_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "releases", force: :cascade do |t|
     t.string "version", null: false
     t.string "title", null: false
@@ -60,6 +89,20 @@ ActiveRecord::Schema.define(version: 2018_06_03_093338) do
     t.boolean "draft", default: true
     t.string "display_version"
     t.index ["app_id"], name: "index_releases_on_app_id"
+  end
+
+  create_table "subscriptions", id: :serial, force: :cascade do |t|
+    t.string "chargebee_id"
+    t.integer "plan_id"
+    t.integer "plan_quantity", default: 1
+    t.integer "user_id"
+    t.string "status"
+    t.datetime "event_last_modified_at"
+    t.text "chargebee_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -83,6 +126,9 @@ ActiveRecord::Schema.define(version: 2018_06_03_093338) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.string "chargebee_id"
+    t.datetime "event_last_modified_at"
+    t.text "chargebee_data"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -90,5 +136,8 @@ ActiveRecord::Schema.define(version: 2018_06_03_093338) do
   end
 
   add_foreign_key "apps", "users"
+  add_foreign_key "payment_methods", "subscriptions"
   add_foreign_key "releases", "apps"
+  add_foreign_key "subscriptions", "plans"
+  add_foreign_key "subscriptions", "users"
 end
