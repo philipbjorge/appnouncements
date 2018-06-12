@@ -14,5 +14,6 @@ class User < ApplicationRecord
   private
   def create_customer
     self.chargebee_id = (ChargeBee::Customer.create).customer.id
+    # TODO: CB: Create a subscription to our "Base" plan - $0 and includes 1 free core app
   end
 end

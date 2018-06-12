@@ -9,13 +9,14 @@ class AppsController < ApplicationController
 
   # GET /apps/1
   def show
-    # TODO: Order by version
     # TODO: Paginate (delay)
     authorize @app
   end
 
   # GET /apps/new
   def new
+    # TODO: CB: If they do not have capacity in their subscription, on clicking new show them a chargebee iframe
+    # On success, POST to create, else redirect back with message?
     @app = current_user.apps.build
     authorize @app
   end
@@ -27,6 +28,8 @@ class AppsController < ApplicationController
 
   # POST /apps
   def create
+    # TODO: CB: Prevent creation unless there is room in their subscription
+    # TODO: CB: Show a dialog on their status page letting them know when they are under-utilizing their subscriptions
     @app = current_user.apps.build(app_params)
     authorize @app
     if @app.save

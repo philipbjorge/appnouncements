@@ -14,7 +14,8 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'devise'
 gem 'any_login'
-gem 'chargebee'
+#gem 'chargebee'
+gem 'chargebee_rails', github: "philipbjorge/chargebee-rails-subscriptions"
 
 gem 'simple_form'
 gem 'active_link_to'

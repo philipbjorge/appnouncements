@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/philipbjorge/chargebee-rails-subscriptions.git
+  revision: 43bf94ea34b08f371d6639d6ec64f2eb19ddcb69
+  specs:
+    chargebee_rails (0.1.4)
+      chargebee (~> 2.0, >= 2.0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -327,7 +334,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15, < 4.0)
-  chargebee
+  chargebee_rails!
   chromedriver-helper
   devise
   dotenv-rails
