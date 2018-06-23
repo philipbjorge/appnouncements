@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   devise_scope :user do
-    get 'settings/profile', to: 'devise/registrations#edit'
+    get 'settings/profile', to: 'devise/registrations#edit', as: "profile"
   end
   
   scope :settings do
@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   end
 
   resolve('Billing') { [:billings] }
-  
-  get 'settings/billings', to: 'billings#index'
   
   namespace :api do
     namespace :v1 do

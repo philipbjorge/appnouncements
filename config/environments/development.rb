@@ -62,6 +62,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # Fix HTTP/HTTPS mismatch on CSRF tokens locally
+  config.action_controller.forgery_protection_origin_check = false
+
   ### TEMPORARY SETTINGS START HERE
   #
   # # disables the default debug mode, which loads each JS dependency individually

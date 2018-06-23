@@ -23,12 +23,16 @@ class User < ApplicationRecord
   before_create :create_stripe_customer
   
   def customer
-    @customer ||= Stripe::Util.convert_to_stripe_object(self.stripe_customer)
+    Stripe::Util.convert_to_stripe_object(self.stripe_customer)
+  end
+  
+  def customer=(v)
+    self.stripe_customer = v.as_json
   end
   
   private
   def create_stripe_customer
-    customer = Stripe::Customer.create()
+    customer = Stripe::Customer.create(description: "#{self.id} <#{self.email}>")
     
     self.stripe_id = customer.id
     self.stripe_customer = customer.as_json

@@ -1,2 +1,13 @@
-h1
-  | YOLO
+/ TODO: Clean up this page
+- if @customer.default_source
+  = @customer.email
+  br
+  = @customer.default_source.last4
+
+= form_tag billing_path, method: "PATCH"
+  script.stripe-button [data-image="https://stripe.com/img/documentation/checkout/marketplace.png" 
+                        data-key="#{Rails.application.credentials[Rails.env.to_sym][:stripe_public_key]}" data-locale="auto" 
+                        data-zip-code="true" data-billing-address="true" data-name="Appnouncements"
+                        data-allow-remember-me="false" data-label="#{stripe_billing_button_label(@customer)}" 
+                        data-panel-label="#{stripe_billing_button_label(@customer)}"
+                        src="https://checkout.stripe.com/checkout.js"] 
