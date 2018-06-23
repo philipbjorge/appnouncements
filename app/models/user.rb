@@ -4,7 +4,7 @@ class User < ApplicationRecord
     user = User.find_by_stripe_id(stripe_id)
     (logger.error("Unable to find user with stripe id #{stripe_id}") and return) unless user
     
-    customer = Stripe::Customer.retrieve(stripe_id)
+    customer = Stripe::Customer.retrieve({id: stripe_id, expand: ["default_source"]})
     user.stripe_customer = customer.as_json
     raise "More subscriptions need to be fetched" if customer.subscriptions.has_more
     user.save!
