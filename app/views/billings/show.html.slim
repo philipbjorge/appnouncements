@@ -1,5 +1,9 @@
 / TODO: Clean up this page
 - if @customer.default_source
+  = "#{@customer.default_source.exp_month}/#{@customer.default_source.exp_year}"
+  br
+  = @customer.default_source.brand
+  br
   = @customer.email
   br
   = @customer.default_source.last4
