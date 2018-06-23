@@ -9,9 +9,11 @@ class User < ApplicationRecord
 
   has_many :apps, dependent: :destroy
 
-  before_create :create_customer
+  before_create :create_stripe_customer
   
   private
-  def create_customer
+  def create_stripe_customer
+    customer = Stripe::Customer.create
+    self.stripe_id = customer.id
   end
 end
