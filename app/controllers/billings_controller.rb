@@ -6,6 +6,7 @@ class BillingsController < ApplicationController
   
   def show
     @customer = current_user.customer
+    @invoices = Stripe::Invoice.list(limit: 30, customer: @customer.id).data.select {|i| i.hosted_invoice_url }
   end
   
   def update

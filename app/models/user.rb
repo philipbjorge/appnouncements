@@ -22,6 +22,8 @@ class User < ApplicationRecord
 
   before_create :create_stripe_customer
   
+  # TODO: On destroy, unsubscribe from Stripe!
+  
   def customer
     Stripe::Util.convert_to_stripe_object(self.stripe_customer)
   end
@@ -32,7 +34,7 @@ class User < ApplicationRecord
   
   private
   def create_stripe_customer
-    customer = Stripe::Customer.create(description: "#{self.id} <#{self.email}>")
+    customer = Stripe::Customer.create(description: "id: #{self.id}")
     
     self.stripe_id = customer.id
     self.stripe_customer = customer.as_json

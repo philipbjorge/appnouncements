@@ -1,0 +1,12 @@
+/ https://www.accountdock.com
+tr
+  td
+    = Time.at(invoice_row.date).strftime("%-m/%-d")
+  td
+    / TODO: Nasty Hack
+    = (invoice_row.amount_due / 100).localize(:us).to_currency.to_s(:currency => invoice_row.currency.upcase)
+  td
+    = invoice_row.paid ? "Paid" : "Unpaid"
+  td
+    = link_to invoice_row.hosted_invoice_url, class: "btn tooltip tooltip-left", "data-tooltip": "View Invoice"
+      i.icon.icon-link
