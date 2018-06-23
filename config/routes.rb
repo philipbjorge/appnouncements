@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  get 'billing/index'
   devise_for :users
   devise_scope :user do
     get 'settings/profile', to: 'devise/registrations#edit'
   end
+  
+  scope :settings do
+    resource :billing
+  end
+
+  resolve('Billing') { [:billings] }
+  
+  get 'settings/billings', to: 'billings#index'
   
   namespace :api do
     namespace :v1 do
