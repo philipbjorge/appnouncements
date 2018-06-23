@@ -10,6 +10,15 @@ class User < ApplicationRecord
     user.save!
   end
   
+  def self.clear_stripe_id(stripe_id)
+    user = User.find_by_stripe_id(stripe_id)
+    return unless user
+    
+    user.stripe_id = nil
+    user.stripe_customer = nil
+    user.save!
+  end
+  
   devise :database_authenticatable, :registerable, :recoverable,
                   :rememberable, :trackable, :validatable, :confirmable, :lockable,
                   send_email_changed_notification: true, send_password_change_notification: true,
@@ -19,9 +28,8 @@ class User < ApplicationRecord
                   unlock_strategy: :email, lock_strategy: :failed_attempts, maximum_attempts: 10
 
   has_many :apps, dependent: :destroy
-
-  before_create :create_stripe_customer
   
+  # TODO: Handle disabling stuff and resuming unpaid subscription
   # TODO: On destroy, unsubscribe from Stripe!
   
   def customer
@@ -29,14 +37,19 @@ class User < ApplicationRecord
   end
   
   def customer=(v)
+    self.stripe_id = v.id
     self.stripe_customer = v.as_json
   end
   
-  private
-  def create_stripe_customer
-    customer = Stripe::Customer.create(description: "id: #{self.id}")
+  def create_or_update_stripe_customer! token, email
+    update_params = {source: token, email: email, description: "id: #{self.id}", expand: ["default_source"]}
     
-    self.stripe_id = customer.id
-    self.stripe_customer = customer.as_json
+    if self.customer
+      self.customer = Stripe::Customer.update(self.customer.id, update_params)
+    else
+      self.customer = Stripe::Customer.create(update_params)
+    end
+    
+    self.save!
   end
 end

@@ -5,7 +5,7 @@
 .columns
   .column.col-3 Billing Info
   .column.col-6
-    - if @customer.default_source
+    - if @customer&.default_source
       | Billing Email: 
       strong
         = @customer.email
@@ -17,6 +17,8 @@
       | Expiration: 
       strong
         = "#{@customer.default_source.exp_month}/#{@customer.default_source.exp_year}"
+    - else
+      | No billing information on file
   .column.col-3
     = form_tag billing_path, method: "PATCH"
       script.stripe-button [data-image="https://stripe.com/img/documentation/checkout/marketplace.png" 
@@ -26,19 +28,16 @@
                             data-panel-label="#{stripe_billing_button_label(@customer)}"
                             src="https://checkout.stripe.com/checkout.js"]
 .divider
-br
-h5 Payment History
-.divider
-table.table-striped style="width: 100%"
-  thead
-    tr.text-left
-      th Date
-      th Amount
-      th Status
-      th Actions
-  tbody
-    = render partial: "invoice_row", collection: @invoices
-/ | asdas
-/ Pull out settings sidebar into a partial and reuse
-/ Figure out plan administration
-/ Show delinquent Message
+- if @invoices&.any?
+  br
+  h5 Payment History
+  .divider
+  table.table-striped style="width: 100%"
+    thead
+      tr.text-left
+        th Date
+        th Amount
+        th Status
+        th Actions
+    tbody
+      = render partial: "invoice_row", collection: @invoices

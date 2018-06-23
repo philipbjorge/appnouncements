@@ -6,4 +6,5 @@ StripeEvent.configure do |events|
   
   events.subscribe "customer.updated", update_by_stripe_id
   events.subscribe "customer.subscription.updated", update_by_stripe_id
+  events.subscribe "customer.deleted", proc { |event| User.clear_stripe_id(event.data.object.id) }
 end
