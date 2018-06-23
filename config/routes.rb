@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'billing/index'
   devise_for :users
   devise_scope :user do
     get 'settings/profile', to: 'devise/registrations#edit'
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  mount StripeEvent::Engine, at: '/webhooks/stripe'
+  mount StripeEvent::Engine, at: '/webhook/stripe'
   
   root "apps#index"
   resources :apps do
