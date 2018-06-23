@@ -23,7 +23,7 @@ class User < ApplicationRecord
   before_create :create_stripe_customer
   
   def customer
-    Stripe::Util.convert_to_stripe_object(self.stripe_customer)
+    @customer ||= Stripe::Util.convert_to_stripe_object(self.stripe_customer)
   end
   
   private

@@ -11,7 +11,7 @@ open /Applications/RubyMine.app
 bin/rails credentials:edit/help
 
 # Proxy Webhooks
-`ssh -R appnouncements:80:appnouncements.localhost:3000 serveo.net`
+`retry -- ssh -R appnouncements:80:appnouncements.localhost:3000 serveo.net`
 
 Things you may want to cover:
 
