@@ -16,5 +16,5 @@ html
           = @app.display_name
           = " - "
           = format_platform(@app)
-    == yield
+    == content_for?(:content) ? yield(:content) : yield
     = any_login_here if defined?(AnyLogin)

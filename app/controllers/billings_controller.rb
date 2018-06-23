@@ -2,6 +2,8 @@ class BillingsController < ApplicationController
   before_action :authenticate_user!
   before_action :skip_authorization
   
+  layout "settings"
+  
   def show
     @customer = current_user.customer
   end

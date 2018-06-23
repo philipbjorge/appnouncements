@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'user/registrations' }
   devise_scope :user do
-    get 'settings/profile', to: 'devise/registrations#edit', as: "profile"
+    get 'settings/profile', to: 'user/registrations#edit', as: "profile"
   end
   
   scope :settings do
