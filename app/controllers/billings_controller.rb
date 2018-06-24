@@ -12,6 +12,6 @@ class BillingsController < ApplicationController
   def update
     # Defer creating our stripe customer until we have billing info to keep our DB clean
     current_user.create_or_update_stripe_customer! params.require(:stripeToken), params.require(:stripeEmail)
-    redirect_to billing_path, notice: "Billing information successfully updated!"
+    redirect_to (session.delete(:return_to) || billing_path), notice: "Billing information successfully updated!"
   end
 end

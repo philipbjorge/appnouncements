@@ -17,7 +17,7 @@ class AppsController < ApplicationController
 
   # GET /apps/new
   def new
-    ensure_billing_acceptable
+    return unless ensure_billing_acceptable
     
     @app = current_user.apps.build
     authorize @app
@@ -30,7 +30,7 @@ class AppsController < ApplicationController
 
   # POST /apps
   def create
-    ensure_billing_acceptable
+    return unless ensure_billing_acceptable
     
     @app = current_user.apps.build(app_params)
     authorize @app
@@ -70,7 +70,19 @@ class AppsController < ApplicationController
     end
   
     def ensure_billing_acceptable
-      redirect_to billing_path, notice: "In order to add new apps, you will need to add a credit card. You will not be charged until you add a new app." if current_user.require_billing_information?
-      redirect_to billing_path, warning: "In order to add new apps, you will to update your billing information." if current_user.require_updated_billing_information?
+      session[:return_to] = new_app_path
+      
+      if current_user.require_billing_information?
+        skip_authorization
+        redirect_to billing_path, notice: "In order to add new apps, you will need to add a credit card. You will not be charged until you add a new app."
+        return false
+      elsif current_user.require_updated_billing_information?
+        skip_authorization
+        redirect_to billing_path, warning: "In order to add new apps, you will to update your billing information."
+        return false
+      end
+      
+      session.delete(:return_to)
+      return true
     end
 end
