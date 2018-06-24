@@ -5,6 +5,7 @@ class AppsController < ApplicationController
   # GET /apps
   def index
     @apps = policy_scope(App)
+    flash.now.notice = "You are currently at your free limit. To add more apps, you will need to update your #{view_context.link_to('billing information', billing_path)}.".html_safe if current_user.require_billing_information?
   end
 
   # GET /apps/1
@@ -16,6 +17,8 @@ class AppsController < ApplicationController
 
   # GET /apps/new
   def new
+    ensure_billing_acceptable
+    
     @app = current_user.apps.build
     authorize @app
   end
@@ -27,6 +30,8 @@ class AppsController < ApplicationController
 
   # POST /apps
   def create
+    ensure_billing_acceptable
+    
     @app = current_user.apps.build(app_params)
     authorize @app
     if @app.save
@@ -62,5 +67,10 @@ class AppsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def app_params
       params.require(:app).permit(:display_name, :color, :platform)
+    end
+  
+    def ensure_billing_acceptable
+      redirect_to billing_path, notice: "In order to add new apps, you will need to add a credit card. You will not be charged until you add a new app." if current_user.require_billing_information?
+      redirect_to billing_path, warning: "In order to add new apps, you will to update your billing information." if current_user.require_updated_billing_information?
     end
 end
