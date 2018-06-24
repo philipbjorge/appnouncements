@@ -53,7 +53,7 @@ class AppsController < ApplicationController
 
   # DELETE /apps/1
   def destroy
-    # TODO: Pundit Support
+    authorize @app
     @app.destroy
     redirect_to apps_url, notice: 'App was successfully destroyed.'
   end
