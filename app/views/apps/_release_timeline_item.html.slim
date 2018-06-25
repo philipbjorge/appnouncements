@@ -1,13 +1,4 @@
-.timeline-item
-  .timeline-left
-    a.timeline-icon
-      / TODO: Use iconography to denote published/unpublished?
-  .timeline-content
-    .tile
-      .tile-content
-        = format_version(release_timeline_item)
-        br
-        = release_timeline_item.title
-      .tile-action
-        = link_to edit_app_release_path(@app, release_timeline_item), class: "btn tooltip tooltip-left", "data-tooltip": "Edit these release notes"
-          i.icon.icon-edit
+= link_to edit_app_release_path(@app, release_timeline_item), class: "btn tooltip tooltip-left", "data-tooltip": "Edit these release notes"
+  = release_timeline_item.title
+  br
+  = format_version(release_timeline_item)

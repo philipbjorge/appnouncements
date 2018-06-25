@@ -6,4 +6,4 @@ module ValidFeedback
 end
 
 # Register the component in Simple Form.
-SimpleForm.include_component(ValidFeedback)
+#SimpleForm.include_component(ValidFeedback)

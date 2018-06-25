@@ -3,14 +3,21 @@
     .col-sm-3
       = render partial: "app_navbar"
     .col-sm-9
-      h3
-        = @app.display_name
+      .row
+        .col-sm-6
+          h3
+            = @app.display_name
+        .col-sm-6
+          - if @app.releases.any?
+            = link_to new_app_release_path(@app), class: "btn btn-primary float-right"
+              = octicon "plus", class: "mr-2", "aria-label": "new release"
+              | New Release
       hr.pb-3
       - if @app.releases.any?
-        .container.grid-lg
+        .container
           = link_to new_app_release_path(@app), class: "btn float-right tooltip tooltip-left", "data-tooltip": "Create a new release"
             i.icon.icon-plus
-        .container.grid-lg
+        .container
           .timeline
             = render partial: "release_timeline_item", collection: @app.releases
       - else

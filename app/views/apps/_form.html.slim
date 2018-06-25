@@ -2,7 +2,7 @@
   - if app.new_record?
     = f.input :platform, collection: [["Android", "android"], ["iOS", "ios"]], prompt: "Choose a Platform"
   = f.input :display_name
-  = f.input :color, input_html: {type: :color, "data-show-input": true, "data-preferred-format": "hex"}, valid_feedback: false
+  = f.input :color, input_html: {type: :color, "data-show-input": true, "data-preferred-format": "hex"}
   .form-group.row.mb-0
     .col-sm-9.offset-sm-3
       = f.button :submit, class: "btn-primary mr-2"
