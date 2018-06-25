@@ -13,3 +13,7 @@ html
     .mt-3
     == content_for?(:content) ? yield(:content) : yield
     = any_login_here if defined?(AnyLogin)
+    footer.footer
+      .container
+        span.text-muted
+          | © 2018 Appnouncements

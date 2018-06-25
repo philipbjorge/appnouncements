@@ -1,10 +1,8 @@
-.columns
-  .column.col-12
-    h5 Billing Overview
-    .divider
-.columns
-  .column.col-3 Billing Info
-  .column.col-6
+h3 Billing Overview
+hr
+.row
+  .col-sm-3 Billing Info
+  .col-sm-6
     - if @customer&.default_source
       | Billing Email: 
       strong
@@ -19,7 +17,7 @@
         = "#{@customer.default_source.exp_month}/#{@customer.default_source.exp_year}"
     - else
       | No billing information on file
-  .column.col-3
+  .col-sm-3
     = form_tag billing_path, method: "PATCH"
       script.stripe-button [data-image="https://stripe.com/img/documentation/checkout/marketplace.png" 
                             data-key="#{Rails.application.credentials[Rails.env.to_sym][:stripe_public_key]}" data-locale="auto" 
@@ -27,17 +25,14 @@
                             data-allow-remember-me="false" data-label="#{stripe_billing_button_label(@customer)}" 
                             data-panel-label="#{stripe_billing_button_label(@customer)}"
                             src="https://checkout.stripe.com/checkout.js"]
-.divider
 - if @invoices&.any?
-  br
-  h5 Payment History
-  .divider
-  table.table-striped style="width: 100%"
+  h3.mt-5 Payment History
+  table.table-striped.table style="width: 100%"
     thead
-      tr.text-left
-        th Date
-        th Amount
-        th Status
-        th Actions
+      tr
+        th [scope="col"] Date
+        th [scope="col"] Amount
+        th [scope="col"] Status
+        th [scope="col"] Actions
     tbody
       = render partial: "invoice_row", collection: @invoices

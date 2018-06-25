@@ -16,3 +16,7 @@
 //= require bootstrap/dist/js/bootstrap
 //= require rails-ujs
 //= require spectrum-colorpicker/spectrum
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});

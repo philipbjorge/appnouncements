@@ -1,9 +1,8 @@
-.empty
-  .empty-icon
-    i.icon.icon-apps
-  p.empty-title.h5
-    | You have no apps
-  p.empty-subtitle
-    | Get started by adding an app
-  .empty-action
-    = link_to "Create an App", new_app_path, class: "btn btn-primary"
+ .card
+  .card-body.text-center
+    = octicon "device-mobile", height: 96
+    h5.card-title.mt-3
+      | You don't have any apps
+    p.card-text
+      | Get started by adding your first app (It's free)!
+    = link_to "Create App", new_app_path, class: "btn btn-primary"

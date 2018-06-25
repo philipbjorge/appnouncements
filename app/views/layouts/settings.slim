@@ -1,13 +1,12 @@
 - content_for :content
   .container
-    .columns
-      .column.col-3
-        ul.menu
-          li.divider data-content="Settings"
-          li.menu-item
-            = active_link_to "Profile", profile_path
-          li.menu-item
-            = active_link_to "Billing", billing_path
-      .column.col-9.pt-2
+    .row
+      .col-sm-3
+        ul.nav.nav-pills.flex-column.mb-3
+          li.nav-item
+            = active_link_to 'Profile', edit_profile_path, class: "nav-link"
+          li.nav-item
+            = active_link_to 'Billing', billing_path, class: "nav-link"
+      .col-sm-9
         == yield
 = render template: "layouts/application"

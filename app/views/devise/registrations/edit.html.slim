@@ -1,8 +1,7 @@
-/ TODO
-h2
+h3
   | Profile
-.divider
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+hr
+= simple_form_for(resource, as: resource_name, url: update_profile_path(resource_name), html: { method: :put }) do |f|
   = f.error_notification
   .form-inputs
     = f.input :email, required: true, autofocus: true
@@ -15,10 +14,11 @@ h2
     = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
   .form-actions
     = f.button :submit, "Update"
+h3.mt-5.text-danger Delete Account
+hr
+p
+  | All your apps and release notes will be deleted.<br><br>
+  | Apps released with our SDK will continue functioning, but will return an empty release notes page.<br><br>
+  | Any subscriptions you have with us will be cancelled immediately and refunded in 5-7 days.
 br
-.divider
-br
-| TODO: Describe what will happen if they do this!
-br
-br
-= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-error"
+= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, role: "button", class: "btn btn-danger mb-5"

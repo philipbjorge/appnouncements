@@ -3,7 +3,9 @@
     .col-sm-3
       = render partial: "app_navbar"
     .col-sm-9
-      h3 Releases
+      h3
+        = @app.display_name
+      hr.pb-3
       - if @app.releases.any?
         .container.grid-lg
           = link_to new_app_release_path(@app), class: "btn float-right tooltip tooltip-left", "data-tooltip": "Create a new release"

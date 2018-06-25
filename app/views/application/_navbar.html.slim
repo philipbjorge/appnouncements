@@ -6,5 +6,5 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
         a#settingsDropdown.nav-item.nav-link.dropdown-toggle.mr-md-2 aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" 
           = octicon "gear", "aria-label": "user settings toggle"
         .dropdown-menu.dropdown-menu-right aria-labelledby="settingsDropdown" 
-          = link_to "Settings", profile_path, class: "dropdown-item"
+          = link_to "Settings", edit_profile_path, class: "dropdown-item"
           = link_to 'Sign out', destroy_user_session_path, method: :delete, class: "dropdown-item"
