@@ -10,7 +10,7 @@
             = f.input :display_version
           = f.input :title
           = f.input :body, input_html: { id: "simple-mde", rows: 20 }
-          = f.input :draft
+          = f.input :draft, valid_feedback: false
           = f.button :submit
     .column.col-5
       .device[style="margin-left: 40px; transform: scale(0.9); position: fixed;" class=device_class(@app)]

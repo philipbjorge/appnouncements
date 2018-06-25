@@ -1,9 +1,8 @@
-.empty
-  .empty-icon
-    i.icon.icon-apps
-  p.empty-title.h5
-    | You have no releases
-  p.empty-subtitle
-    | Get started by adding a release
-  .empty-action
-    = link_to "Create a release", new_app_release_path(@app.id), class: "btn btn-primary"
+.card
+  .card-body.text-center
+    = octicon "note", width: 96
+    h5.card-title
+      | You don't have any releases
+    p.card-text
+      | Get started by adding your first release!
+    = link_to "New Release", new_app_release_path(@app.id), class: "btn btn-success"

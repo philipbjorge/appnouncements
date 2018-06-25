@@ -1,10 +1,10 @@
 .container
-  h2 New App
-  p
-    | Add some details about your new app.
-  p
-    | Don't worry, you can change everything except the platform later.
-  br
-  .row
+  .row.justify-content-center
     .col-sm-8
+      h2 New App
+      p.lead
+        | Add some details about your new app. 
+        br
+        | Don't worry, you can change everything except the platform later.
+      br
       = render 'form', app: @app

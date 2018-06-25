@@ -1,0 +1,5 @@
+ul.nav.nav-pills.flex-column
+  li.nav-item
+    = active_link_to 'Releases', app_path(@app), active: :exclusive, class: "nav-link"
+  li.nav-item
+    = active_link_to 'Settings', edit_app_path(@app), class: "nav-link"

@@ -59,6 +59,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label, class: 'form-control-label'
     b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -70,6 +71,7 @@ SimpleForm.setup do |config|
     b.wrapper :form_check_wrapper, tag: 'div', class: 'form-check' do |bb|
       bb.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
       bb.use :label, class: 'form-check-label'
+      bb.use :valid_feedback
       bb.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
       bb.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end
@@ -83,6 +85,7 @@ SimpleForm.setup do |config|
       ba.use :label_text
     end
     b.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -95,6 +98,7 @@ SimpleForm.setup do |config|
       ba.use :label_text
     end
     b.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -108,6 +112,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label
     b.use :input, class: 'form-control-file', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -120,6 +125,7 @@ SimpleForm.setup do |config|
     b.wrapper tag: 'div', class: 'd-flex flex-row justify-content-between align-items-center' do |ba|
       ba.use :input, class: 'form-control mx-1', error_class: 'is-invalid', valid_class: 'is-valid'
     end
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -132,6 +138,7 @@ SimpleForm.setup do |config|
     b.optional :step
     b.use :label
     b.use :input, class: 'form-control-range', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -151,6 +158,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'col-sm-3 col-form-label'
     b.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
+      ba.use :valid_feedback
       ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
       ba.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end
@@ -167,6 +175,7 @@ SimpleForm.setup do |config|
       wr.wrapper :form_check_wrapper, tag: 'div', class: 'form-check' do |bb|
         bb.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
         bb.use :label, class: 'form-check-label'
+        bb.use :valid_feedback
         bb.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
         bb.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
       end
@@ -180,6 +189,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'col-sm-3 form-control-label'
     b.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
+      ba.use :valid_feedback
       ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
       ba.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end
@@ -192,6 +202,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'col-sm-3 form-control-label'
     b.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
+      ba.use :valid_feedback
       ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
       ba.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end
@@ -207,6 +218,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'col-sm-3 form-control-label'
     b.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input, error_class: 'is-invalid', valid_class: 'is-valid'
+      ba.use :valid_feedback
       ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
       ba.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end
@@ -221,6 +233,7 @@ SimpleForm.setup do |config|
       ba.wrapper tag: 'div', class: 'd-flex flex-row justify-content-between align-items-center' do |bb|
         bb.use :input, class: 'form-control mx-1', error_class: 'is-invalid', valid_class: 'is-valid'
       end
+      ba.use :valid_feedback
       ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
       ba.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end
@@ -235,6 +248,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'col-sm-3 form-control-label'
     b.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-9' do |ba|
       ba.use :input, class: 'form-control-range', error_class: 'is-invalid', valid_class: 'is-valid'
+      ba.use :valid_feedback
       ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
       ba.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end
@@ -279,6 +293,7 @@ SimpleForm.setup do |config|
     b.wrapper :form_check_wrapper, tag: 'div', class: 'custom-control custom-checkbox' do |bb|
       bb.use :input, class: 'custom-control-input', error_class: 'is-invalid', valid_class: 'is-valid'
       bb.use :label, class: 'custom-control-label'
+      bb.use :valid_feedback
       bb.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
       bb.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end
@@ -290,6 +305,7 @@ SimpleForm.setup do |config|
     b.wrapper :form_check_wrapper, tag: 'div', class: 'custom-control custom-checkbox-switch' do |bb|
       bb.use :input, class: 'custom-control-input', error_class: 'is-invalid', valid_class: 'is-valid'
       bb.use :label, class: 'custom-control-label'
+      bb.use :valid_feedback
       bb.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
       bb.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end
@@ -303,6 +319,7 @@ SimpleForm.setup do |config|
       ba.use :label_text
     end
     b.use :input, class: 'custom-control-input', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -315,6 +332,7 @@ SimpleForm.setup do |config|
       ba.use :label_text
     end
     b.use :input, class: 'custom-control-input', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -330,6 +348,7 @@ SimpleForm.setup do |config|
     b.wrapper :custom_file_wrapper, tag: 'div', class: 'custom-file' do |ba|
       ba.use :input, class: 'custom-file-input', error_class: 'is-invalid', valid_class: 'is-valid'
       ba.use :label, class: 'custom-file-label'
+      ba.use :valid_feedback
       ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
     end
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
@@ -343,6 +362,7 @@ SimpleForm.setup do |config|
     b.wrapper tag: 'div', class: 'd-flex flex-row justify-content-between align-items-center' do |ba|
       ba.use :input, class: 'custom-select mx-1', error_class: 'is-invalid', valid_class: 'is-valid'
     end
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -355,6 +375,7 @@ SimpleForm.setup do |config|
     b.optional :step
     b.use :label, class: 'form-control-label'
     b.use :input, class: 'custom-range', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -376,6 +397,7 @@ SimpleForm.setup do |config|
       ba.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
       ba.optional :append
     end
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -394,6 +416,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
     b.use :label, class: 'form-control-label'
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
@@ -404,6 +427,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :input, class: 'custom-select custom-select-lg', error_class: 'is-invalid', valid_class: 'is-valid'
     b.use :label, class: 'form-control-label'
+    b.use :valid_feedback
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end

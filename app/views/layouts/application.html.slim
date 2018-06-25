@@ -10,5 +10,6 @@ html
   body
     = render :partial => 'navbar'
     = render :partial => 'toasts'
+    .mt-3
     == content_for?(:content) ? yield(:content) : yield
     = any_login_here if defined?(AnyLogin)
