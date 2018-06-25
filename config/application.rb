@@ -13,7 +13,7 @@ module Appnouncements
     config.load_defaults 5.2
     config.generators.javascript_engine = :js
     
-    config.autoload_paths += %W["#{config.root}/app/validators/"]
+    config.autoload_paths += %W["#{config.root}/app/validators/" "#{config.root}/app/services/"]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

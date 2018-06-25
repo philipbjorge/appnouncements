@@ -158,6 +158,11 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    octicons (7.3.0)
+      nokogiri (>= 1.6.3.1)
+    octicons_helper (7.3.0)
+      octicons (= 7.3.0)
+      rails
     onebox (1.8.47)
       htmlentities (~> 4.3)
       moneta (~> 1.0)
@@ -330,6 +335,7 @@ DEPENDENCIES
   html-pipeline
   letter_opener
   listen (>= 3.0.5, < 3.2)
+  octicons_helper
   onebox
   pg (>= 0.18, < 2.0)
   pry-rails

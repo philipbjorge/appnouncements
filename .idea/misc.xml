@@ -3,5 +3,8 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/config/initializers/simple_form.rb" />
+  </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="ruby-2.3.3-p222" project-jdk-type="RUBY_SDK" />
 </project>

@@ -1,8 +1,8 @@
-.column.col-4.col-xs-12.py-2
+.col-sm-4
   = link_to app
     .card
-      .card-header
-        .card-title.h5
+      .card-body
+        h5.card-title
           = app.display_name
-        .card-subtitle.text-gray
+        h6.card-subtitle.mb-2.text-muted
           = format_platform(app)

@@ -20,6 +20,10 @@ class AppsController < ApplicationController
     return unless ensure_billing_acceptable
     
     @app = current_user.apps.build
+    # We will start a new subscription billed at $9/monthly
+    # We will add this app to your subscription at a prorated rate of $8.50 ($9/monthly)
+    @prorated_cost = 0
+    @monthly_cost = 0
     authorize @app
   end
 

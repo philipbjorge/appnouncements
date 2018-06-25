@@ -1,12 +1,12 @@
 module ApplicationHelper
-  def toast_class_for(flash_type)
+  def alert_class_for(flash_type)
     mapping = {
-      success: 'toast-success',
-      error: 'toast-error',
-      alert: 'toast-warning',
-      notice: 'toast-primary'
+      success: 'alert-success',
+      error: 'alert-danger',
+      alert: 'alert-warning',
+      notice: 'alert-primary'
     }
-    mapping[flash_type.to_sym] || flash_type.to_s
+    mapping[flash_type.to_sym] || "alert-#{flash_type.to_s}"
   end
 
   def render_markdown(md)

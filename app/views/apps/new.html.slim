@@ -1,2 +1,10 @@
-= render 'form', app: @app
-= link_to 'Back', apps_path
+.container
+  h2 New App
+  p
+    | Add some details about your new app.
+  p
+    | Don't worry, you can change everything except the platform later.
+  br
+  .row
+    .col-sm-8
+      = render 'form', app: @app

@@ -12,10 +12,16 @@
  *
  * TODO: Require simplemde only on editor page
  *
- *= require 'spectre.css/dist/spectre'
- *= require 'spectre.css/dist/spectre-exp'
- *= require 'spectre.css/dist/spectre-icons'
  *= require 'spectrum-colorpicker/spectrum'
  *= require 'devices.css/dist/devices.css'
  *= require 'simplemde/dist/simplemde.min'
  */
+
+@import "bootstrap/scss/bootstrap";
+@import "simple_form-bootstrap/simple_form-bootstrap";
+
+.octicon {
+    display: inline-block;
+    vertical-align: text-top;
+    fill: currentColor;
+}

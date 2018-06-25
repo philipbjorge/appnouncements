@@ -10,11 +10,5 @@ html
   body
     = render :partial => 'navbar'
     = render :partial => 'toasts'
-    - if @app
-      .container.grid-lg
-        h2
-          = @app.display_name
-          = " - "
-          = format_platform(@app)
     == content_for?(:content) ? yield(:content) : yield
     = any_login_here if defined?(AnyLogin)
