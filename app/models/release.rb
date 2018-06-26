@@ -2,38 +2,21 @@ class Release < ApplicationRecord
   belongs_to :app
 
   validates :version, presence: true
-
-  # Messes with Simple Forms
-  #
-  # Android Validation
-  validates :version,
-            numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 2100000000},
-            if: :android?
-
-  # iOS Validation
-  validates :version,
-            format: { with: /\A(\d+\.)?(\d+\.)?(\d+)\z/, message: "must match iOS Version requirements"},
-            if: :ios?
-
   validates :title, presence: true
-  validates :display_version, presence: true
   validates :body, presence: true
 
   default_scope { order(Arel.sql("string_to_array(version, '.')::int[] DESC")) }
-  scope :published, -> { where(draft: false) }
-
-  before_validation :set_display_version, if: :ios?
-
-  private
+  scope :published, -> { where(published: true) }
+  
   def ios?
-    self.app.platform == "ios"
+    false
   end
 
   def android?
-    self.app.platform == "android"
+    false
   end
-
-  def set_display_version
-    self.display_version = self.version
+  
+  def self.fix_params params
+    params.tap { |p| p[:release] = p[:android_release] || p[:ios_release] }
   end
 end

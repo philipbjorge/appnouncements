@@ -10,7 +10,28 @@ en:
       html: ''
     error_notification:
       default_message: "Please review the problems below:"
+    hints:
+      # Link them to -- https://stackoverflow.com/questions/21125159/which-ios-app-version-build-numbers-must-be-incremented-upon-app-store-release?
+      ios_release:
+        version: "Use your <strong>CFBundleShortVersionString</strong> (the version number you give to iTunes Connect)"
+      android_release:
+        version: "Use your <strong>versionCode</strong> (the internal version used by the Play Store)"
+        display_version: "Use your <strong>versionName</strong> (the consumer visible version in the Play Store)"
+      app:
+        new:
+          color: "This will be used as an accent color on your rendered release notes.<br>Choose something that matches your app's branding!"
+        platform: "<span class='badge badge-info mb-1'>iOS Coming Soon!</span><br>Choose your app's platform.<br>You cannot change this after creating your app!"
+        display_name: "This is how your app will be labeled inside Appnouncement's Dashboard."
+        color: "This will be used as an accent color on your rendered release notes."
+    labels:
+      app:
+        color: "Accent Color"
     placeholders:
+      android_release:
+        version: "1"
+        display_version: "1.2.0"
+      ios_release:
+        version: "1.2.0"
       defaults:
         email: "Email"
         password: "Password"

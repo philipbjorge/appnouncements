@@ -1,13 +1,19 @@
 = javascript_include_tag 'lib/markdown'
 
 .col-md-7
-  = simple_form_for [@release.app, @release], html: { id: "release_edit" } do |f|
+  / https://thepugautomatic.com/2012/08/rails-sti-and-form-for/
+  / .becomes so that it looks up the correct form paths
+  / then we revert back so that simple_form lookups will succeed based on subtype
+  / Finally, we monkey with the params with Release.fix_params so we can update our models
+  = simple_form_for [@release.app, @release.becomes(Release)], html: { id: "release_edit" } do |f|
+    - f.object = @release.becomes(@release.class)
+    - f.object_name = ActiveModel::Naming.param_key(f.object)
     = f.input :title
     = f.input :version
-    - if @app.platform == "android"
+    - if @release.android?
       = f.input :display_version
-    = f.input :body, input_html: { id: "simple-mde", rows: 20 }, wrapper: :vertical_form
-    = f.input :draft, wrapper: :custom_boolean
+    = f.input :body, input_html: { id: "simple-mde", rows: 20 }, wrapper: :vertical_form, label: false
+    = f.input :published, wrapper: :custom_boolean
     = f.button :submit, class: "btn-primary mr-2"
     = link_to "Cancel", app_path(@app), class: "btn btn-outline-secondary"
   - unless @release.id.nil?

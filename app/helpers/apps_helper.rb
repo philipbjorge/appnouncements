@@ -1,13 +1,12 @@
 module AppsHelper
   def format_version release
-    return release.display_version if release.app.platform == "ios"
-    return "#{release.display_version} / #{release.version}" if release.app.platform == "android"
+    return release.version if release.app.ios?
+    return "#{release.display_version} / #{release.version}" if release.app.android?
   end
 
   def format_platform app
-    return "" unless app.platform
-    
-    return "iOS" if app.platform == "ios"
-    return app.platform.titlecase
+    return "iOS" if app.ios?
+    return "Android" if app.android?
+    return "Unknown"
   end
 end

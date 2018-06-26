@@ -1,0 +1,2 @@
+class IosReleasePolicy < ReleasePolicy
+end

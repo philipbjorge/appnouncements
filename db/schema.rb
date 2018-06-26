@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_24_181525) do
+ActiveRecord::Schema.define(version: 2018_06_26_193849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -52,13 +52,14 @@ ActiveRecord::Schema.define(version: 2018_06_24_181525) do
   end
 
   create_table "releases", force: :cascade do |t|
-    t.string "version", null: false
+    t.string "type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "title", null: false
     t.text "body", null: false
     t.bigint "app_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "draft", default: true
+    t.boolean "published", default: false
+    t.string "version", null: false
     t.string "display_version"
     t.index ["app_id"], name: "index_releases_on_app_id"
   end

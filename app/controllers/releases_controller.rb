@@ -6,7 +6,7 @@ class ReleasesController < ApplicationController
   # GET /apps/1/releases/new
   def new
     authorize @app
-    @release = @app.releases.build
+    @release = @app.releases.build(type: @app.release_type)
   end
 
   # GET /apps/1/edit
@@ -23,7 +23,7 @@ class ReleasesController < ApplicationController
   # POST /apps
   def create
     authorize @app
-    @release = @app.releases.build(release_params)
+    @release = @app.releases.build(release_params.merge(type: @app.release_type))
     if @release.save
       redirect_to @app, notice: 'Release was successfully created.'
     else
@@ -59,6 +59,6 @@ class ReleasesController < ApplicationController
   end
 
   def release_params
-    params.require(:release).permit(:version, :title, :body, :draft, :display_version)
+    Release.fix_params(params).require(:release).permit(:version, :title, :body, :published, :display_version)
   end
 end
