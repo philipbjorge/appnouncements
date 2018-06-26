@@ -1,4 +1,5 @@
-= link_to edit_app_release_path(@app, release_timeline_item), class: "btn tooltip tooltip-left", "data-tooltip": "Edit these release notes"
+= link_to edit_app_release_path(@app, release_timeline_item)
   = release_timeline_item.title
   br
   = format_version(release_timeline_item)
+hr
