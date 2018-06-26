@@ -2,23 +2,17 @@
 
 .col-md-7
   = simple_form_for [@release.app, @release], html: { id: "release_edit" } do |f|
+    = f.input :title
     = f.input :version
     - if @app.platform == "android"
       = f.input :display_version
-    = f.input :title
-    = f.input :body, input_html: { id: "simple-mde", rows: 20 }
-    .form-group.row.mb-0
-      .col-sm-9.offset-sm-3
-        = f.input :draft, wrapper: :custom_boolean
-    .form-group.row.mb-0
-      .col-sm-9.offset-sm-3
-        = f.button :submit, class: "btn-primary mr-2"
-        = link_to "Cancel", app_path(@app), class: "btn btn-outline-secondary"
+    = f.input :body, input_html: { id: "simple-mde", rows: 20 }, wrapper: :vertical_form
+    = f.input :draft, wrapper: :custom_boolean
+    = f.button :submit, class: "btn-primary mr-2"
+    = link_to "Cancel", app_path(@app), class: "btn btn-outline-secondary"
   - unless @release.id.nil?
     hr.my-4
-    .row
-      .col-sm-9.offset-sm-3
-        = link_to "Delete Release", app_release_path(@app, @release), method: "delete", data: {confirm: "Are you sure?"}, role: "button", class: "btn mb-5 mr-2 btn-danger"
+    = link_to "Delete Release", app_release_path(@app, @release), method: "delete", data: {confirm: "Are you sure?"}, role: "button", class: "btn mb-5 mr-2 btn-danger"
 .col-md-5
   .device[style="margin-left: 40px; transform: scale(0.75); transform-origin: 50% 0; position: fixed;" class=device_class(@app)]
     .device-frame

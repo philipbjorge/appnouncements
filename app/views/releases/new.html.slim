@@ -2,7 +2,7 @@
   .row
     .col-sm-12
       h3
-        = @app.display_name
+        = link_to @release.app.display_name, @release.app
       hr.pb-3
   .row
     == render 'form', release: @release

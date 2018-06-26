@@ -55,7 +55,7 @@ function init(uuid) {
         toolbar: ["bold", "italic", "|",
             "heading-1", "heading-2", "heading-3", "|",
             "unordered-list", "ordered-list", "quote", "|",
-            "link", "image", "table", "horizontal-rule", "|",
+            "link", "image", "horizontal-rule", "|",
             "undo", "redo", "|",
             {
                 name: "guide",
