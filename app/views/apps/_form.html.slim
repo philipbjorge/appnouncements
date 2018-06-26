@@ -1,6 +1,6 @@
 = simple_form_for app, wrapper: :horizontal_form do |f|
   - if app.new_record?
-    = f.input :platform, collection: [["Android", "android"], ["iOS", "ios"]], prompt: "Choose a Platform"
+    = f.input :platform, collection: [["Android", "android"], ["iOS", "ios"]], wrapper: :horizontal_collection, as: :radio_buttons
   = f.input :display_name
   = f.input :color, input_html: {type: :color, "data-show-input": true, "data-preferred-format": "hex"}
   .form-group.row.mb-0

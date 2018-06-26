@@ -27,6 +27,8 @@ class User < ApplicationRecord
                   extend_remember_period: true
 
   has_many :apps, dependent: :destroy
+
+  validates_acceptance_of :terms_of_service, on: :create
   
   # TODO: Handle disabling stuff and resuming unpaid subscription
   # TODO: On destroy, unsubscribe from Stripe!
