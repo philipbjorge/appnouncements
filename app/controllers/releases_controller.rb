@@ -11,11 +11,11 @@ class ReleasesController < ApplicationController
 
   # GET /apps/1/edit
   def edit
-    authorize @app
+    authorize @release
   end
 
   def attach
-    authorize @app
+    authorize @release
     attachment = @app.images.attach(params.require(:file))[0]
     render json: {filename: url_for(attachment)}
   end
@@ -33,7 +33,7 @@ class ReleasesController < ApplicationController
 
   # PATCH/PUT /apps/1
   def update
-    authorize @app
+    authorize @release
     if @release.update(release_params)
       redirect_to @app, notice: 'Release was successfully updated.'
     else
@@ -43,6 +43,7 @@ class ReleasesController < ApplicationController
 
   # DELETE /apps/1
   def destroy
+    authorize @release
     @release.destroy
     redirect_to @app, notice: 'Release was successfully destroyed.'
   end

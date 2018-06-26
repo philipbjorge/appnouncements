@@ -8,7 +8,7 @@ module ApplicationHelper
     }
     mapping[flash_type.to_sym] || "alert-#{flash_type.to_s}"
   end
-
+  
   def render_markdown(md)
     p = HTML::Pipeline.new [MarkdownFilter,
                             OneboxFilter,

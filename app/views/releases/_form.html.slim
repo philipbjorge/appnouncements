@@ -14,6 +14,11 @@
       .col-sm-9.offset-sm-3
         = f.button :submit, class: "btn-primary mr-2"
         = link_to "Cancel", app_path(@app), class: "btn btn-outline-secondary"
+  - unless @release.id.nil?
+    hr.my-4
+    .row
+      .col-sm-9.offset-sm-3
+        = link_to "Delete Release", app_release_path(@app, @release), method: "delete", data: {confirm: "Are you sure?"}, role: "button", class: "btn mb-5 mr-2 btn-danger"
 .col-md-5
   .device[style="margin-left: 40px; transform: scale(0.75); transform-origin: 50% 0; position: fixed;" class=device_class(@app)]
     .device-frame

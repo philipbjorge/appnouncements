@@ -14,6 +14,10 @@ class AppPolicy < ApplicationPolicy
   def preview?
     user.id == record.user_id
   end
+  
+  def destroy?
+    user.id == record.user_id
+  end
 
   class Scope < Scope
     def resolve

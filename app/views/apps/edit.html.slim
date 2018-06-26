@@ -7,3 +7,10 @@
         = @app.display_name
       hr.pb-3
       = render 'form', app: @app
+      hr.my-4
+      p
+        | Apps released with our SDK will continue functioning, but will return an empty release notes page.<br/>
+        | TODO: What will happen to your subscription?
+      .row
+        .col-sm-9.offset-sm-3
+          = link_to "Delete App", app_path(@app), method: "delete", data: {confirm: "Are you sure?"}, role: "button", class: "btn my-3 mr-2 btn-danger"
