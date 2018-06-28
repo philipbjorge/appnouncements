@@ -36,7 +36,7 @@ class AppsController < ApplicationController
   def create
     return unless ensure_billing_acceptable
     
-    @app = current_user.apps.build(app_params)
+    @app = current_user.apps.build(app_create_params)
     authorize @app
     if @app.save
       redirect_to @app, notice: 'App was successfully created.'
@@ -48,7 +48,7 @@ class AppsController < ApplicationController
   # PATCH/PUT /apps/1
   def update
     authorize @app
-    if @app.update(app_params)
+    if @app.update(app_update_params)
       redirect_to @app, notice: 'App was successfully updated.'
     else
       render :edit
@@ -69,7 +69,11 @@ class AppsController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
-    def app_params
+    def app_create_params
+      params.require(:app).permit(:display_name, :color, :platform)
+    end
+
+    def app_update_params
       params.require(:app).permit(:display_name, :color, :platform)
     end
   

@@ -24,6 +24,11 @@
 
 require 'rails_helper'
 
-RSpec.describe Release, type: :model do
+RSpec.describe IosRelease, type: :model do
   it_behaves_like "Release"
+  
+  it { should allow_values("1", "1.1", "1.1.1", "1.10000", "1.10000.1").for(:version) }
+  it { should_not allow_values("a", "1.a", "1.", ".1", "a.1", "1.10000.1.5").for(:version) }
+  it { expect(IosRelease.new.ios?).to be true }
+  it { expect(IosRelease.new.android?).to be false }
 end

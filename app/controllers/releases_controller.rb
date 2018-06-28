@@ -59,6 +59,6 @@ class ReleasesController < ApplicationController
   end
 
   def release_params
-    Release.fix_params(params).require(:release).permit(:version, :title, :body, :published, :display_version)
+    Release.fix_params(params, @app.platform).require(:release).permit(:version, :title, :body, :published, :display_version)
   end
 end

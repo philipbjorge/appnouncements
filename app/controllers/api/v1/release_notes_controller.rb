@@ -24,7 +24,7 @@ module Api::V1
       authorize @app
 
       @preview = true
-      @releases = [Release.new(Release.fix_params(params).require(:release).permit(:version, :title, :body, :display_version).merge(type: @app.release_type))]
+      @releases = [Release.new(Release.fix_params(params, @app.platform).require(:release).permit(:version, :title, :body, :display_version).merge(type: @app.release_type))]
       render :show, layout: "webview"
     end
   end

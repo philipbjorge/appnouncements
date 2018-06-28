@@ -3,15 +3,24 @@
 # Table name: apps
 #
 #  id           :bigint(8)        not null, primary key
+#  color        :string           default("#727e96")
+#  css          :string
+#  disabled     :boolean          default(FALSE)
 #  display_name :string
+#  platform     :string
+#  uuid         :uuid
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :bigint(8)
-#  uuid         :uuid
-#  color        :string           default("#727e96")
-#  css          :string
-#  platform     :string
-#  disabled     :boolean          default(FALSE)
+#
+# Indexes
+#
+#  index_apps_on_user_id  (user_id)
+#  index_apps_on_uuid     (uuid) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 class App < ApplicationRecord

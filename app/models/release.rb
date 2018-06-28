@@ -3,15 +3,23 @@
 # Table name: releases
 #
 #  id              :bigint(8)        not null, primary key
+#  body            :text             not null
+#  display_version :string
+#  published       :boolean          default(FALSE)
+#  title           :string           not null
 #  type            :string           not null
+#  version         :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  title           :string           not null
-#  body            :text             not null
 #  app_id          :bigint(8)
-#  published       :boolean          default(FALSE)
-#  version         :string           not null
-#  display_version :string
+#
+# Indexes
+#
+#  index_releases_on_app_id  (app_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (app_id => apps.id)
 #
 
 class Release < ApplicationRecord
@@ -32,7 +40,14 @@ class Release < ApplicationRecord
     false
   end
   
-  def self.fix_params params
-    params.tap { |p| p[:release] = p[:android_release] || p[:ios_release] }
+  def self.fix_params params, platform
+    params.tap { |p| p[:release] = p[release_key(platform)] }
+    params.delete(release_key(platform))
+    params
+  end
+  
+  def self.release_key platform
+    return :android_release if platform == :android
+    return :ios_release if platform == :ios
   end
 end

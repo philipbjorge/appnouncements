@@ -24,6 +24,11 @@
 
 require 'rails_helper'
 
-RSpec.describe Release, type: :model do
+RSpec.describe AndroidRelease, type: :model do
   it_behaves_like "Release"
+  
+  it { should validate_presence_of(:display_version) }
+  it { should validate_numericality_of(:version).is_greater_than_or_equal_to(0).is_less_than_or_equal_to(2100000000) }
+  it { expect(AndroidRelease.new.android?).to be true }
+  it { expect(AndroidRelease.new.ios?).to be false }
 end
