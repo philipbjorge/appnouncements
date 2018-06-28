@@ -84,4 +84,9 @@ Rails.application.configure do
   # # compression
   # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :scss
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.add_footer = true
+  end
 end

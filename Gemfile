@@ -30,8 +30,16 @@ gem 'html-pipeline'
 gem 'twitter_cldr'
 gem 'octicons_helper'
 
+# https://github.com/basecamp/local_time
+# https://github.com/schneems/maildown
+# premailer for inlining css?
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
+group :production do
+  gem "lograge"
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,6 +62,11 @@ group :development do
   gem "binding_of_caller"
   gem "awesome_print"
   gem "letter_opener"
+  gem "bullet"
+  gem 'rack-mini-profiler'
+  gem 'flamegraph'
+  gem 'stackprof'
+  gem 'annotate'
 end
 
 group :test do
