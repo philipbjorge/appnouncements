@@ -36,7 +36,7 @@ class App < ApplicationRecord
   before_save :render_css
 
   def platform
-    super.to_sym
+    super.to_sym unless super.nil?
   end
   
   def release_type
