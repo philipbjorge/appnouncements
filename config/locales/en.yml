@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    models:
+      ios_release: "iOS Release"
+      android_release: "Android Release"

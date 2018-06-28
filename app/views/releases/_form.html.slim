@@ -9,7 +9,7 @@
     - f.object = @release.becomes(@release.class)
     - f.object_name = ActiveModel::Naming.param_key(f.object)
     = f.input :title
-    = f.input :version
+    = f.input :version, pattern: true, min_max: true
     - if @release.android?
       = f.input :display_version
     = f.input :body, input_html: { id: "simple-mde", rows: 20 }, wrapper: :vertical_form, label: false

@@ -1,8 +1,24 @@
+# == Schema Information
+#
+# Table name: apps
+#
+#  id           :bigint(8)        not null, primary key
+#  display_name :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :bigint(8)
+#  uuid         :uuid
+#  color        :string           default("#727e96")
+#  css          :string
+#  platform     :string
+#  disabled     :boolean          default(FALSE)
+#
+
 class App < ApplicationRecord
   include ActiveModel::Dirty
 
   def self.allowed_platforms
-    %w(Android)  # iOS coming soon
+    [:android]  # todo: ios
   end
   
   # Validation
@@ -19,17 +35,21 @@ class App < ApplicationRecord
   # Callbacks
   before_save :render_css
 
+  def platform
+    super.to_sym
+  end
+  
   def release_type
     return "IosRelease" if self.ios?
     return "AndroidRelease" if self.android?
   end
   
   def ios?
-    self.platform.downcase == "ios"
+    self.platform == :ios
   end
 
   def android?
-    self.platform.downcase == "android"
+    self.platform == :android
   end
 
   private

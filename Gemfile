@@ -33,6 +33,7 @@ gem 'octicons_helper'
 # https://github.com/basecamp/local_time
 # https://github.com/schneems/maildown
 # premailer for inlining css?
+# draper instead of helpers
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
