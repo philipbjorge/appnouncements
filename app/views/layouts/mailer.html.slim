@@ -4,6 +4,22 @@ html
     meta[http-equiv="Content-Type" content="text/html; charset=utf-8"]
     = stylesheet_link_tag "mailer"
   body
-    h1 Appnouncements
-    hr
-    = yield
+    table.body border="0" cellpadding="0" cellspacing="0" 
+      tr
+        td &nbsp;
+        td.container
+          .content
+            /! START CENTERED WHITE CONTAINER
+            table.main
+              /! START MAIN CONTENT AREA
+              tr
+                td.wrapper
+                  table border="0" cellpadding="0" cellspacing="0" 
+                    tr
+                      td
+                        h1.mb0 Appnouncements
+                        hr
+                        = yield
+            /! END MAIN CONTENT AREA
+        /! END CENTERED WHITE CONTAINER
+        td &nbsp;
