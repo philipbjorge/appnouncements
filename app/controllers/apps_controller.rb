@@ -5,6 +5,8 @@ class AppsController < ApplicationController
   # GET /apps
   def index
     @apps = policy_scope(App)
+    
+    # TODO: Move these into our view cuz they're overwritable
     flash.now.notice = "You are currently at your free limit. To add more apps, you will need to update your #{view_context.link_to('billing information', billing_path)}.".html_safe if current_user.require_billing_information?
   end
 

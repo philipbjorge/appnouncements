@@ -1,14 +1,18 @@
-.container.grid-lg.my-2
+.container
   - if current_user && (!current_user.confirmed? || current_user.pending_reconfirmation?)
-    / TODO: Restyle
-    .alert.alert-warning.alert-dismissible.fade.show role="alert" 
-      | Please check your email and confirm your email address.
-      br
-      | Didn't receive a confirmation link? 
-      = link_to "Click here", new_user_confirmation_path
-      |  to resend it.
-  - flash.each do |type, message|
-    div class=["alert", "alert-dismissible", "fade", "show", alert_class_for(type)].join(' ') role="alert" 
-      = message
-      button.close aria-label="Close" data-dismiss="alert" type="button" 
-        span aria-hidden="true"  &times;
+    .row.flashes.my-2
+      .col-sm-8.offset-sm-2
+        .alert.alert-warning.alert-dismissible.fade.show role="alert" 
+          | Please check your email and confirm your email address.
+          br
+          | Didn't receive a confirmation link? 
+          = link_to "Click here", new_user_confirmation_path, class: "alert-link"
+          |  to resend it.
+  - if flash.any?
+    .row.flashes.my-2
+      .col-sm-8.offset-sm-2
+        - flash.each do |type, message|
+          div class=["alert", "alert-dismissible", "fade", "show", bootstrap_alert_class_for(type)].join(' ') role="alert" 
+            = add_bootstrap_alert_link(message)
+            button.close aria-label="Close" data-dismiss="alert" type="button" 
+              span aria-hidden="true"  &times;

@@ -1,12 +1,16 @@
 module ApplicationHelper
-  def alert_class_for(flash_type)
-    mapping = {
-      success: 'alert-success',
-      error: 'alert-danger',
-      alert: 'alert-warning',
-      notice: 'alert-primary'
-    }
-    mapping[flash_type.to_sym] || "alert-#{flash_type.to_s}"
+  def bootstrap_alert_class_for(flash_type)
+    {success: "alert-success",
+     error: "alert-danger",
+     alert: "alert-warning",
+     notice: "alert-info"
+    }[flash_type.to_sym] || "alert-#{flash_type.to_s}"
+  end
+  
+  def add_bootstrap_alert_link(msg)
+    fragment = Nokogiri::HTML.fragment(msg)
+    fragment.search("a").add_class("alert-link")
+    fragment.to_s.html_safe
   end
   
   def render_markdown(md)
