@@ -139,6 +139,7 @@ GEM
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
+    kramdown (1.17.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.6.0)
@@ -158,6 +159,9 @@ GEM
     lumberjack (1.0.13)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
+    maildown (3.0.2)
+      actionmailer (>= 4.0.0)
+      kramdown
     marcel (0.3.2)
       mimemagic (~> 0.3.2)
     method_source (0.9.0)
@@ -369,6 +373,7 @@ DEPENDENCIES
   letter_opener
   listen (>= 3.0.5, < 3.2)
   lograge
+  maildown
   octicons_helper
   onebox
   pg (>= 0.18, < 2.0)

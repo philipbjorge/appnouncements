@@ -13,6 +13,9 @@ bin/rails credentials:edit/help
 # Proxy Webhooks
 `retry -- ssh -R appnouncements:80:appnouncements.localhost:3000 serveo.net`
 
+# Mailer Previews
+`http://appnouncements.localhost:3000/rails/mailers`
+
 Things you may want to cover:
 
 * Ruby version

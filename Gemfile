@@ -29,6 +29,7 @@ gem 'html-pipeline'
 
 gem 'twitter_cldr'
 gem 'octicons_helper'
+gem 'maildown'
 
 # https://github.com/basecamp/local_time
 # https://github.com/schneems/maildown
@@ -36,8 +37,6 @@ gem 'octicons_helper'
 # draper instead of helpers
 # 
 # https://github.com/ekosz/stripe-i18n
-# https://github.com/natritmeyer/site_prism
-# https://www.sitepoint.com/testing-page-objects-siteprism/
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

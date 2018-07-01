@@ -85,6 +85,8 @@ Rails.application.configure do
   # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :scss
 
+  config.action_mailer.preview_path = "#{Rails.root}/app/mailer_previews"
+  
   config.after_initialize do
     Bullet.enable = true
     Bullet.add_footer = true
