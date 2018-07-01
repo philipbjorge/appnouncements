@@ -3,13 +3,13 @@
     .col-sm-3
       = render partial: "app_navbar"
     .col-sm-9
-      .row
+      #releases-toolbar.row
         .col-sm-6
           h3
             = @app.display_name
         .col-sm-6
           - if @app.releases.any?
-            = link_to new_app_release_path(@app), class: "btn btn-primary float-right"
+            = link_to new_app_release_path(@app), class: "btn btn-primary float-right", id: "new-release-btn"
               = octicon "plus", class: "mr-2", "aria-label": "new release"
               | New Release
       hr.pb-3

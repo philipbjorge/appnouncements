@@ -1,14 +1,16 @@
 .container
-  - if @apps.length == 0
-    = render partial: "empty_apps"
-  - else
-    .row
-      .col-sm-6
-        h3 Your Apps
-      .col-sm-6
-        = link_to new_app_path, class: "btn btn-primary float-right"
+  #apps-toolbar.row
+    .col-sm-6
+      h3 Your Apps
+    .col-sm-6
+      - if @apps.length > 0
+        = link_to new_app_path, class: "btn btn-primary float-right", id: "new-app-btn"
           = octicon "plus", class: "mr-2", "aria-label": "new app"
           | New App
-    hr
-    .row.mt-4
+  hr
+  .row.mt-4
+    - if @apps.length == 0
+      .col-sm-12
+        = render partial: "empty_apps"
+    - else
       = render @apps

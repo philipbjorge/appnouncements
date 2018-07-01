@@ -35,5 +35,8 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 
-alice:
-  auth0_id: auth0|12345
+confirmed:
+  email: confirmed@gmail.com
+  encrypted_password: <%= User.new.send(:password_digest, '1234567890') %>
+  confirmed_at: <%= Time.zone.now - 1.hour %>
+  confirmation_sent_at: <%= Time.zone.now - 2.hours %>

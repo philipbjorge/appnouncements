@@ -34,6 +34,10 @@ gem 'octicons_helper'
 # https://github.com/schneems/maildown
 # premailer for inlining css?
 # draper instead of helpers
+# 
+# https://github.com/ekosz/stripe-i18n
+# https://github.com/natritmeyer/site_prism
+# https://www.sitepoint.com/testing-page-objects-siteprism/
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -73,6 +77,8 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
+  gem 'site_prism', github: 'mateusg/site_prism', ref: 'dc00f2b976e0f801541589ff94ded23cb04cee02'
+  gem 'tedium'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'

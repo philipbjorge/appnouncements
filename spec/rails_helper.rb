@@ -1,9 +1,31 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
+
+require 'capybara'
+require 'capybara/rspec'
+require 'selenium-webdriver'
+require 'site_prism'
+
 require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+
+#Capybara use the same connection
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || retrieve_connection
+  end
+end
+
+# Forces all threads to share the same connection. This works on
+# Capybara because it starts the web server in a thread.
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+
 require 'rspec/rails'
-require 'capybara/rspec'
+
+include Warden::Test::Helpers
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -21,12 +43,13 @@ Capybara.javascript_driver = :selenium_chrome
 # RSpec configuration
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
-  config.include FeatureHelper, type: :feature
-  config.include ViewHelpers, type: :view
+  config.after :each do
+    Warden.test_reset!
+  end
 end
 
 Shoulda::Matchers.configure do |config|

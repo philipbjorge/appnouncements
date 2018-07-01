@@ -1,8 +1,8 @@
-.card
+#no-releases-card.card
   .card-body.text-center
     = octicon "note", width: 96
     h5.card-title
       | You don't have any releases
     p.card-text
       | Get started by adding your first release!
-    = link_to "New Release", new_app_release_path(@app.id), class: "btn btn-primary"
+    = link_to "New Release", new_app_release_path(@app.id), class: "btn btn-primary", id: "new-release-btn"

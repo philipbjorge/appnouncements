@@ -1,8 +1,8 @@
- .card
+#no-apps-card.card
   .card-body.text-center
     = octicon "device-mobile", height: 96
     h5.card-title.mt-3
       | You don't have any apps
     p.card-text
       | Get started by adding your first app (It's free)!
-    = link_to "Create App", new_app_path, class: "btn btn-primary"
+    = link_to "New App", new_app_path, class: "btn btn-primary", id: "new-app-btn"
