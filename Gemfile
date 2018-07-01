@@ -30,6 +30,7 @@ gem 'html-pipeline'
 gem 'twitter_cldr'
 gem 'octicons_helper'
 gem 'maildown'
+gem 'premailer-rails'
 
 # https://github.com/basecamp/local_time
 # https://github.com/schneems/maildown

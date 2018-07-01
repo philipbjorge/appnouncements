@@ -6,7 +6,7 @@ class Devise::MailerPreview < ActionMailer::Preview
   def email_changed
     Devise::Mailer.email_changed(User.first, {})
   end
-
+  
   def password_change
     Devise::Mailer.password_change(User.first, {})
   end

@@ -97,6 +97,8 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    css_parser (1.6.0)
+      addressable
     debug_inspector (0.0.3)
     devise (4.4.3)
       bcrypt (~> 3.0)
@@ -197,6 +199,13 @@ GEM
       sanitize
     orm_adapter (0.5.0)
     pg (1.0.0)
+    premailer (1.11.1)
+      addressable
+      css_parser (>= 1.6.0)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.10.2)
+      actionmailer (>= 3, < 6)
+      premailer (~> 1.7, >= 1.7.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -377,6 +386,7 @@ DEPENDENCIES
   octicons_helper
   onebox
   pg (>= 0.18, < 2.0)
+  premailer-rails
   pry-rails
   puma (~> 3.11)
   pundit
