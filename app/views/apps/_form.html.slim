@@ -1,13 +1,10 @@
 = simple_form_for app, wrapper: :horizontal_form do |f|
   div [class=(app.billing_changes_confirmed ? "d-none" : "")]
-    = f.input :platform, collection: App.allowed_platforms, wrapper: :horizontal_collection, as: :radio_buttons if app.new_record?
+    - if app.new_record?
+      = f.input :platform, collection: App.allowed_platforms, wrapper: :horizontal_collection, as: :radio_buttons
     = f.input :display_name
     = f.input :color, input_html: {type: :color, "data-show-input": true, "data-preferred-format": "hex"}
     = f.input :plan, collection: App.allowed_plans, wrapper: :horizontal_collection, as: :radio_buttons
-    - unless app.new_record?
-      .form-group.row.mb-0
-        .col-sm-9.offset-sm-3
-          = f.input :disabled, as: :boolean, wrapper: :custom_boolean
     = f.input :billing_changes_confirmed, as: :hidden, error: false
   .form-group.row.mb-0
     .col-sm-9.offset-sm-3

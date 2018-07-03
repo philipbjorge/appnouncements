@@ -32,7 +32,6 @@ en:
         display_name: "This is how your app will be labeled inside Appnouncement's Dashboard."
         color: "This will be used as an accent color on your rendered release notes."
         plan: "<span class='badge badge-info mb-1' style='font-size: 100%'>Every account gets 1 Core App free for life!</span><br>All billing changes will be previewed on the next page before being applied for pricing transparency"
-        disabled: "Disabling your app will stop your release notes from being viewable in your native app. Billing for this app will also be stopped."
     labels:
       app:
         color: "Accent Color"
