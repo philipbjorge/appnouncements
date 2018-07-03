@@ -34,10 +34,6 @@ class App < ApplicationRecord
   def self.allowed_plans
     [:core]  # todo: pro
   end
-
-  def self.plans_to_id
-    {core: "plan_D6LP7fkX00U1Tm", pro: "plan_D6LQ51tBxhzCFI"}
-  end
   
   # Validation
   validates :display_name, presence: true
@@ -55,7 +51,6 @@ class App < ApplicationRecord
 
   # Callbacks
   before_save :render_css
-  before_save :update_subscription
 
   def platform
     super.to_sym unless super.nil?
@@ -80,25 +75,6 @@ class App < ApplicationRecord
   end
 
   private
-  def update_subscription
-    if will_save_change_to_plan? && (self.user.apps.length > 1 || self.plan != :core)
-      if self.user.customer.subscriptions.data.length == 0
-        Stripe::Subscription.create(customer: self.user.customer.id, items: [
-            {plan: App.plans_to_id[:core], quantity: self.user.apps.select { |a| a.plan == :core}.length},
-            {plan: App.plans_to_id[:pro], quantity: self.user.apps.select { |a| a.plan == :pro}.length}
-        ])
-      else
-        self.user.customer.subscriptions.data[0].items.data.each do |i|
-          original_quantity = i.quantity
-          i.quantity = self.user.apps.select {|a| App.plans_to_id[a.plan] == i.plan.id }.length
-          byebug
-          i.save if i.quantity != original_quantity
-        end
-      # TODO: if subscription count == 0, cancel?
-      end
-    end
-  end
-  
   def render_css
     if css.nil? or will_save_change_to_color?
       # TODO: Optimize our imports

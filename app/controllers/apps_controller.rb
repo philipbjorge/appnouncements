@@ -34,9 +34,8 @@ class AppsController < ApplicationController
     
     return unless ensure_billing_acceptable
     
-    @app.billing_changes_confirmed = "1" if is_free_app?
-    
     if @app.save
+      # TODO: Create/Update Subscription
       redirect_to @app, notice: 'App was successfully created.'
     elsif (not @app.valid?) && @app.errors.messages.keys == [:billing_changes_confirmed]
       @app.billing_changes_confirmed = "1"  # for validates_acceptance_of 
@@ -54,9 +53,6 @@ class AppsController < ApplicationController
   # PATCH/PUT /apps/1
   def update
     authorize @app
-    
-    # if plan not changed, skip billing confirmation
-    
     if @app.update(app_params)
       redirect_to @app, notice: 'App was successfully updated.'
     else
@@ -90,7 +86,7 @@ class AppsController < ApplicationController
     def ensure_billing_acceptable
       session[:return_to] = new_app_path
       
-      if current_user.needs_billing_info? && !is_free_app?
+      if current_user.needs_billing_info? && (current_user.apps.length > 1 || @app.plan != :core)
         skip_authorization
         redirect_to billing_path, notice: "In order to add new apps, you need a valid credit card. You will not be charged until you add a new app."
         return false
@@ -98,9 +94,5 @@ class AppsController < ApplicationController
       
       session.delete(:return_to)
       return true
-    end
-  
-    def is_free_app?
-      current_user.apps.length == 1 && @app.plan == :core
     end
 end
