@@ -56,6 +56,7 @@ class App < ApplicationRecord
   # Callbacks
   before_save :render_css
   before_save :update_subscription
+  after_destroy :update_subscription
 
   def platform
     super.to_sym unless super.nil?
@@ -81,17 +82,17 @@ class App < ApplicationRecord
 
   private
   def update_subscription
-    if will_save_change_to_plan? && (self.user.apps.length > 1 || self.plan != :core)
+    if (will_save_change_to_plan? || will_save_change_to_disabled? || destroyed?) && (self.user.apps.length > 1 || self.plan != :core)
       if self.user.customer.subscriptions.data.length == 0
         Stripe::Subscription.create(customer: self.user.customer.id, items: [
-            {plan: App.plans_to_id[:core], quantity: self.user.apps.select { |a| a.plan == :core}.length},
-            {plan: App.plans_to_id[:pro], quantity: self.user.apps.select { |a| a.plan == :pro}.length}
+            {plan: App.plans_to_id[:core], quantity: [0, self.user.apps.select { |a| a.plan == :core && !a.disabled}.length - 1].max},
+            {plan: App.plans_to_id[:pro], quantity: self.user.apps.select { |a| a.plan == :pro && !a.disabled}.length}
         ])
       else
         self.user.customer.subscriptions.data[0].items.data.each do |i|
           original_quantity = i.quantity
-          i.quantity = self.user.apps.select {|a| App.plans_to_id[a.plan] == i.plan.id }.length
-          byebug
+          i.quantity = self.user.apps.select {|a| App.plans_to_id[a.plan] == i.plan.id && !a.disabled }.length
+          i.quantity = [0, i.quantity - 1].max if i.plan.id == App.plans_to_id[:core]
           i.save if i.quantity != original_quantity
         end
       # TODO: if subscription count == 0, cancel?

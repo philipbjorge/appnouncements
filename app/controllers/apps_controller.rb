@@ -54,11 +54,23 @@ class AppsController < ApplicationController
   # PATCH/PUT /apps/1
   def update
     authorize @app
+    @app.assign_attributes(app_params)
     
     # if plan not changed, skip billing confirmation
+    @app.billing_changes_confirmed = "1" unless @app.will_save_change_to_plan? || @app.will_save_change_to_disabled?
+    # TODO: Need to back them out if billing is busted
     
-    if @app.update(app_params)
+    if @app.save
       redirect_to @app, notice: 'App was successfully updated.'
+    elsif (not @app.valid?) && @app.errors.messages.keys == [:billing_changes_confirmed]
+      @app.billing_changes_confirmed = "1"  # for validates_acceptance_of 
+
+      quantity_change = {}
+      quantity_change[@app.plan_was] = -1
+      quantity_change[@app.plan] = 1
+      @future_invoice = FutureInvoice.new(current_user.customer, quantity_change)
+
+      render :edit_confirm_billing
     else
       render :edit
     end
@@ -79,7 +91,7 @@ class AppsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def app_params(*attrs)
-      attrs = ([:display_name, :color, :plan, :billing_changes_confirmed] + attrs).uniq
+      attrs = ([:display_name, :color, :plan, :billing_changes_confirmed, :disabled] + attrs).uniq
       params.require(:app).permit(attrs)
     end
   
