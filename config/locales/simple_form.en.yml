@@ -15,8 +15,11 @@ en:
         platform:
           android: 'Android'
           ios: 'iOS'
+      user:
         plan:
-          core: "Core"
+          free: "Free"
+          core_unlimited: "Core Unlimited ($19/month)"
+          pro_unlimited: "Pro Unlimited ($49/month)"
     hints:
       # Link them to -- https://stackoverflow.com/questions/21125159/which-ios-app-version-build-numbers-must-be-incremented-upon-app-store-release?
       ios_release:

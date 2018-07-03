@@ -67,6 +67,8 @@ class User < ApplicationRecord
 
   validates_acceptance_of :terms_of_service, on: :create
   
+  before_destroy :destroy_stripe!
+  
   # TODO: Handle disabling stuff and resuming unpaid subscription
   # TODO: On destroy, unsubscribe from Stripe!
   
@@ -77,6 +79,46 @@ class User < ApplicationRecord
   def customer=(v)
     self.stripe_id = v.id
     self.stripe_customer = v.as_json
+  end
+  
+  def plan
+    @plan ||= Plan.new(self.customer&.subscriptions&.data&.first)
+  end
+  
+  def update_plan! new_plan
+    subscription = self.customer.subscriptions.data.first
+    
+    return "No changes made to subscription." if (self.plan.to_sym == new_plan) && !self.plan.pending_cancelation?  # no change
+    return "Your subscription has been downgraded to free." if new_plan == :free && subscription.nil?  # no change if we are free with no subscription
+    
+    msg = ""
+    if subscription
+      if new_plan == :free
+        # downgrade to free, cancel subscription
+        s = subscription.delete(at_period_end: true)
+        msg = "Your subscription has been cancelled and service will stop at #{Time.at(s.current_period_end).strftime("%-m/%-d")}"
+      else
+        # update subscription
+        subscription.cancel_at_period_end = false
+        subscription.items = [{
+                                  id: subscription.items.data[0].id,
+                                  plan: Plan.sym_to_stripe_id(new_plan),
+                              }]
+        subscription.save
+        msg = "Your subscription has been changed from #{self.plan.to_sym} to #{new_plan}"
+        
+        # TODO: Generate invoice on upgrade!
+      end
+    else
+      # create a subscription
+      Stripe::Subscription.create(customer: self.customer.id, items: [{plan: Plan.sym_to_stripe_id(new_plan)}])
+      msg = "Your subscription has been changed from free to #{new_plan}"
+    end
+
+    self.stripe_customer = Stripe::Customer.retrieve({id: self.stripe_id, expand: ["default_source"]}).as_json
+    self.save!
+    
+    return msg
   end
   
   def require_billing_information?
@@ -97,5 +139,9 @@ class User < ApplicationRecord
     end
     
     self.save!
+  end
+  
+  def destroy_stripe!
+    self.customer.delete if self.customer
   end
 end

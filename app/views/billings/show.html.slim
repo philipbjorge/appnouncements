@@ -2,7 +2,7 @@ h3 Billing Overview
 hr
 .row
   .col-sm-3 Billing Info
-  .col-sm-6
+  .col-sm-9
     - if @customer&.default_source
       | Billing Email: 
       strong
@@ -17,7 +17,7 @@ hr
         = "#{@customer.default_source.exp_month}/#{@customer.default_source.exp_year}"
     - else
       | No billing information on file
-  .col-sm-3
+  .col-sm-3.offset-sm-3.pt-3
     = form_tag billing_path, method: "PATCH"
       script.stripe-button [data-image="https://stripe.com/img/documentation/checkout/marketplace.png" 
                             data-key="#{Rails.application.credentials[Rails.env.to_sym][:stripe_public_key]}" data-locale="auto" 
@@ -25,6 +25,13 @@ hr
                             data-allow-remember-me="false" data-label="#{stripe_billing_button_label(@customer)}" 
                             data-panel-label="#{stripe_billing_button_label(@customer)}"
                             src="https://checkout.stripe.com/checkout.js"]
+hr.mb-3
+= simple_form_for current_user, url: billing_path, method: :patch, wrapper: :horizontal_form do |f|
+  = f.input :plan, collection: Plan.allowed_plans, checked: current_user.plan.to_sym, wrapper: :horizontal_collection, as: :radio_buttons
+  .form-group.row.mb-0
+    .col-sm-9.offset-sm-3
+      = f.button :submit, class: "btn-primary mr-2", value: "Update Plan"
+  
 - if @invoices&.any?
   h3.mt-5 Payment History
   table.table-striped.table style="width: 100%"

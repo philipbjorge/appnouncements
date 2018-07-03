@@ -7,7 +7,6 @@
 #  css          :string
 #  disabled     :boolean          default(FALSE)
 #  display_name :string
-#  plan         :string
 #  platform     :string
 #  uuid         :uuid
 #  created_at   :datetime         not null
@@ -31,17 +30,11 @@ class App < ApplicationRecord
     [:android]  # todo: ios
   end
   
-  def self.allowed_plans
-    [:core]  # todo: ios
-  end
-  
   # Validation
   validates :display_name, presence: true
   validates :platform, presence: true
-  validates :platform, inclusion: { in: self.allowed_platforms, message: "must be an allowed platform type" }, if: lambda {|e| not e.platform.blank? }
+  validates :platform, inclusion: { in: self.allowed_platforms, message: "must be an allowed platform type" }
   validates :color, presence: true, css_hex_color: true
-  validates :plan, presence: true
-  validates :plan, inclusion: { in: self.allowed_plans, message: "must specify a plan" }, if: lambda {|e| not e.plan.blank? }
 
   # Relations
   belongs_to :user
@@ -50,14 +43,8 @@ class App < ApplicationRecord
 
   # Callbacks
   before_save :render_css
-  
-  attribute :plan, :string, default: self.allowed_plans.first
 
   def platform
-    super.to_sym unless super.nil?
-  end
-  
-  def plan
     super.to_sym unless super.nil?
   end
   

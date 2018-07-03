@@ -31,6 +31,7 @@ gem 'twitter_cldr'
 gem 'octicons_helper'
 gem 'maildown'
 gem 'premailer-rails'
+gem 'hash_dot'
 
 # https://github.com/ifad/data-confirm-modal
 
