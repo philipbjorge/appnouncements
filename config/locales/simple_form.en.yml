@@ -16,7 +16,8 @@ en:
           android: 'Android'
           ios: 'iOS'
         plan:
-          core: "Core"
+          core: "Core ($9/month)"
+          pro: "Pro ($29/month)"
     hints:
       # Link them to -- https://stackoverflow.com/questions/21125159/which-ios-app-version-build-numbers-must-be-incremented-upon-app-store-release?
       ios_release:
@@ -27,9 +28,10 @@ en:
       app:
         new:
           color: "This will be used as an accent color on your rendered release notes.<br>Choose something that matches your app's branding!"
-        platform: "<span class='badge badge-info mb-1'>iOS Coming Soon!</span><br>Choose your app's platform.<br>You cannot change this after creating your app!"
+        platform: "<span class='badge badge-info mb-1' style='font-size: 100%'>iOS Coming Soon!</span><br>Choose your app's platform.<br>You cannot change this after creating your app!"
         display_name: "This is how your app will be labeled inside Appnouncement's Dashboard."
         color: "This will be used as an accent color on your rendered release notes."
+        plan: "<span class='badge badge-info mb-1' style='font-size: 100%'>Every account gets 1 Core App free for life!</span><br>All billing changes will be previewed on the next page before being applied for pricing transparency"
     labels:
       app:
         color: "Accent Color"

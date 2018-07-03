@@ -74,6 +74,7 @@ group :development do
   gem 'flamegraph'
   gem 'stackprof'
   gem 'annotate'
+  #gem 'i18n-debug'
 end
 
 group :test do

@@ -79,12 +79,8 @@ class User < ApplicationRecord
     self.stripe_customer = v.as_json
   end
   
-  def require_billing_information?
-    self.customer&.default_source.nil? and self.apps.length >= 1
-  end
-
-  def require_updated_billing_information?
-    self.customer&.delinquent and self.apps.length >= 1
+  def needs_billing_info?
+    self.customer&.default_source.nil? || self.customer&.delinquent
   end
   
   def create_or_update_stripe_customer! token, email

@@ -3,8 +3,7 @@ tr
   td
     = Time.at(invoice_row.date).strftime("%-m/%-d")
   td
-    / TODO: Nasty Hack
-    = (invoice_row.amount_due / 100).localize(:us).to_currency.to_s(:currency => invoice_row.currency.upcase)
+    = (invoice_row.amount_due / 100.0).localize(:us).to_currency.to_s(:currency => invoice_row.currency.upcase)
   td
     = invoice_row.paid ? "Paid" : "Unpaid"
   td

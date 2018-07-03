@@ -32,7 +32,7 @@ class App < ApplicationRecord
   end
   
   def self.allowed_plans
-    [:core]  # todo: ios
+    [:core]  # todo: pro
   end
   
   # Validation
@@ -42,7 +42,8 @@ class App < ApplicationRecord
   validates :color, presence: true, css_hex_color: true
   validates :plan, presence: true
   validates :plan, inclusion: { in: self.allowed_plans, message: "must specify a plan" }, if: lambda {|e| not e.plan.blank? }
-
+  validates_acceptance_of :billing_changes_confirmed, on: [:create, :update]
+  
   # Relations
   belongs_to :user
   has_many :releases, dependent: :destroy
@@ -50,15 +51,14 @@ class App < ApplicationRecord
 
   # Callbacks
   before_save :render_css
-  
-  attribute :plan, :string, default: self.allowed_plans.first
 
   def platform
     super.to_sym unless super.nil?
   end
   
   def plan
-    super.to_sym unless super.nil?
+    return super.to_sym unless super.nil?
+    return App.allowed_plans.first
   end
   
   def release_type
