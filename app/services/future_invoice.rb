@@ -5,12 +5,12 @@ class FutureInvoice
 
     quantity_changed[:core] ||= 0
     quantity_changed[:pro] ||= 0
-    if quantity_changed[:core] != 0 && quantity_changed[:pro] != 0
-      raise "Invalid change"
+    if quantity_changed[:core] > 0 && quantity_changed[:pro] > 0
+      raise "Only allow changing 1 app subscription at a time"
     end
     
     @quantity_diff = quantity_changed
-    @plan_ids = {core: "plan_D6LP7fkX00U1Tm", pro: "plan_D6LQ51tBxhzCFI"}
+    @plan_ids = App.plans_to_id
   end
   
   def invoice
