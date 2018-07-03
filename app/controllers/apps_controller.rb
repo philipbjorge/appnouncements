@@ -16,35 +16,25 @@ class AppsController < ApplicationController
 
   # GET /apps/new
   def new
+    return unless ensure_billing_acceptable
+    
     @app = current_user.apps.build
     authorize @app
-    
-    return unless ensure_billing_acceptable
   end
 
   # GET /apps/1/edit
   def edit
     authorize @app
   end
-  
+
   # POST /apps
   def create
-    @app = current_user.apps.build(app_create_params)
-    authorize @app
-    
     return unless ensure_billing_acceptable
     
+    @app = current_user.apps.build(app_create_params)
+    authorize @app
     if @app.save
-      # TODO: Create/Update Subscription
       redirect_to @app, notice: 'App was successfully created.'
-    elsif (not @app.valid?) && @app.errors.messages.keys == [:billing_changes_confirmed]
-      @app.billing_changes_confirmed = "1"  # for validates_acceptance_of 
-      
-      quantity_change = {}
-      quantity_change[@app.plan] = 1
-      @future_invoice = FutureInvoice.new(current_user.customer, quantity_change)
-      
-      render :new_confirm_billing
     else
       render :new
     end
@@ -75,7 +65,7 @@ class AppsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def app_params(*attrs)
-      attrs = ([:display_name, :color, :plan, :billing_changes_confirmed] + attrs).uniq
+      attrs = ([:display_name, :color, :plan] + attrs).uniq
       params.require(:app).permit(attrs)
     end
   
@@ -86,9 +76,13 @@ class AppsController < ApplicationController
     def ensure_billing_acceptable
       session[:return_to] = new_app_path
       
-      if current_user.needs_billing_info? && (current_user.apps.length > 1 || @app.plan != :core)
+      if current_user.require_billing_information?
         skip_authorization
-        redirect_to billing_path, notice: "In order to add new apps, you need a valid credit card. You will not be charged until you add a new app."
+        redirect_to billing_path, notice: "In order to add new apps, you will need to add a credit card. You will not be charged until you add a new app."
+        return false
+      elsif current_user.require_updated_billing_information?
+        skip_authorization
+        redirect_to billing_path, warning: "In order to add new apps, you will to update your billing information."
         return false
       end
       
