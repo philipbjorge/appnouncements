@@ -3,7 +3,8 @@
     = f.input :platform, collection: App.allowed_platforms, wrapper: :horizontal_collection, as: :radio_buttons
   = f.input :display_name
   = f.input :color, input_html: {type: :color, "data-show-input": true, "data-preferred-format": "hex"}
+  = f.input :plan, collection: App.allowed_plans, wrapper: :horizontal_collection, as: :radio_buttons
   .form-group.row.mb-0
     .col-sm-9.offset-sm-3
       = f.button :submit, class: "btn-primary mr-2"
-      = link_to "Cancel", apps_path, class: "btn btn-outline-secondary"
+      = link_to "Cancel", (app.new_record? ? apps_path : app_path(app)), class: "btn btn-outline-secondary"

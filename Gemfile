@@ -32,6 +32,8 @@ gem 'octicons_helper'
 gem 'maildown'
 gem 'premailer-rails'
 
+# https://github.com/ifad/data-confirm-modal
+
 # https://github.com/basecamp/local_time
 # https://github.com/schneems/maildown
 # premailer for inlining css?

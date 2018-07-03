@@ -5,10 +5,7 @@ class AppsController < ApplicationController
   # GET /apps
   def index
     @apps = policy_scope(App)
-    
-    # TODO: Move these into our view cuz they're overwritable
-    flash.now.notice = "You are currently at your free limit. To add more apps, you will need to update your #{view_context.link_to('billing information', billing_path)}.".html_safe if current_user.require_billing_information?
-  end
+   end
 
   # GET /apps/1
   def show
@@ -22,10 +19,6 @@ class AppsController < ApplicationController
     return unless ensure_billing_acceptable
     
     @app = current_user.apps.build
-    # We will start a new subscription billed at $9/monthly
-    # We will add this app to your subscription at a prorated rate of $8.50 ($9/monthly)
-    @prorated_cost = 0
-    @monthly_cost = 0
     authorize @app
   end
 
@@ -50,7 +43,7 @@ class AppsController < ApplicationController
   # PATCH/PUT /apps/1
   def update
     authorize @app
-    if @app.update(app_update_params)
+    if @app.update(app_params)
       redirect_to @app, notice: 'App was successfully updated.'
     else
       render :edit
@@ -71,12 +64,13 @@ class AppsController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
-    def app_create_params
-      params.require(:app).permit(:display_name, :color, :platform)
+    def app_params(*attrs)
+      attrs = ([:display_name, :color, :plan] + attrs).uniq
+      params.require(:app).permit(attrs)
     end
-
-    def app_update_params
-      params.require(:app).permit(:display_name, :color, :platform)
+  
+    def app_create_params
+      app_params(:platform)
     end
   
     def ensure_billing_acceptable

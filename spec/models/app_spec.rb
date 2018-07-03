@@ -7,6 +7,7 @@
 #  css          :string
 #  disabled     :boolean          default(FALSE)
 #  display_name :string
+#  plan         :string
 #  platform     :string
 #  uuid         :uuid
 #  created_at   :datetime         not null
@@ -33,6 +34,9 @@ RSpec.describe App, type: :model do
   it { should validate_presence_of(:color) }
   it { should allow_value("#FFFFFF", "#FFF", "#000", "#F0F0F0").for(:color) }
   it { should_not allow_value("DodgerBlue", "rgb(255, 99, 71)", "hsl(9, 100%, 64%)", "rgba(255, 99, 71, 0.5)", "hsla(9, 100%, 64%, 0.5)").for(:color) }
+  it { should validate_presence_of(:plan) }
+  it { should validate_inclusion_of(:plan).in_array(App.allowed_plans) }
+  
   it { should belong_to(:user) }
   it { should have_many(:releases).dependent(:destroy) }
 

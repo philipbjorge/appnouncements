@@ -15,6 +15,8 @@ en:
         platform:
           android: 'Android'
           ios: 'iOS'
+        plan:
+          core: "Core"
     hints:
       # Link them to -- https://stackoverflow.com/questions/21125159/which-ios-app-version-build-numbers-must-be-incremented-upon-app-store-release?
       ios_release:
