@@ -15,9 +15,6 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'devise'
 gem 'any_login'
 
-gem 'stripe_event'
-gem 'stripe'
-
 gem 'simple_form'
 gem 'active_link_to'
 gem 'pundit'

@@ -19,42 +19,20 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
-#  stripe_customer        :json
 #  unconfirmed_email      :string
 #  unlock_token           :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  stripe_id              :string
 #
 # Indexes
 #
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_stripe_id             (stripe_id) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 
 class User < ApplicationRecord
-  
-  def self.update_by_stripe_id(stripe_id)
-    user = User.find_by_stripe_id(stripe_id)
-    (logger.error("Unable to find user with stripe id #{stripe_id}") and return) unless user
-    
-    customer = Stripe::Customer.retrieve({id: stripe_id, expand: ["default_source"]})
-    user.stripe_customer = customer.as_json
-    raise "More subscriptions need to be fetched" if customer.subscriptions.has_more
-    user.save!
-  end
-  
-  def self.clear_stripe_id(stripe_id)
-    user = User.find_by_stripe_id(stripe_id)
-    return unless user
-    
-    user.stripe_id = nil
-    user.stripe_customer = nil
-    user.save!
-  end
   
   devise :database_authenticatable, :registerable, :recoverable,
                   :rememberable, :trackable, :validatable, :confirmable, 
@@ -66,82 +44,4 @@ class User < ApplicationRecord
   has_many :apps, dependent: :destroy
 
   validates_acceptance_of :terms_of_service, on: :create
-  
-  before_destroy :destroy_stripe!
-  
-  # TODO: Handle disabling stuff and resuming unpaid subscription
-  # TODO: On destroy, unsubscribe from Stripe!
-  
-  def customer
-    Stripe::Util.convert_to_stripe_object(self.stripe_customer)
-  end
-  
-  def customer=(v)
-    self.stripe_id = v.id
-    self.stripe_customer = v.as_json
-  end
-  
-  def plan
-    @plan ||= Plan.new(self.customer&.subscriptions&.data&.first)
-  end
-  
-  def update_plan! new_plan
-    subscription = self.customer.subscriptions.data.first
-    
-    return "No changes made to subscription." if (self.plan.to_sym == new_plan) && !self.plan.pending_cancelation?  # no change
-    return "Your subscription has been downgraded to free." if new_plan == :free && subscription.nil?  # no change if we are free with no subscription
-    
-    msg = ""
-    if subscription
-      if new_plan == :free
-        # downgrade to free, cancel subscription
-        s = subscription.delete(at_period_end: true)
-        msg = "Your subscription has been cancelled and service will stop at #{Time.at(s.current_period_end).strftime("%-m/%-d")}"
-      else
-        # update subscription
-        subscription.cancel_at_period_end = false
-        subscription.items = [{
-                                  id: subscription.items.data[0].id,
-                                  plan: Plan.sym_to_stripe_id(new_plan),
-                              }]
-        subscription.save
-        msg = "Your subscription has been changed from #{self.plan.to_sym} to #{new_plan}"
-        
-        # TODO: Generate invoice on upgrade!
-      end
-    else
-      # create a subscription
-      Stripe::Subscription.create(customer: self.customer.id, items: [{plan: Plan.sym_to_stripe_id(new_plan)}])
-      msg = "Your subscription has been changed from free to #{new_plan}"
-    end
-
-    self.stripe_customer = Stripe::Customer.retrieve({id: self.stripe_id, expand: ["default_source"]}).as_json
-    self.save!
-    
-    return msg
-  end
-  
-  def require_billing_information?
-    self.customer&.default_source.nil? and self.apps.length >= 1
-  end
-
-  def require_updated_billing_information?
-    self.customer&.delinquent and self.apps.length >= 1
-  end
-  
-  def create_or_update_stripe_customer! token, email
-    update_params = {source: token, email: email, description: "id: #{self.id}", expand: ["default_source"]}
-    
-    if self.customer
-      self.customer = Stripe::Customer.update(self.customer.id, update_params)
-    else
-      self.customer = Stripe::Customer.create(update_params)
-    end
-    
-    self.save!
-  end
-  
-  def destroy_stripe!
-    self.customer.delete if self.customer
-  end
 end

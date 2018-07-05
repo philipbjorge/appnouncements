@@ -8,13 +8,6 @@
           | Didn't receive a confirmation link? 
           = link_to "Click here", new_user_confirmation_path, class: "alert-link"
           |  to resend it.
-  - if current_user.require_billing_information?
-    .row.flashes.my-2
-      .col-sm-8.offset-sm-2
-        .alert.alert-warning.alert-dismissible.fade.show role="alert" 
-          | You are currently at your free limit. To add more apps, you will need to update your 
-          = link_to 'billing information', billing_path, class: "alert-link"
-          | .
   - if flash.any?
     .row.flashes.my-2
       .col-sm-8.offset-sm-2
