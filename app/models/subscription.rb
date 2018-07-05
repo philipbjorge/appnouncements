@@ -22,4 +22,9 @@
 
 class Subscription < ApplicationRecord
   belongs_to :user
+  
+  def reload_from_chargebee!
+    subscription = ChargeBee::Subscription.retrieve(self.chargebee_id).subscription
+    self.update!(plan: subscription.plan_id, status: subscription.status)
+  end
 end

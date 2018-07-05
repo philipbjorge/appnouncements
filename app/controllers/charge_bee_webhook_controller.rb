@@ -5,8 +5,7 @@ class ChargeBeeWebhookController < ApplicationController
   
   def consume
     if ["subscription_changed"].include? params[:event_type]
-      subscription = ChargeBee::Subscription.retrieve(params[:content][:subscription][:id]).subscription
-      Subscription.find_by_chargebee_id(subscription.id).update!(plan: subscription.plan_id, status: subscription.status)
+      Subscription.find_by_chargebee_id(params[:content][:subscription][:id]).reload_from_chargebee!
     elsif ["subscription_cancelled"].include? params[:event_type]
       # TODO: Update to a free plan
     end

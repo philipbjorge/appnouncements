@@ -5,18 +5,9 @@ class BillingsController < ApplicationController
   layout "settings"
   
   def show
-    @customer = current_user.customer
-    @invoices = Stripe::Invoice.list(limit: 30, customer: @customer.id).data.select {|i| i.hosted_invoice_url } if @customer
-  end
-  
-  def update
-    if params.include?(:stripeToken) && params.include?(:stripeEmail)
-      # Defer creating our stripe customer until we have billing info to keep our DB clean
-      current_user.create_or_update_stripe_customer! params.require(:stripeToken), params.require(:stripeEmail)
-      redirect_to (session.delete(:return_to) || billing_path), notice: "Billing information successfully updated!"
-    elsif params.include? :user
-      new_plan = params.require(:user).permit(:plan)[:plan].to_sym
-      redirect_to billing_path, notice: current_user.update_plan!(new_plan)
-    end
+    # Super Dirty Hack
+    current_user.subscription.reload_from_chargebee!
+    @hosted_page = ChargeBee::HostedPage.checkout_existing(subscription: {:id => current_user.subscription.chargebee_id, plan_id: "core-unlimited" }, embed: false).hosted_page if current_user.subscription.plan == "free"
+    @portal = ChargeBee::PortalSession.create(customer: {:id => current_user.chargebee_id }, embed: false).portal_session unless current_user.subscription.plan == "free"
   end
 end
