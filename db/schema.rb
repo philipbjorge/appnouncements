@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_133814) do
+ActiveRecord::Schema.define(version: 2018_07_05_151056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -64,6 +64,17 @@ ActiveRecord::Schema.define(version: 2018_07_05_133814) do
     t.index ["app_id"], name: "index_releases_on_app_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "plan"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "chargebee_id"
+    t.index ["chargebee_id"], name: "index_subscriptions_on_chargebee_id", unique: true
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -85,6 +96,8 @@ ActiveRecord::Schema.define(version: 2018_07_05_133814) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.string "chargebee_id"
+    t.index ["chargebee_id"], name: "index_users_on_chargebee_id", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -93,4 +106,5 @@ ActiveRecord::Schema.define(version: 2018_07_05_133814) do
 
   add_foreign_key "apps", "users"
   add_foreign_key "releases", "apps"
+  add_foreign_key "subscriptions", "users"
 end

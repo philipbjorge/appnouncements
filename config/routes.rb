@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       post 'release_notes/:uuid/preview' => "release_notes#preview"
     end
   end
+
+  post '/webhooks/chargebee' => 'charge_bee_webhook#consume'
   
   root "apps#index"
   resources :apps do

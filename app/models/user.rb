@@ -23,9 +23,11 @@
 #  unlock_token           :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  chargebee_id           :string
 #
 # Indexes
 #
+#  index_users_on_chargebee_id          (chargebee_id) UNIQUE
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
@@ -42,6 +44,19 @@ class User < ApplicationRecord
                   extend_remember_period: true
 
   has_many :apps, dependent: :destroy
+  has_one :subscription, dependent: :destroy
 
   validates_acceptance_of :terms_of_service, on: :create
+  
+  after_create :create_chargebee_customer!
+  
+  def create_chargebee_customer!
+    result = ChargeBee::Subscription.create(plan_id: "free", customer: {cf_rails_id: self.id})
+    subscription = result.subscription
+    customer = result.customer
+    
+    self.chargebee_id = customer.id
+    self.build_subscription(plan: subscription.plan_id, status: subscription.status, chargebee_id: subscription.id)
+    self.save!
+  end
 end

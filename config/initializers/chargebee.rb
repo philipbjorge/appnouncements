@@ -1,0 +1,1 @@
+ChargeBee.configure(Rails.application.credentials[Rails.env.to_sym][:chargebee])

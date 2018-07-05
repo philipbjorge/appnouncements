@@ -18,6 +18,7 @@
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.bundle" />
       <excludeFolder url="file://$MODULE_DIR$/components" />
+      <excludeFolder url="file://$MODULE_DIR$/log" />
       <excludeFolder url="file://$MODULE_DIR$/public/system" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bundle" />
@@ -57,6 +58,7 @@
     <orderEntry type="library" scope="PROVIDED" name="byebug (v10.0.2, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="camertron-eprun (v1.1.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v3.0.2, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="chargebee (v2.5.3, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.9.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chromedriver-helper (v1.2.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cldr-plurals-runtime-rb (v1.0.1, ruby-2.5.1-p57) [gem]" level="application" />
@@ -67,11 +69,11 @@
     <orderEntry type="library" scope="PROVIDED" name="debug_inspector (v0.0.3, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v4.4.3, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.3, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="domain_name (v0.5.20180417, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv (v2.4.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv-rails (v2.4.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.7.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.7.0, ruby-2.5.1-p57) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="faraday (v0.15.2, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.23, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="flamegraph (v0.9.5, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="formatador (v0.2.5, ruby-2.5.1-p57) [gem]" level="application" />
@@ -82,8 +84,10 @@
     <orderEntry type="library" scope="PROVIDED" name="hash_dot (v2.4.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="html-pipeline (v2.8.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="htmlentities (v4.3.4, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="http-cookie (v1.0.3, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.0.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="io-like (v0.3.0, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="json_pure (v2.1.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kramdown (v1.17.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="launchy (v2.4.3, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="letter_opener (v1.6.0, ruby-2.5.1-p57) [gem]" level="application" />
@@ -95,6 +99,8 @@
     <orderEntry type="library" scope="PROVIDED" name="maildown (v3.0.2, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="marcel (v0.3.2, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="method_source (v0.9.0, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mime-types (v3.1, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mime-types-data (v3.2016.0521, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mimemagic (v0.3.2, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.0.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.3.0, ruby-2.5.1-p57) [gem]" level="application" />
@@ -102,9 +108,9 @@
     <orderEntry type="library" scope="PROVIDED" name="moneta (v1.0.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.2.4, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.13.1, ruby-2.5.1-p57) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="multipart-post (v2.0.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mustache (v1.0.5, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nenv (v0.3.0, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="netrc (v0.11.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.3.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.8.2, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogumbo (v1.5.0, ruby-2.5.1-p57) [gem]" level="application" />
@@ -135,6 +141,7 @@
     <orderEntry type="library" scope="PROVIDED" name="redcarpet (v3.4.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="request_store (v1.4.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v2.4.0, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rest-client (v2.0.2, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec (v3.7.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.7.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.7.0, ruby-2.5.1-p57) [gem]" level="application" />
@@ -159,8 +166,6 @@
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v3.7.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.2.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stackprof (v0.2.11, ruby-2.5.1-p57) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="stripe (v3.15.0, ruby-2.5.1-p57) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="stripe_event (v2.1.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tedium (v0.0.5, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="temple (v0.8.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.20.0, ruby-2.5.1-p57) [gem]" level="application" />
@@ -169,6 +174,8 @@
     <orderEntry type="library" scope="PROVIDED" name="twitter_cldr (v4.4.3, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.5, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v4.1.10, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="unf (v0.1.4, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="unf_ext (v0.0.7.5, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uniform_notifier (v1.11.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.7, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="web-console (v3.6.1, ruby-2.5.1-p57) [gem]" level="application" />
