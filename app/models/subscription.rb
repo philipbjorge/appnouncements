@@ -23,6 +23,10 @@
 class Subscription < ApplicationRecord
   belongs_to :user
   
+  def free?
+    plan == "free"
+  end
+  
   def reload_from_chargebee!
     subscription = ChargeBee::Subscription.retrieve(self.chargebee_id).subscription
     self.update!(plan: subscription.plan_id, status: subscription.status)

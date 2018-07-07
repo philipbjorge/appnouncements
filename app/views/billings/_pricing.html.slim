@@ -1,0 +1,53 @@
+.container
+  .card-deck.mb-3.text-center
+    .card.mb-4.shadow
+      .card-header
+        h4.my-0.font-weight-normal
+          | Free for Life
+      .card-body
+        h1.card-title.pricing-card-title
+          | $0 
+          small.text-muted
+            | / mo
+        ul.list-unstyled.mt-3.mb-4
+          li 1 app included
+          li Appnouncements branding
+        - if @subscription.plan == "free"
+          button.btn.btn-lg.btn-block.btn-success.disabled Active
+        - else
+          button.btn.btn-lg.btn-block.btn-outline-primary.chargebee-checkout [data-cb-plan="free"]
+            = checkout_button_text
+    .card.mb-4.shadow
+      .card-header
+        h4.my-0.font-weight-normal
+          | Core
+      .card-body
+        h1.card-title.pricing-card-title
+          | $9 
+          small.text-muted
+            | / mo
+        ul.list-unstyled.mt-3.mb-4
+          li 1 app included
+          li Unbranded
+        - if @subscription.plan == "core"
+          button.btn.btn-lg.btn-block.btn-success.disabled Active
+        - else
+          button.btn.btn-lg.btn-block.btn-outline-primary.chargebee-checkout [data-cb-plan="core"]
+            = checkout_button_text
+    .card.mb-4.shadow
+      .card-header
+        h4.my-0.font-weight-normal
+          | Core Unlimited
+      .card-body
+        h1.card-title.pricing-card-title
+          | $19 
+          small.text-muted
+            | / mo
+        ul.list-unstyled.mt-3.mb-4
+          li Unlimited apps included
+          li Unbranded
+        - if @subscription.plan == "core-unlimited"
+          button.btn.btn-lg.btn-block.btn-success.disabled Active
+        - else
+          button.btn.btn-lg.btn-block.btn-outline-primary.chargebee-checkout [data-cb-plan="core-unlimited"]
+            = checkout_button_text

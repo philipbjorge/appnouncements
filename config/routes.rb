@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   end
   
   scope :settings do
-    resource :billing
+    resource :billing do
+      member do
+        post "hosted_page"
+      end
+    end
   end
 
   resolve('Billing') { [:billings] }

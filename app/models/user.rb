@@ -51,6 +51,8 @@ class User < ApplicationRecord
   after_create :create_chargebee_customer!
   
   def create_chargebee_customer!
+    return unless chargebee_id.nil?
+    
     result = ChargeBee::Subscription.create(plan_id: "free", customer: {cf_rails_id: self.id})
     subscription = result.subscription
     customer = result.customer
