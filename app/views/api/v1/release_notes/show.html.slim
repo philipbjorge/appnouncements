@@ -2,3 +2,7 @@
   | TODO: Show Toolbar
 .container.grid-lg
   = render partial: "release", collection: @releases
+  - if @app.user.subscription.free?
+    .text-center
+      small
+        a [href="https://www.appnouncements.com/"] Powered by Appnouncements
