@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
   before_action :authenticate_user!
+  before_action :enforce_app_plan_restriction, only: [:new, :create]
   before_action :set_app, only: [:show, :edit, :update, :destroy]
 
   # GET /apps
@@ -67,5 +68,10 @@ class AppsController < ApplicationController
   
     def app_create_params
       app_params(:platform)
+    end
+  
+    def enforce_app_plan_restriction
+      return if current_user.subscription.can_create_new_app?
+      redirect_to apps_path, notice: "You must <a href='#{view_context.billing_path}'>upgrade your subscription</a> to add more apps!"
     end
 end

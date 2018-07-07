@@ -22,7 +22,21 @@
 
 class Subscription < ApplicationRecord
   belongs_to :user
+  before_save :handle_plan_change
   
+  def can_create_new_app?
+    return (user.apps.count + 1) < app_limit
+  end
+  
+  def show_branding?
+    free?
+  end
+
+  def app_limit
+    return 1 if ["free", "core"].include? plan
+    return Float::INFINITY
+  end
+
   def free?
     plan == "free"
   end
@@ -30,5 +44,20 @@ class Subscription < ApplicationRecord
   def reload_from_chargebee!
     subscription = ChargeBee::Subscription.retrieve(self.chargebee_id).subscription
     self.update!(plan: subscription.plan_id, status: subscription.status)
+  end
+  
+private
+  def handle_plan_change
+    return unless will_save_change_to_plan?
+    
+    if user.apps.count > app_limit
+      # Ensure any apps under their limit are enabled
+      user.apps.left_joins(:releases).group(:id).order('COUNT(releases.id) DESC').limit(user.apps.count - app_limit).update_all(disabled: false)
+      # Disable everything else
+      user.apps.left_joins(:releases).group(:id).order('COUNT(releases.id) DESC').offset(app_limit).update_all(disabled: true)
+    else
+      # Enable them
+      user.apps.update_all(disabled: false)
+    end
   end
 end

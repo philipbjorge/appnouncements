@@ -49,7 +49,9 @@ class User < ApplicationRecord
   validates_acceptance_of :terms_of_service, on: :create
   
   after_create :create_chargebee_customer!
+  before_destroy :destroy_chargebee_customer!
   
+private
   def create_chargebee_customer!
     return unless chargebee_id.nil?
     
@@ -60,5 +62,9 @@ class User < ApplicationRecord
     self.chargebee_id = customer.id
     self.build_subscription(plan: subscription.plan_id, status: subscription.status, chargebee_id: subscription.id)
     self.save!
+  end
+  
+  def destroy_chargebee_customer!
+    ChargeBee::Customer.delete(self.chargebee_id)
   end
 end
