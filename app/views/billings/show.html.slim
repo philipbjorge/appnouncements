@@ -6,7 +6,7 @@ hr
   .row
     .col-sm-8
       p.lead
-        | You can manage all aspects of your subscription including your card on file, billing address, subscription level and invoice history through our portal.
+        | You can manage your card on file, billing address, and invoice history through our portal.
     .col-sm-4
       a.chargebee-portal.btn.btn-primary.d-block [role="button" href="#"] Open Billing Portal
   br
@@ -36,11 +36,7 @@ javascript:
           });  
       }
       else {
-          cbInstance.createChargebeePortal().open({
-              close: function() {
-                  $("#update-cb-form").submit();
-              }
-          });
+          cbInstance.createChargebeePortal().open();
       }
   });
   $(".chargebee-checkout").on("click", function () {

@@ -5,7 +5,7 @@ module Api::V1
     def show
       skip_authorization
 
-      @app = App.find_by_uuid(params[:uuid]).where(disabled: false)
+      @app = App.find_by(uuid: params[:uuid], disabled: false)
       not_found unless @app
 
       # TODO: Validate start/end_version
@@ -19,7 +19,7 @@ module Api::V1
     def preview
       authenticate_user!
 
-      @app = App.find_by_uuid(params[:uuid]).where(disabled: false)
+      @app = App.find_by(uuid: params[:uuid], disabled: false)
       not_found unless @app
       authorize @app
 

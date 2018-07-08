@@ -6,9 +6,7 @@ class BillingsController < ApplicationController
   
   def show
     @subscription = current_user.subscription
-    unless @subscription.free?
-      @portal = ChargeBee::PortalSession.create(customer: {:id => current_user.chargebee_id }, embed: false).portal_session
-    end
+    @portal = ChargeBee::PortalSession.create(customer: {:id => current_user.chargebee_id }, embed: false).portal_session
   end
   
   def hosted_page
