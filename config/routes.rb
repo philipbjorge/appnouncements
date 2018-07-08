@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resource :billing do
       member do
         post "hosted_page"
+        post "portal_session"
       end
     end
   end

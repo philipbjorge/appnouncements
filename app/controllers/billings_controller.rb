@@ -6,12 +6,16 @@ class BillingsController < ApplicationController
   
   def show
     @subscription = current_user.subscription
-    @portal = ChargeBee::PortalSession.create(customer: {:id => current_user.chargebee_id }, embed: false).portal_session
   end
   
   def hosted_page
     result = ChargeBee::HostedPage.checkout_existing(subscription: {:id => current_user.subscription.chargebee_id, plan_id: params[:plan_id] }, embed: false)
     render json: result.hosted_page.to_s
+  end
+  
+  def portal_session
+    result = ChargeBee::PortalSession.create(customer: {:id => current_user.chargebee_id }, embed: false)
+    render json: result.portal_session.to_s
   end
   
   def update

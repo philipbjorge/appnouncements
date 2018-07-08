@@ -24,7 +24,12 @@ javascript:
   var cbInstance = Chargebee.init({site: "#{Rails.application.credentials[Rails.env.to_sym][:chargebee][:site]}"});
   $(".chargebee-portal").on("click", function() {
       event.preventDefault();
-      cbInstance.setPortalSession(#{@portal.to_json.to_s.html_safe});
+      cbInstance.setPortalSession(function() {
+          return $.ajax({
+              method: "post",
+              url: "#{portal_session_billing_path.html_safe}"
+          });
+      });
       
       if ($(event.target).data("cb-section")) {
           cbInstance.createChargebeePortal().openSection({
