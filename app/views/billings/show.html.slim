@@ -2,14 +2,13 @@ script data-cb-site="appnouncements-test" src="https://js.chargebee.com/v2/charg
 
 h3 Billing Overview
 hr
-- unless @subscription.free?
-  .row
-    .col-sm-8
-      p.lead
-        | You can manage your card on file, billing address, and invoice history through our portal.
-    .col-sm-4
-      a.chargebee-portal.btn.btn-primary.d-block [role="button" href="#"] Open Billing Portal
-  br
+.row
+  .col-sm-8
+    p.lead
+      | You can manage your card on file, billing address, and invoice history through our portal.
+  .col-sm-4
+    a.chargebee-portal.btn.btn-primary.d-block [role="button" href="#"] Open Billing Portal
+br
   / a.chargebee-portal.btn.btn-primary [data-cb-section="ADDRESS"] Billing Address
 
 h4 Plan
