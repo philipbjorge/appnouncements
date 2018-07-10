@@ -46,6 +46,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :production do
   gem "lograge"
+  gem "scout_apm"
 end
 
 group :development, :test do
