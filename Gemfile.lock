@@ -118,6 +118,8 @@ GEM
       railties (>= 3.2, < 6.0)
     erubi (1.7.1)
     execjs (2.7.0)
+    faraday (0.15.2)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
     formatador (0.2.5)
     globalid (0.4.1)
@@ -183,6 +185,7 @@ GEM
     moneta (1.0.0)
     msgpack (1.2.4)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     mustache (1.0.5)
     nenv (0.3.0)
     netrc (0.11.0)
@@ -310,6 +313,8 @@ GEM
     selenium-webdriver (3.11.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
+    sentry-raven (2.7.4)
+      faraday (>= 0.7.6, < 1.0)
     shellany (0.0.1)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
@@ -407,6 +412,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   scout_apm
   selenium-webdriver
+  sentry-raven
   shoulda-matchers
   simple_form
   site_prism!
