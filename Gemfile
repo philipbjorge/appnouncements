@@ -44,9 +44,10 @@ gem 'hash_dot'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem "scout_apm"
+
 group :production do
   gem "lograge"
-  gem "scout_apm"
 end
 
 group :development, :test do
