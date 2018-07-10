@@ -25,7 +25,7 @@ class Subscription < ApplicationRecord
   before_save :handle_plan_change
   
   def can_create_new_app?
-    return (user.apps.count + 1) < app_limit
+    return (user.apps.count + 1) <= app_limit
   end
   
   def show_branding?
