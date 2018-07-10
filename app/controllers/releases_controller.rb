@@ -1,7 +1,7 @@
 class ReleasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_app, only: [:new, :attach, :edit, :create, :update, :destroy,]
-  before_action :set_release, only: [:attach, :edit, :update, :destroy]
+  before_action :set_app, only: [:new, :edit, :create, :update, :destroy,]
+  before_action :set_release, only: [:edit, :update, :destroy]
 
   # GET /apps/1/releases/new
   def new
@@ -13,13 +13,7 @@ class ReleasesController < ApplicationController
   def edit
     authorize @release
   end
-
-  def attach
-    authorize @release
-    attachment = @app.images.attach(params.require(:file))[0]
-    render json: {filename: url_for(attachment)}
-  end
-
+  
   # POST /apps
   def create
     authorize @app

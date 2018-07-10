@@ -33,8 +33,7 @@ Rails.application.routes.draw do
   
   root "apps#index"
   resources :apps do
-    resources :releases do
-      post :attach, on: :member
-    end
+    post :attach, on: :member
+    resources :releases
   end
 end

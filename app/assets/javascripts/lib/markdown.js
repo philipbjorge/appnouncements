@@ -34,9 +34,9 @@ function throttle(func, wait, options) {
     };
 };
 
-function init(uuid) {
+function init(id, uuid) {
     var inlineAttachmentConfig = {
-        uploadUrl: 'attach',
+        uploadUrl: '/apps/' + id + '/attach',
         extraHeaders: {
             'X-CSRF-Token': Rails.csrfToken()
         }

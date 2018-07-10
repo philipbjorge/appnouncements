@@ -1,7 +1,13 @@
 class AppsController < ApplicationController
   before_action :authenticate_user!
   before_action :enforce_app_plan_restriction, only: [:new, :create]
-  before_action :set_app, only: [:show, :edit, :update, :destroy]
+  before_action :set_app, only: [:attach, :show, :edit, :update, :destroy]
+
+  def attach
+    authorize @app
+    attachment = @app.images.attach(params.require(:file))[0]
+    render json: {filename: url_for(attachment)}
+  end
 
   # GET /apps
   def index
