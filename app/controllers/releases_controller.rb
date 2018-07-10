@@ -1,7 +1,7 @@
 class ReleasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_app, only: [:new, :attach, :edit, :create, :update, :destroy,]
-  before_action :set_release, only: [:edit, :update, :destroy]
+  before_action :set_release, only: [:attach, :edit, :update, :destroy]
 
   # GET /apps/1/releases/new
   def new
