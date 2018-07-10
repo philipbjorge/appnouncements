@@ -21,7 +21,7 @@ hr
   
 
 javascript:
-  var cbInstance = Chargebee.init({site: "#{Rails.application.credentials[Rails.env.to_sym][:chargebee][:site]}"});
+  var cbInstance = Chargebee.init({site: "#{ChargeBee.default_env.site}"});
   $(".chargebee-portal").on("click", function() {
       event.preventDefault();
       cbInstance.setPortalSession(function() {
