@@ -38,9 +38,9 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, :registerable, :recoverable,
                   :rememberable, :trackable, :validatable, :confirmable, 
-                  send_email_changed_notification: true, send_password_change_notification: true,
+                  send_email_changed_notification: false, send_password_change_notification: true,
                   allow_unconfirmed_access_for: 7.days, reconfirmable: true,
-                  reset_password_within: 1.hour, sign_in_after_reset_password: true,
+                  reset_password_within: 6.hours, sign_in_after_reset_password: true,
                   extend_remember_period: true
 
   has_many :apps, dependent: :destroy

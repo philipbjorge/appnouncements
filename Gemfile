@@ -70,9 +70,9 @@ group :development do
   gem "awesome_print"
   gem "letter_opener"
   gem "bullet"
-  gem 'rack-mini-profiler'
-  gem 'flamegraph'
-  gem 'stackprof'
+  # gem 'rack-mini-profiler'
+  # gem 'flamegraph'
+  # gem 'stackprof'
   gem 'annotate'
 end
 

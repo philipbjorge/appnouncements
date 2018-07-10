@@ -8,13 +8,10 @@ module Api::V1
       not_found unless @app
 
       # TODO: Validate start/end_version
-      @releases = []
-      if params[:start_version] != params[:end_version]
-        @releases = @app.releases.published
-        @releases = @releases.where("string_to_array(version, '.')::int[] >= string_to_array(?, '.')::int[]", params[:start_version]) if params[:start_version]
-        @releases = @releases.where("string_to_array(version, '.')::int[] <= string_to_array(?, '.')::int[]", params[:end_version]) if params[:end_version]
-      end
-      
+      @releases = @app.releases.published
+      @releases = @releases.where("string_to_array(version, '.')::int[] >= string_to_array(?, '.')::int[]", params[:start_version]) if params[:start_version]
+      @releases = @releases.where("string_to_array(version, '.')::int[] <= string_to_array(?, '.')::int[]", params[:end_version]) if params[:end_version]
+    
       render layout: "webview"
     end
     

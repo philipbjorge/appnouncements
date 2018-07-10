@@ -119,7 +119,6 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23)
-    flamegraph (0.9.5)
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -229,8 +228,6 @@ GEM
       pundit (~> 1.1, >= 1.1.0)
       rspec-rails (>= 3.0.0)
     rack (2.0.5)
-    rack-mini-profiler (1.0.0)
-      rack (>= 1.2.0)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails (5.2.0)
@@ -337,7 +334,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    stackprof (0.2.11)
     tedium (0.0.5)
       activesupport
       site_prism (>= 2.6)
@@ -388,7 +384,6 @@ DEPENDENCIES
   chromedriver-helper
   devise
   dotenv-rails
-  flamegraph
   guard
   guard-rspec
   hash_dot
@@ -405,7 +400,6 @@ DEPENDENCIES
   puma (~> 3.11)
   pundit
   pundit-matchers
-  rack-mini-profiler
   rails (~> 5.2.0)
   redcarpet
   rspec-rails
@@ -417,7 +411,6 @@ DEPENDENCIES
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)
-  stackprof
   tedium
   twitter_cldr
   tzinfo-data
