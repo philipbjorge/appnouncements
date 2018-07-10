@@ -63,7 +63,8 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-
+  config.action_mailer.default_url_options = { host: ENV['DEFAULT_HOST'].present? ? ENV['DEFAULT_HOST'] : "app.appnouncements.com" }
+  
   if ENV['MAILTRAP_API_TOKEN'].present?
     response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=#{ENV['MAILTRAP_API_TOKEN']}"
   
