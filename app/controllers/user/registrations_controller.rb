@@ -10,6 +10,6 @@ class User::RegistrationsController < Devise::RegistrationsController
 
 private
   def permit_signup_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:terms_of_service])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:tos_pp])
   end
 end

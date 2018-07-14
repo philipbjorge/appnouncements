@@ -46,7 +46,7 @@ class User < ApplicationRecord
   has_many :apps, dependent: :destroy
   has_one :subscription, dependent: :destroy
 
-  validates_acceptance_of :terms_of_service, on: :create
+  validates_acceptance_of :tos_pp, on: :create
   
   after_create :create_chargebee_customer!
   before_destroy :destroy_chargebee_customer!

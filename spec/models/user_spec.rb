@@ -39,7 +39,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   it { should have_db_index(:stripe_id) }
   it { should have_many(:apps).dependent(:destroy) }
-  it { should validate_acceptance_of(:terms_of_service).on(:create) }
+  it { should validate_acceptance_of(:tos_pp).on(:create) }
   
   # TODO: update_by_stripe_id, clear_stripe_id, customer, billing_information, create_or_update
 end
