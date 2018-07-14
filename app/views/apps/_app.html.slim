@@ -1,10 +1,11 @@
 .col-sm-4.mb-4
-  = link_to app
-    .card
-      .card-body
-        h5.card-title
-          = app.display_name
-        h6.card-subtitle.mb-2.text-muted
-          = format_platform(app)
-          br
-          | Disabled: #{app.disabled}
+  .card
+    .card-body
+      h5.card-title
+        = app.display_name
+        - if app.disabled?
+          span.badge.badge-danger.float-right
+            | Disabled
+      h6.card-subtitle.mb-2.text-muted
+        = format_platform(app)
+      = link_to "View Releases", app, class: "card-link"

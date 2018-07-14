@@ -1,4 +1,14 @@
 .container
+  .row.flashes.my-2
+    .col-sm-8.offset-sm-2
+      .alert.alert-danger.alert-dismissible.fade.show role="alert" 
+        | This app is currently disabled and release notes created here will not be shown in-app.
+        br
+        | To fix this, 
+        = link_to "upgrade your subscription", billing_path, class: "alert-link" 
+        |  or contact 
+        a href="mailto:philip@appnouncements.com" class="alert-link" support
+        | .
   .row
     .col-sm-3
       = render partial: "app_navbar"

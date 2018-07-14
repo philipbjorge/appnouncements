@@ -10,6 +10,6 @@
             = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
             = f.input :password_confirmation, required: true
             .text-center
-              = f.input :tos_pp, as: :boolean, wrapper: :custom_boolean, label: 'I agree to Appnouncements\' <a href="https://www.appnouncements.com/terms-of-service/">Terms of Service</a> and <a href="https://www.appnouncements.com/privacy-policy/">Privacy Policy</a>'
+              = f.input :tos_pp, as: :boolean, wrapper: :custom_boolean, label: 'I agree to Appnouncements\' <a href="https://www.appnouncements.com/terms-of-service/">Terms of Service</a> and <a href="https://www.appnouncements.com/privacy-policy/">Privacy Policy</a>'.html_safe
             = f.button :submit, "Register", class: "btn-primary btn-block"
       = render "devise/shared/links"
