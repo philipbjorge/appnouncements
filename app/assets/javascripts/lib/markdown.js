@@ -59,7 +59,7 @@ function init(id, uuid) {
             "undo", "redo", "|",
             {
                 name: "guide",
-                action: "/markdown-guide",
+                action: "https://www.appnouncements.com/markdown-guide/",
                 className: "fa fa-question-circle",
                 title: "Markdown Guide",
                 default: true

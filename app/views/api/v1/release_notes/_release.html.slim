@@ -1,6 +1,10 @@
 .toast.toast-primary.my-2
-  = "#{release.title}"
-  .span.label.label-secondary.float-right
-    = release.display_version || release.version
+  table
+    tr
+      td
+        = "#{release.title}"
+      td valign="top"
+        .span.label.label-secondary
+          = release.display_version || release.version
 .px-2
   = render_markdown(release.body)
