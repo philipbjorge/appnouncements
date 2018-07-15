@@ -72,6 +72,7 @@
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.0.5, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.4, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="css_parser (v1.6.0, ruby-2.5.1-p57) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="data-confirm-modal (v1.6.2, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug_inspector (v0.0.3, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v4.4.3, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.3, ruby-2.5.1-p57) [gem]" level="application" />
@@ -87,7 +88,6 @@
     <orderEntry type="library" scope="PROVIDED" name="guard (v2.14.2, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="guard-compat (v1.2.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="guard-rspec (v4.7.3, ruby-2.5.1-p57) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="hash_dot (v2.4.1, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="html-pipeline (v2.8.0, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="htmlentities (v4.3.4, ruby-2.5.1-p57) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="http-cookie (v1.0.3, ruby-2.5.1-p57) [gem]" level="application" />

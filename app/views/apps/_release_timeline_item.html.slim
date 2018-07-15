@@ -11,5 +11,5 @@
     p.text-right.mb-0
       = link_to edit_app_release_path(@app, release_timeline_item), class: "btn btn-sm btn-secondary mr-2"
         = octicon "pencil", "aria-label": "edit release"
-      = link_to app_release_path(@app, release_timeline_item), method: "delete", data: { confirm: "Are you sure?" }, role: "button", class: "btn btn-sm btn-danger"
+      = link_to app_release_path(@app, release_timeline_item), method: "delete", data: { confirm: "Are you sure you want to delete this release?", commit: "Delete" }, role: "button", class: "btn btn-sm btn-danger"
         = octicon "trashcan", "aria-label": "delete release"

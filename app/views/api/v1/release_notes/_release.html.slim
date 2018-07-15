@@ -7,4 +7,4 @@
         .span.label.label-secondary
           = release.display_version || release.version
 .px-2
-  = render_markdown(release.body)
+  = render_markdown_lazy(release.body)

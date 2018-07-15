@@ -8,8 +8,6 @@
       hr.pb-3
       = render 'form', app: @app
       hr.my-4
-      p
-        | Apps released with our SDK will continue functioning, but will return an empty release notes page.<br/>
       .row
         .col-sm-9.offset-sm-3
-          = link_to "Delete App", app_path(@app), method: "delete", data: {confirm: "Are you sure?"}, role: "button", class: "btn my-3 mr-2 btn-danger"
+          = link_to "Delete App", app_path(@app), method: "delete", data: {confirm: 'After deleting your app, all releases and their statistics will be gone. Apps released with our SDK will stop returning an Appnouncements client and should not affect stability.', title: "Are you sure you want to delete your app?", commit: "Delete", verify: @app.display_name, verify_text: "Type \"#{@app.display_name}\" to confirm"}, role: "button", class: "btn my-3 mr-2 btn-danger"

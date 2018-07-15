@@ -56,10 +56,26 @@ function init(id, uuid) {
             "heading-1", "heading-2", "heading-3", "|",
             "unordered-list", "ordered-list", "quote", "|",
             "link", "image", "horizontal-rule", "|",
+            {
+                name: "upload-image",
+                action: function customFunction(editor){
+                    bootbox.alert("Drag and drop images into your document to upload them");
+                },
+                className: "fa fa-cloud-upload",
+                title: "Upload Image",
+            }, {
+                name: "youtube",
+                action: function customFunction(editor){
+                    bootbox.alert("Paste a YouTube link and it will be automatically embedded");
+                },
+                className: "fa fa-youtube",
+                title: "Embed YouTube",
+            },
+            "|",
             "undo", "redo", "|",
             {
                 name: "guide",
-                action: "https://www.appnouncements.com/markdown-guide/",
+                action: "https://www.markdownguide.org/basic-syntax/",
                 className: "fa fa-question-circle",
                 title: "Markdown Guide",
                 default: true
@@ -70,7 +86,6 @@ function init(id, uuid) {
 
     var previewRequest = new XMLHttpRequest();
     var preview = function() {
-        console.log("previewing");
         previewRequest.onreadystatechange = null;
         previewRequest.abort();
 

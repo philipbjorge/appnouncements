@@ -14,7 +14,9 @@
 //= require jquery/dist/jquery
 //= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
+//= require bootbox/bootbox
 //= require rails-ujs
+//= require data-confirm-modal
 //= require spectrum-colorpicker/spectrum
 
 $(function () {

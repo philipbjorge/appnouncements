@@ -16,9 +16,4 @@ hr
     = f.button :submit, "Update"
 h3.mt-5.text-danger Delete Account
 hr
-p
-  | All your apps and release notes will be deleted.<br><br>
-  | Apps released with our SDK will continue functioning, but will return an empty release notes page.<br><br>
-  | Any subscriptions you have with us will be cancelled immediately and refunded in 5-7 days.
-br
-= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, role: "button", class: "btn btn-danger mb-5"
+= link_to "Delete my account", registration_path(resource_name), data: { title: "Are you sure you want to delete your account?", confirm: "Deleting your account will permanently destroy all your apps and release notes.\n\nApps released with our SDK will stop returning a client and should not affect stability.\n\nAny subscriptions you have with us will be cancelled immediately and the refund process with our payment provider will start within 5-7 days.", verify: current_user.email, verify_text: "Type \"#{current_user.email}\" to confirm", commit: "Delete" }, method: :delete, role: "button", class: "btn btn-danger mb-5"
