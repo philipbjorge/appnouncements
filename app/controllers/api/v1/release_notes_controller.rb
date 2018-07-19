@@ -28,7 +28,8 @@ module Api::V1
       end
 
       render json: {
-          unseenReleasesCount: @releases.size
+          unseenReleasesCount: @releases.size,
+          disabled: @app.disabled
       }
     end
 
