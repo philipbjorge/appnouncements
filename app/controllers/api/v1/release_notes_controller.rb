@@ -16,7 +16,7 @@ module Api::V1
     end
     
     def configuration
-      @app = App.find_by(uuid: params[:uuid], disabled: false)
+      @app = App.find_by(uuid: params[:uuid])
       not_found unless @app
       
       # TODO: Validate start/end_version
@@ -36,7 +36,7 @@ module Api::V1
     def preview
       authenticate_user!
 
-      @app = App.find_by(uuid: params[:uuid], disabled: false)
+      @app = App.find_by(uuid: params[:uuid])
       not_found unless @app
       authorize @app
 
