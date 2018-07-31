@@ -36,6 +36,7 @@ en:
     labels:
       app:
         color: "Accent Color"
+        uuid: "API Key"
     placeholders:
       android_release:
         version: "1"

@@ -2,4 +2,6 @@ ul.nav.nav-pills.flex-column.mb-3
   li.nav-item
     = active_link_to 'Releases', app_path(@app), active: :exclusive, class: "nav-link"
   li.nav-item
+    = active_link_to "SDK Integration", integration_app_path(@app), class: "nav-link"
+  li.nav-item
     = active_link_to 'Settings', edit_app_path(@app), class: "nav-link"

@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-sm-3
+      = render partial: "app_navbar"
+    .col-sm-9
+      h3
+        = @app.display_name
+      hr
+        = render_markdown_unsafe(@markdown)

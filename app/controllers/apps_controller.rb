@@ -1,7 +1,7 @@
 class AppsController < ApplicationController
   before_action :authenticate_user!
   before_action :enforce_app_plan_restriction, only: [:new, :create]
-  before_action :set_app, only: [:attach, :show, :edit, :update, :destroy]
+  before_action :set_app, only: [:integration, :attach, :show, :edit, :update, :destroy]
 
   def attach
     authorize @app
@@ -12,11 +12,15 @@ class AppsController < ApplicationController
   # GET /apps
   def index
     @apps = policy_scope(App)
-   end
+  end
+  
+  def integration
+    authorize @app, :show?
+    @markdown = sdk_integration_markdown(@app)
+  end
 
   # GET /apps/1
   def show
-    # TODO: Order by version
     # TODO: Paginate (delay)
     authorize @app
   end
@@ -79,5 +83,17 @@ class AppsController < ApplicationController
     def enforce_app_plan_restriction
       return if current_user.subscription.can_create_new_app?
       redirect_to apps_path, notice: "You must <a href='#{view_context.billing_path}'>upgrade your subscription</a> to add more apps!"
+    end
+  
+    def sdk_integration_markdown app
+      Rails.cache.fetch("#{app.platform}/sdk_integration_markdown", expires_in: 1.hour) do
+        if app.android?
+          readme = RestClient.get("https://raw.githubusercontent.com/Appnouncements/appnouncements-android/master/README.md").body
+          truncated_readme = /## Integration Guide(.*?)^## /m.match(readme)[1].gsub("YOUR API KEY HERE", app.uuid)
+          return truncated_readme + "\n-------\n## Find our full documentation on [github](https://github.com/Appnouncements/appnouncements-android/blob/master/README.md)."
+        else
+          "# TODO"
+        end
+      end
     end
 end

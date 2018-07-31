@@ -2,6 +2,7 @@
   = f.input :platform, collection: App.allowed_platforms, wrapper: :horizontal_collection, as: :radio_buttons if app.new_record?
   = f.input :display_name
   = f.input :color, input_html: {type: :color, "data-show-input": true, "data-preferred-format": "hex"}
+  = f.input :uuid, disabled: true, hint: "This is the API key used to initialize your SDK. You can find sample code on your #{link_to 'SDK integration page', integration_app_path(@app)}.".html_safe unless app.new_record?
   .form-group.row.mb-0
     .col-sm-9.offset-sm-3
       = f.button :submit, class: "btn-primary mr-2"

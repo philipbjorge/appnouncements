@@ -13,6 +13,10 @@ module ApplicationHelper
     fragment.to_s.html_safe
   end
   
+  def render_markdown_unsafe(md)
+    MarkdownRenderer.new(md).render_markdown_unsafe.html_safe
+  end
+  
   def render_markdown_lazy(md)
     MarkdownRenderer.new(md).render_markdown_lazy.html_safe
   end
