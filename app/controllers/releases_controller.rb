@@ -19,7 +19,9 @@ class ReleasesController < ApplicationController
     authorize @app
     @release = @app.releases.build(release_params.merge(type: @app.release_type))
     if @release.save
-      redirect_to @app, notice: 'Release was successfully created.'
+      msg = 'Release was successfully created.'
+      msg = "You just created your first release!<br>Visit our #{view_context.link_to 'SDK integration page', integration_app_path(@app)} for instructions on adding the release notes to your app." if @app.releases.length == 1
+      redirect_to @app, notice: msg
     else
       render :new
     end
