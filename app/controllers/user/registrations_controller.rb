@@ -8,7 +8,12 @@ class User::RegistrationsController < Devise::RegistrationsController
     edit_profile_path()
   end
 
-private
+  def sign_up(resource_name, resource)
+    flash[:analytics_event] = "sign_up"
+    super
+  end
+
+  private
   def permit_signup_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:tos_pp])
   end

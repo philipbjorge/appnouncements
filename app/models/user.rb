@@ -60,7 +60,7 @@ private
     customer = result.customer
     
     self.chargebee_id = customer.id
-    self.build_subscription(plan: subscription.plan_id, status: subscription.status, chargebee_id: subscription.id)
+    self.build_subscription(plan: Plan.find_by!(chargebee_id: subscription.plan_id), status: subscription.status, chargebee_id: subscription.id)
     self.save!
   end
   

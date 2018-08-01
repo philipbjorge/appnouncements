@@ -45,6 +45,9 @@ GEM
       activemodel (= 5.2.0)
       activesupport (= 5.2.0)
       arel (>= 9.0)
+    activerecord_json_validator (1.2.0)
+      activerecord (>= 4.2.0, < 6)
+      json-schema (~> 2.8)
     activestorage (5.2.0)
       actionpack (= 5.2.0)
       activerecord (= 5.2.0)
@@ -165,6 +168,8 @@ GEM
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
     jmespath (1.4.0)
+    json-schema (2.8.0)
+      addressable (>= 2.4)
     json_pure (2.1.0)
     kramdown (1.17.0)
     launchy (2.4.3)
@@ -394,6 +399,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
+  activerecord_json_validator
   annotate
   any_login
   awesome_print

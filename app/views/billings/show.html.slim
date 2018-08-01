@@ -9,7 +9,6 @@ hr
   .col-sm-4
     a.chargebee-portal.btn.btn-primary.d-block [role="button" href="#"] Open Billing Portal
 br
-  / a.chargebee-portal.btn.btn-primary [data-cb-section="ADDRESS"] Billing Address
 
 h4 Plan
 hr
@@ -31,17 +30,7 @@ javascript:
           });
       });
       
-      if ($(event.target).data("cb-section")) {
-          cbInstance.createChargebeePortal().openSection({
-              sectionType: Chargebee.getPortalSections()[$(event.target).data("cb-section")],
-              params: {
-                  subscriptionId: "#{current_user.subscription.chargebee_id}"
-              }
-          });  
-      }
-      else {
-          cbInstance.createChargebeePortal().open();
-      }
+      cbInstance.createChargebeePortal().open();
   });
   $(".chargebee-checkout").on("click", function () {
       event.preventDefault();
@@ -54,6 +43,9 @@ javascript:
                       plan_id: $(event.target).data("cb-plan")
                   }
               });
+          },
+          loaded: function() {
+              gtag('event', "begin_checkout");
           },
           success: function (hostedPageId) {
               $("#update-cb-form").submit();

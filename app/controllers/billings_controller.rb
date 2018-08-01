@@ -6,6 +6,7 @@ class BillingsController < ApplicationController
   
   def show
     @subscription = current_user.subscription
+    @plans = Plan.where(status: "active").or(Plan.where(id: @subscription.plan.id)).order(:price)
   end
   
   def hosted_page
@@ -19,7 +20,15 @@ class BillingsController < ApplicationController
   end
   
   def update
+    previous_plan_price = current_user.subscription.plan.price
     current_user.subscription.reload_from_chargebee!
+    
+    if current_user.subscription.plan.price > previous_plan_price
+      track_event "purchase"
+    elsif current_user.subscription.plan.price < previous_plan_price
+      track_event "refund"
+    end
+    
     redirect_to billing_path
   end
 end

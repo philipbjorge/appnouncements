@@ -1,53 +1,24 @@
+/ TODO: Iterate over our plans
 .container
   .card-deck.mb-3.text-center
-    .card.mb-4.shadow
-      .card-header
-        h4.my-0.font-weight-normal
-          | Free for Life
-      .card-body
-        h1.card-title.pricing-card-title
-          | $0 
-          small.text-muted
-            | / mo
-        ul.list-unstyled.mt-3.mb-4
-          li 1 app included
-          li Appnouncements branding
-        - if @subscription.plan == "free"
-          button.btn.btn-lg.btn-block.btn-success.disabled Active
-        - else
-          button.btn.btn-lg.btn-block.btn-outline-primary.chargebee-checkout [data-cb-plan="free"]
-            = checkout_button_text
-    .card.mb-4.shadow
-      .card-header
-        h4.my-0.font-weight-normal
-          | Core
-      .card-body
-        h1.card-title.pricing-card-title
-          | $9 
-          small.text-muted
-            | / mo
-        ul.list-unstyled.mt-3.mb-4
-          li 1 app included
-          li Unbranded
-        - if @subscription.plan == "core"
-          button.btn.btn-lg.btn-block.btn-success.disabled Active
-        - else
-          button.btn.btn-lg.btn-block.btn-outline-primary.chargebee-checkout [data-cb-plan="core"]
-            = checkout_button_text
-    .card.mb-4.shadow
-      .card-header
-        h4.my-0.font-weight-normal
-          | Core Unlimited
-      .card-body
-        h1.card-title.pricing-card-title
-          | $19 
-          small.text-muted
-            | / mo
-        ul.list-unstyled.mt-3.mb-4
-          li Unlimited apps included
-          li Unbranded
-        - if @subscription.plan == "core-unlimited"
-          button.btn.btn-lg.btn-block.btn-success.disabled Active
-        - else
-          button.btn.btn-lg.btn-block.btn-outline-primary.chargebee-checkout [data-cb-plan="core-unlimited"]
-            = checkout_button_text
+    - @plans.each do |plan|
+      .card.mb-4.shadow
+        .card-header
+          h4.my-0.font-weight-normal = plan.name
+        .card-body
+          h1.card-title.pricing-card-title
+            = (plan.price / 100).localize(:us).to_currency.to_s(currency: "USD", precision: 0)
+            small.text-muted
+              | / mo
+          ul.list-unstyled.mt-3.mb-4
+            - plan.metadata["display"]&.each do |text|
+              li = text
+          - if @subscription.plan == plan
+            button.btn.btn-lg.btn-block.btn-success.disabled Active
+            - if plan.status != "active"
+              br
+              small.text-muted
+                | This plan has been discontinued. You will not be able to switch back if you change plans.
+          - else
+            button.btn.btn-lg.btn-block.btn-outline-primary.chargebee-checkout [data-cb-plan="#{plan.chargebee_id}"]
+              = checkout_button_text

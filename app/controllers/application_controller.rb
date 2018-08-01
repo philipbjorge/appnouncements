@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
     Raven.user_context(id: current_user.id) if current_user
     Raven.extra_context(params: request.filtered_parameters, url: request.url)
   end
+  
+  def track_event event
+    flash[:analytics_event] = event
+  end
 end

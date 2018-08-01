@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_151056) do
+ActiveRecord::Schema.define(version: 2018_08_01_230019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 2018_07_05_151056) do
     t.index ["uuid"], name: "index_apps_on_uuid", unique: true
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.string "chargebee_id", null: false
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.string "status", null: false
+    t.json "metadata", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "releases", force: :cascade do |t|
     t.string "type", null: false
     t.datetime "created_at", null: false
@@ -66,12 +76,13 @@ ActiveRecord::Schema.define(version: 2018_07_05_151056) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "plan"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "chargebee_id"
+    t.bigint "plan_id"
     t.index ["chargebee_id"], name: "index_subscriptions_on_chargebee_id", unique: true
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
@@ -106,5 +117,6 @@ ActiveRecord::Schema.define(version: 2018_07_05_151056) do
 
   add_foreign_key "apps", "users"
   add_foreign_key "releases", "apps"
+  add_foreign_key "subscriptions", "plans"
   add_foreign_key "subscriptions", "users"
 end
