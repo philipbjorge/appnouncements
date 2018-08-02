@@ -32,6 +32,7 @@ gem 'maildown'
 gem 'premailer-rails'
 gem 'data-confirm-modal'
 gem 'activerecord_json_validator'
+gem 'gibbon'
 
 # https://github.com/ifad/data-confirm-modal
 
