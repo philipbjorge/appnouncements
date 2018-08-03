@@ -48,6 +48,7 @@ class User < ApplicationRecord
 
   validates_acceptance_of :tos_pp, on: :create
   
+  before_update :update_chargebee_email
   after_create :create_chargebee_customer!
   before_destroy :destroy_chargebee_customer!
   
@@ -55,13 +56,23 @@ private
   def create_chargebee_customer!
     return unless chargebee_id.nil?
     
-    result = ChargeBee::Subscription.create(plan_id: "free", customer: {cf_rails_id: self.id})
+    result = ChargeBee::Subscription.create(plan_id: "free", customer: {cf_rails_id: self.id, email: self.email})
     subscription = result.subscription
     customer = result.customer
     
     self.chargebee_id = customer.id
     self.build_subscription(plan: Plan.find_by!(chargebee_id: subscription.plan_id), status: subscription.status, chargebee_id: subscription.id)
     self.save!
+  end
+  
+  def update_chargebee_email
+    return unless will_save_change_to_email?
+    
+    begin
+      ChargeBee::Customer.update(self.chargebee_id, {email: self.email})
+    rescue
+      logger.warn "Failed to update chargebee email for customer #{self.id}"
+    end
   end
   
   def destroy_chargebee_customer!
