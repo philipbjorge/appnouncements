@@ -81,7 +81,7 @@ class AppsController < ApplicationController
     end
   
     def enforce_app_plan_restriction
-      return if current_user.subscription.can_create_new_app?
+      return if current_user.can_create_new_app?
       redirect_to apps_path, notice: "You must <a href='#{view_context.billing_path}'>upgrade your subscription</a> to add more apps!"
     end
   

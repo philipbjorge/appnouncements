@@ -28,7 +28,7 @@ class Subscription < ApplicationRecord
   
   before_save :handle_plan_change
   
-  delegate :can_create_new_app?, :show_branding?, :app_limit, to: :plan
+  delegate :show_branding?, :app_limit, to: :plan
   
   def reload_from_chargebee!
     subscription = ChargeBee::Subscription.retrieve(self.chargebee_id).subscription

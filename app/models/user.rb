@@ -52,6 +52,10 @@ class User < ApplicationRecord
   after_create :create_chargebee_customer!
   before_destroy :destroy_chargebee_customer!
   
+  def can_create_new_app?
+    (self.apps.count + 1) <= self.subscription.app_limit
+  end
+  
 private
   def create_chargebee_customer!
     return unless chargebee_id.nil?
