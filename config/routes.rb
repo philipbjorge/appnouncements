@@ -30,7 +30,10 @@ Rails.application.routes.draw do
   end
 
   post '/webhooks/chargebee' => 'charge_bee_webhook#consume'
-  
+
+  match '/404', :to => 'error#error_404', :via => :all
+  match '/422', :to => 'error#error_422', :via => :all
+  match '/500', :to => 'error#error_500', :via => :all
   root "apps#index"
   resources :apps do
     get :integration, on: :member
