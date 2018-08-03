@@ -1,2 +1,1 @@
-chargebee_env = ENV["CHARGEBEE_TEST_ENV"].present? ? :development : Rails.env.to_sym
-ChargeBee.configure(Rails.application.credentials[chargebee_env][:chargebee])
+ChargeBee.configure(Rails.application.credentials[(ENV["HEROKU_ENV"] || ENV["RAILS_ENV"]).to_sym][:chargebee])
