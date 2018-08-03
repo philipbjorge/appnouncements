@@ -18,7 +18,7 @@
       "properties": {
         "app_limit": {
           "$id": "/properties/features/properties/app_limit",
-          "type": "integer",
+          "type": ["number", "null"],
           "title": "App Limit"
         },
         "branding": {

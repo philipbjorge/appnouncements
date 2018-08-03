@@ -1,6 +1,6 @@
 / TODO: Iterate over our plans
 .container
-  .card-deck.mb-3.text-center
+  #pricing-card-deck.card-deck.mb-3.text-center
     - @plans.each do |plan|
       .card.mb-4.shadow
         .card-header
@@ -22,3 +22,8 @@
           - else
             button.btn.btn-lg.btn-block.btn-outline-primary.chargebee-checkout [data-cb-plan="#{plan.chargebee_id}"]
               = checkout_button_text
+    .card.mb-4.shadow
+      .card-header
+        h4.my-0.font-weight-normal Need something else?
+      .card-body
+        a.button.btn.btn-lg.btn-block.btn-outline-primary href="javascript:void(Tawk_API.toggle())" Contact Us
