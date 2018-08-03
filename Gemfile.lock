@@ -142,9 +142,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
     formatador (0.2.5)
-    gibbon (3.2.0)
-      faraday (>= 0.9.1)
-      multi_json (>= 1.11.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     guard (2.14.2)
@@ -418,7 +415,6 @@ DEPENDENCIES
   data-confirm-modal
   devise
   dotenv-rails
-  gibbon
   guard
   guard-rspec
   html-pipeline

@@ -20,7 +20,7 @@ hr
   
 
 javascript:
-  var cbInstance = Chargebee.init({site: "#{ChargeBee.default_env.site}"});
+  var cbInstance = Chargebee.init({site: "#{ChargeBee.default_env.site}", enableGATracking: true});
   $(".chargebee-portal").on("click", function() {
       event.preventDefault();
       cbInstance.setPortalSession(function() {
@@ -43,9 +43,6 @@ javascript:
                       plan_id: $(event.target).data("cb-plan")
                   }
               });
-          },
-          loaded: function() {
-              gtag('event', "begin_checkout");
           },
           success: function (hostedPageId) {
               $("#update-cb-form").submit();
