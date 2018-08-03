@@ -16,6 +16,12 @@ bin/rails credentials:edit/help
 # Mailer Previews
 `http://appnouncements.localhost:3000/rails/mailers`
 
+# Env Vars
+```
+HEROKU_ENV -- Used to differentiate between prod/staging to allow us to use RAILS_ENV=production as much as possible
+SCOUT_NAME -- Used to differentiate between prod/staging in Scout
+```
+
 Things you may want to cover:
 
 * Ruby version

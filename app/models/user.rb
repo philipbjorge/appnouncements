@@ -48,7 +48,7 @@ class User < ApplicationRecord
 
   validates_acceptance_of :tos_pp, on: :create
   
-  after_create :add_to_mailchimp, if: Rails.env.production?
+  after_create :add_to_mailchimp, if: -> { Rails.env.production? }
   after_create :create_chargebee_customer!
   before_destroy :destroy_chargebee_customer!
   
@@ -67,8 +67,7 @@ private
   
   def add_to_mailchimp
     begin
-      g = Gibbon::Request.new
-      g.lists("6a41a22ad1").members.create(body: { email_address: self.email, status: “subscribed”, double_optin: false })
+      Gibbon::Request.new().lists("6a41a22ad1").members.create(body: { email_address: self.email, status: "subscribed", double_optin: false })
     rescue Gibbon::MailChimpError => e
       logger.error "Failed to subscribe #{self.email} to MailChimp"
       Raven.capture_exception(e)
