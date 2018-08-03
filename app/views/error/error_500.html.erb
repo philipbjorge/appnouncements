@@ -66,6 +66,11 @@
 <% if @sentry_event_id %>
   <script>
       Raven.config('https://99284a75d1444eb4b44201fb3ab30e96@sentry.io/1240567').install();
+      <% if current_user %>
+      Raven.setUserContext({
+          email: '<%= current_user.email || current_user.unconfirmed_email -%>'
+      });
+      <% end %>
       Raven.showReportDialog({
           eventId: '<%= @sentry_event_id -%>'
       });
