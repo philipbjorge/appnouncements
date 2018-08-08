@@ -1,5 +1,5 @@
 .col-sm-4.mb-4
-  .card
+  .app-item.card
     .card-body
       h5.card-title
         = app.display_name
@@ -8,4 +8,4 @@
             | Disabled
       h6.card-subtitle.mb-2.text-muted
         = format_platform(app)
-      = link_to "View Releases", app, class: "card-link"
+      = link_to "View Releases", app, class: "btn btn-outline-primary btn-sm view-releases-btn"

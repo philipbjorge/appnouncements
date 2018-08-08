@@ -1,0 +1,47 @@
+# == Schema Information
+#
+# Table name: plans
+#
+#  id           :bigint(8)        not null, primary key
+#  metadata     :json             not null
+#  name         :string           not null
+#  price        :integer          not null
+#  status       :string           not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  chargebee_id :string           not null
+#
+
+free:
+  metadata: {
+    "display": [
+      "1 App",
+      "Unlimited Releases",
+      "Appnouncements Watermark"
+    ],
+    "features": {
+      "app_limit": 1,
+      "branding": true
+    }
+  }
+  name: "Free for Life"
+  price: 0.00
+  status: "active"
+  chargebee_id: "free_plan_id"
+  
+core_plus:
+  metadata: {
+    "display": [
+      "3 Apps",
+      "Unlimited Releases",
+      "No Appnouncements Watermark"
+    ],
+    "features": {
+      "app_limit": 3,
+      "branding": false
+    }
+  }
+  name: "Core Plus"
+  price: 19.00
+  status: "active"
+  chargebee_id: "core_plus_plan_id"

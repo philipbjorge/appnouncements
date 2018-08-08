@@ -19,6 +19,10 @@
 //= require data-confirm-modal
 //= require spectrum-colorpicker/spectrum
 
+dataConfirmModal.setDefaults({
+    modalClass: "data-confirm-modal"
+});
+
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });

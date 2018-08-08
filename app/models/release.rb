@@ -30,6 +30,7 @@ class Release < ApplicationRecord
   validates :body, presence: true
 
   default_scope { order(Arel.sql("string_to_array(version, '.')::int[] DESC")) }
+  scope :without_default_order, -> { reorder("") }
   scope :published, -> { where(published: true) }
   
   def ios?

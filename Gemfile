@@ -33,14 +33,9 @@ gem 'premailer-rails'
 gem 'data-confirm-modal'
 gem 'activerecord_json_validator'
 
-# https://github.com/ifad/data-confirm-modal
-
 # https://github.com/basecamp/local_time
-# https://github.com/schneems/maildown
 # premailer for inlining css?
 # draper instead of helpers
-# 
-# https://github.com/ekosz/stripe-i18n
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -85,7 +80,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'site_prism', github: 'mateusg/site_prism', ref: 'dc00f2b976e0f801541589ff94ded23cb04cee02'
-  gem 'tedium'
+  gem 'tedium', require: false
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'

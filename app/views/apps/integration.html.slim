@@ -2,8 +2,9 @@
   .row
     .col-sm-3
       = render partial: "app_navbar"
-    .col-sm-9
-      h3
+    #sdk-integration.col-sm-9
+      h3.title
         = @app.display_name
       hr
+      .content
         = render_markdown_unsafe(@markdown)

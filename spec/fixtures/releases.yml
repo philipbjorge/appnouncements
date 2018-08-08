@@ -1,0 +1,41 @@
+# == Schema Information
+#
+# Table name: releases
+#
+#  id              :bigint(8)        not null, primary key
+#  body            :text             not null
+#  display_version :string
+#  published       :boolean          default(FALSE)
+#  title           :string           not null
+#  type            :string           not null
+#  version         :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  app_id          :bigint(8)
+#
+# Indexes
+#
+#  index_releases_on_app_id  (app_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (app_id => apps.id)
+#
+
+android_release_1:
+  body: "Some Release 1"
+  display_version: "1.0"
+  version: 1
+  published: true
+  title: "Some Release Title"
+  type: "AndroidRelease"
+  app: core_plus_app_with_releases
+
+android_release_2:
+  body: "Some Release 2"
+  display_version: "1.1"
+  version: 2
+  published: true
+  title: "Some Other Release Title"
+  type: "AndroidRelease"
+  app: core_plus_app_with_releases

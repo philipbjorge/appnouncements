@@ -1,0 +1,49 @@
+# == Schema Information
+#
+# Table name: apps
+#
+#  id           :bigint(8)        not null, primary key
+#  color        :string           default("#727e96")
+#  css          :string
+#  disabled     :boolean          default(FALSE)
+#  display_name :string
+#  platform     :string
+#  uuid         :uuid
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :bigint(8)
+#
+# Indexes
+#
+#  index_apps_on_user_id  (user_id)
+#  index_apps_on_uuid     (uuid) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+
+_base_app: &base_app
+  color: "#FF0000"
+  css: ""
+  disabled: false
+  display_name: "Core Plus App 1"
+  platform: "android"
+
+free_app_1:
+  <<: *base_app
+  display_name: "Free App 1"
+  uuid: "1e04ff0e-9e77-4704-98a5-70711b588330"
+  user: free
+  
+core_plus_app_empty:
+  <<: *base_app
+  display_name: "Core Plus App 1"
+  uuid: "1e04ff0e-9e77-4704-98a5-70711b588332"
+  user: core_plus
+  
+core_plus_app_with_releases:
+  <<: *base_app
+  display_name: "App with Releases"
+  uuid: "1e04ff0e-9e77-4704-98a5-70711b588338"
+  user: core_plus
