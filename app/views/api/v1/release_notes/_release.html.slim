@@ -1,10 +1,11 @@
-.toast.toast-primary.my-2
-  table
-    tr
-      td width="100%"
-        = "#{release.title}"
-      td valign="top"
-        .span.label.label-secondary
-          = release.display_version || release.version
-.px-2
-  = render_markdown_lazy(release.body)
+.release
+  .toast.toast-primary.my-2
+    table
+      tr
+        td width="100%"
+          = "#{release.title}"
+        td valign="top"
+          .span.label.label-secondary
+            = release.display_version || release.version
+  .px-2
+    = render_markdown_lazy(release.body)

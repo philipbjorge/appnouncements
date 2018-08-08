@@ -19,6 +19,9 @@ example_id                                               | status  | run_time   
 ./spec/features/apps_spec.rb[1:1:5]                      | passed  | 4.09 seconds    |
 ./spec/features/apps_spec.rb[1:2:1]                      | passed  | 0.41321 seconds |
 ./spec/features/oobe_spec.rb[1:1:1]                      | passed  | 0.3224 seconds  |
+./spec/features/release_notes_api_spec.rb[1:1:2]         | passed  | 0.0202 seconds  |
+./spec/features/release_notes_api_spec.rb[1:1:3]         | passed  | 0.01923 seconds |
+./spec/features/release_notes_api_spec.rb[1:2:1]         | passed  | 0.94849 seconds |
 ./spec/features/releases_spec.rb[1:1:1]                  | passed  | 0.21363 seconds |
 ./spec/features/releases_spec.rb[1:1:2]                  | passed  | 0.02206 seconds |
 ./spec/features/releases_spec.rb[1:1:3]                  | passed  | 0.11042 seconds |

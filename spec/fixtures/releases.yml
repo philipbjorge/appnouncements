@@ -39,3 +39,12 @@ android_release_2:
   title: "Some Other Release Title"
   type: "AndroidRelease"
   app: core_plus_app_with_releases
+  
+android_release_3:
+  body: "Some Release 3"
+  display_version: "1.0"
+  version: 1
+  published: true
+  title: "Some Release Title"
+  type: "AndroidRelease"
+  app: free_app_1
