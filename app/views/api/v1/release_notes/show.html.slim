@@ -5,4 +5,5 @@
   - if @app.user.subscription.show_branding?
     .text-center
       small
-        a [href="https://www.appnouncements.com/"] Powered by Appnouncements
+        a [href="https://www.appnouncements.com/?utm_source=appnouncements_release_notes&utm_medium=watermark&utm_campaign=#{@app.id}__#{CGI.escape @app.display_name}"] Powered by Appnouncements
+    br
