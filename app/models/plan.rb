@@ -26,7 +26,7 @@ class Plan < ApplicationRecord
     
     p = Plan.find_or_initialize_by(chargebee_id: chargebee_id)
     p.metadata = plan.meta_data || {}
-    p.name = plan.name
+    p.name = plan.invoice_name
     p.price = plan.price
     p.status = plan.status
     p.save!

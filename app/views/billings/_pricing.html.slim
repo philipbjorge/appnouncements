@@ -10,7 +10,9 @@
             = (plan.price / 100).localize(:us).to_currency.to_s(currency: "USD", precision: 0)
             small.text-muted
               | / mo
-          ul.list-unstyled.mt-3.mb-4
+          - if plan.metadata["badge"]
+            span.badge.badge-success = plan.metadata["badge"]
+          ul.text-left.mt-3.mb-4
             - plan.metadata["display"]&.each do |text|
               li = text
           - if @subscription.plan == plan

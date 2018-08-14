@@ -36,6 +36,11 @@
         "app_limit",
         "branding"
       ]
+    },
+    "badge": {
+      "$id": "/properties/badge",
+      "type": "string",
+      "title": "Badge Text"
     }
   },
   "required": [
