@@ -52,7 +52,7 @@ RSpec.feature "Apps", type: :feature do
     scenario "can edit an app/settings" do
       appnouncements.edit_app.load(app_id: app.id)
       expect(appnouncements.edit_app).to be_displayed
-      appnouncements.edit_app.edit_app!("New Name", "#FF03FA")
+      appnouncements.edit_app(free: true).edit_app!("New Name")
       
       expect(appnouncements.app_details).to be_displayed
       expect(appnouncements.app_details.flash_messages[0]).to have_content("App was successfully updated.")
@@ -90,7 +90,7 @@ RSpec.feature "Apps", type: :feature do
       # New App
       appnouncements.apps.toolbar.new_app_btn.click
       expect(appnouncements.new_app).to be_displayed
-      appnouncements.new_app.new_app!(:android, "Some Other Name", "#FFFFFF")
+      appnouncements.new_app(free: false).new_app!(:android, "Some Other Name", "#FFFFFF")
 
       # App Details
       expect(appnouncements.app_details).to be_displayed

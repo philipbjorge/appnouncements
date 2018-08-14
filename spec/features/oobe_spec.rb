@@ -26,7 +26,7 @@ RSpec.feature "OOBE", type: :feature do
       # New App
       app.apps.no_apps_card.new_app_btn.click
       expect(app.new_app).to be_displayed
-      app.new_app.new_app!(:android, "Some Name", "#FFFFFF")
+      app.new_app(free: true).new_app!(:android, "Some Name")
 
       # App Details
       expect(app.app_details).to be_displayed

@@ -72,7 +72,8 @@ class AppsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def app_params(*attrs)
-      attrs = ([:display_name, :color] + attrs).uniq
+      allowed_params = current_user.can_theme? ? [:display_name, :color] : [:display_name]
+      attrs = (allowed_params + attrs).uniq
       params.require(:app).permit(attrs)
     end
   

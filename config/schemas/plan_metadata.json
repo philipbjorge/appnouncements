@@ -25,6 +25,11 @@
           "$id": "/properties/features/properties/branding",
           "type": "boolean",
           "title": "Show Branding?"
+        },
+        "theming": {
+          "$id": "/properties/features/properties/theming",
+          "type": "boolean",
+          "title": "Allow Theming?"
         }
       },
       "required": [

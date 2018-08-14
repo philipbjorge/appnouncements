@@ -56,6 +56,10 @@ class User < ApplicationRecord
     (self.apps.count + 1) <= self.subscription.app_limit
   end
   
+  def can_theme?
+    self.subscription.allow_theming?
+  end
+  
 private
   def create_chargebee_customer!
     return unless chargebee_id.nil?

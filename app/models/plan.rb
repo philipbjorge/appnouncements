@@ -39,6 +39,10 @@ class Plan < ApplicationRecord
   def show_branding?
     self.metadata["features"]["branding"]
   end
+  
+  def allow_theming?
+    self.metadata["features"]["theming"]
+  end
 
   def app_limit
     return Float::INFINITY if self.metadata["features"]["app_limit"].nil?

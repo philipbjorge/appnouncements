@@ -21,7 +21,8 @@ free:
     ],
     "features": {
       "app_limit": 1,
-      "branding": true
+      "branding": true,
+      "theming": false
     }
   }
   name: "Free for Life"
@@ -38,7 +39,8 @@ core_plus:
     ],
     "features": {
       "app_limit": 3,
-      "branding": false
+      "branding": false,
+      "theming": true
     }
   }
   name: "Core Plus"

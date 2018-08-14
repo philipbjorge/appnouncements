@@ -3,8 +3,8 @@ class PrismApp
     AppsPage.new
   end
   
-  def new_app
-    NewAppPage.new
+  def new_app(free:false)
+    free ? FreeNewAppPage.new : NewAppPage.new
   end
   
   def new_android_release
@@ -19,8 +19,8 @@ class PrismApp
     SDKIntegrationPage.new
   end
   
-  def edit_app
-    EditAppPage.new
+  def edit_app(free:false)
+    free ? FreeEditAppPage.new : EditAppPage.new
   end
   
   def edit_android_release

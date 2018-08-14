@@ -27,9 +27,18 @@ class AppsPage < ApplicationLayoutBase
   end
 end
 
-class NewAppPage < ApplicationLayoutBase
+class FreeNewAppPage < ApplicationLayoutBase
   set_url "/apps/new"
   
+  fields :platform, :display_name
+  submit_button
+
+  submission :new_app
+end
+
+class NewAppPage < ApplicationLayoutBase
+  set_url "/apps/new"
+
   fields :platform, :display_name, :color
   submit_button
 
@@ -77,16 +86,29 @@ class AppDetailsPage < ApplicationLayoutBase
   end
 end
 
-class EditAppPage < ApplicationLayoutBase
+class FreeEditAppPage < ApplicationLayoutBase
   set_url "/apps{/app_id}/edit"
   
   element :delete_btn, "#delete-app-btn"
   
   section :confirm_delete_modal, ConfirmDeleteModal, ".data-confirm-modal"
   
-  fields :display_name, :color
+  fields :display_name
   submit_button
   
+  submission :edit_app
+end
+
+class EditAppPage < ApplicationLayoutBase
+  set_url "/apps{/app_id}/edit"
+
+  element :delete_btn, "#delete-app-btn"
+
+  section :confirm_delete_modal, ConfirmDeleteModal, ".data-confirm-modal"
+
+  fields :display_name, :color
+  submit_button
+
   submission :edit_app
 end
 
