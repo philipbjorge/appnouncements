@@ -7,7 +7,8 @@ class ChargeBeeWebhookController < ApplicationController
     if ["subscription_changed"].include? params[:event_type]
       Subscription.find_by_chargebee_id(params[:content][:subscription][:id]).reload_from_chargebee!
     elsif ["subscription_cancelled"].include? params[:event_type]
-      # TODO: Update to a free plan
+      # Transition to Free
+      ChargeBee::Subscription.update(params[:content][:subscription][:id], {plan_id: "free"})
     elsif ["plan_created", "plan_updated"].include? params[:event_type]
       Plan.create_or_update_from_chargebee! params[:content][:plan][:id]
     elsif ["plan_deleted"].include? params[:event_type]
