@@ -31,6 +31,12 @@ Rails.application.routes.draw do
 
   post '/webhooks/chargebee' => 'charge_bee_webhook#consume'
 
+  if Rails.env.production?
+    authenticated :user, -> user { user.admin? }  do
+      mount DelayedJobWeb, at: "/delayed_job"
+    end
+  end
+  
   match '/404', :to => 'error#error_404', :via => :all
   match '/422', :to => 'error#error_422', :via => :all
   match '/500', :to => 'error#error_500', :via => :all

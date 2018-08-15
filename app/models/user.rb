@@ -59,6 +59,10 @@ class User < ApplicationRecord
   def can_theme?
     self.subscription.allow_theming?
   end
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
   
 private
   def create_chargebee_customer!
