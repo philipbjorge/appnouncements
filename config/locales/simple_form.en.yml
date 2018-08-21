@@ -26,12 +26,12 @@ en:
         version: "Use your <a href='https://developer.apple.com/library/archive/technotes/tn2420/_index.html#//apple_ref/doc/uid/DTS40016603-CH1-NUMBERING_CONVENTIONS'><strong>CFBundleShortVersionString</strong></a> (the version number you give to iTunes Connect)"
       android_release:
         version: "Use your <strong>versionCode</strong> (the internal version used by the Play Store)"
-        display_version: "Use your <strong>versionName</strong> (the consumer visible version in the Play Store)"
+        display_version: "Use your <strong>versionName</strong> (the consumer-visible version in the Play Store)"
       app:
         new:
           color: "This will be used as an accent color on your rendered release notes.<br>Choose something that matches your app's branding!"
         platform: "<span class='badge badge-info mb-1'>iOS Coming Soon!</span><br>Choose your app's platform.<br>You cannot change this after creating your app!"
-        display_name: "This is how your app will be labeled inside Appnouncement's Dashboard."
+        display_name: "This is how your app will be labeled inside Appnouncements' dashboard."
         color: "This will be used as an accent color on your rendered release notes."
     labels:
       app:
