@@ -1,0 +1,7 @@
+Hello <%= @user.email %>!
+
+Did you forget to add release notes for version <%= @release.version %> of your app <%= @app.display_name %>?
+
+[Publish a Release](<%= edit_app_release_url(@app, @release) %>)
+
+We're sending this to you because a user requested release notes for this version, but none were found.
