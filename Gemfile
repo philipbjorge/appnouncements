@@ -34,6 +34,7 @@ gem 'data-confirm-modal'
 gem 'activerecord_json_validator'
 gem 'delayed_job_active_record'
 gem "delayed_job_web"
+gem 'ledermann-rails-settings'
 
 # https://github.com/basecamp/local_time
 # premailer for inlining css?

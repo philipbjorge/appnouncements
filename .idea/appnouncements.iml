@@ -104,6 +104,7 @@
     <orderEntry type="library" scope="PROVIDED" name="json_pure (v2.1.0, chruby: ruby-2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kramdown (v1.17.0, chruby: ruby-2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="launchy (v2.4.3, chruby: ruby-2.5.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ledermann-rails-settings (v2.4.3, chruby: ruby-2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="letter_opener (v1.6.0, chruby: ruby-2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="listen (v3.1.5, chruby: ruby-2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="lograge (v0.10.0, chruby: ruby-2.5.1) [gem]" level="application" />

@@ -28,7 +28,7 @@ class Subscription < ApplicationRecord
   
   before_save :handle_plan_change
   
-  delegate :show_branding?, :app_limit, :allow_theming?, to: :plan
+  delegate :show_branding?, :app_limit, :allow_theming?, :allow_email_notifications?, to: :plan
   
   def reload_from_chargebee!
     subscription = ChargeBee::Subscription.retrieve(self.chargebee_id).subscription

@@ -44,6 +44,10 @@ class Plan < ApplicationRecord
     self.metadata["features"]["theming"]
   end
 
+  def allow_email_notifications?
+    self.metadata["features"]["email_notifications"]
+  end
+  
   def app_limit
     return Float::INFINITY if self.metadata["features"]["app_limit"].nil?
     return self.metadata["features"]["app_limit"]

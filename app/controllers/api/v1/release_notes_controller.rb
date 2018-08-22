@@ -12,10 +12,16 @@ module Api::V1
       @releases = @releases.where("string_to_array(version, '.')::int[] >= string_to_array(?, '.')::int[]", params[:start_version]) if params[:start_version]
       @releases = @releases.where("string_to_array(version, '.')::int[] <= string_to_array(?, '.')::int[]", params[:end_version]) if params[:end_version]
       
-      # @missing_start_version = true if params[:start_version] && @app.releases.published.where("string_to_array(version, '.')::int[] = string_to_array(?, '.')::int[]", params[:start_version]).length == 0
-      # @missing_end_version = true if params[:end_version] && params[:start_version] != params[:end_version] && @app.releases.published.where("string_to_array(version, '.')::int[] = string_to_array(?, '.')::int[]", params[:end_version]).length == 0
-      # 
-      # # TODO: Mail our users
+      # Mail our users
+      if current_user.notify_on_missing_release?
+        if params[:start_version] && @app.releases.published.where("string_to_array(version, '.')::int[] = string_to_array(?, '.')::int[]", params[:start_version]).length == 0
+          # TODO: Email - Missing params[:start_version]
+        end
+        
+        if params[:end_version] && params[:start_version] != params[:end_version] && @app.releases.published.where("string_to_array(version, '.')::int[] = string_to_array(?, '.')::int[]", params[:end_version]).length == 0
+          # TODO: Email - Missing params[:end_version] && different from start_version
+        end
+      end
       
       render layout: "webview"
     end
