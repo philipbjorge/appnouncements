@@ -13,7 +13,7 @@ module Api::V1
       @releases = @releases.where("string_to_array(version, '.')::int[] <= string_to_array(?, '.')::int[]", params[:end_version]) if params[:end_version]
       
       # Mail our users
-      if current_user.notify_on_missing_release?
+      if @app.user.notify_on_missing_release?
         if params[:start_version] && @app.releases.published.where("string_to_array(version, '.')::int[] = string_to_array(?, '.')::int[]", params[:start_version]).length == 0
           create_placeholder_release params[:start_version]
         end

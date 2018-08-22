@@ -45,9 +45,6 @@ class User < ApplicationRecord
 
   has_many :apps, dependent: :destroy
   has_one :subscription, dependent: :destroy
-  has_settings do |s|
-    s.key :email_notifications, :defaults => { missing_release: true }
-  end
 
   validates_acceptance_of :tos_pp, on: :create
   
@@ -64,7 +61,7 @@ class User < ApplicationRecord
   end
   
   def notify_on_missing_release?
-    self.settings(:email_notifications).missing_release && self.subscription.allow_email_notifications?
+    self.subscription.allow_email_notifications?
   end
 
   def send_devise_notification(notification, *args)
