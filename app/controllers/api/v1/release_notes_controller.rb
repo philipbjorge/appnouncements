@@ -12,6 +12,8 @@ module Api::V1
       @releases = @releases.where("string_to_array(version, '.')::int[] >= string_to_array(?, '.')::int[]", params[:start_version]) if params[:start_version]
       @releases = @releases.where("string_to_array(version, '.')::int[] <= string_to_array(?, '.')::int[]", params[:end_version]) if params[:end_version]
       
+      @older_releases = @app.releases.published.where("string_to_array(version, '.')::int[] < string_to_array(?, '.')::int[]", params[:start_version]).limit(5) if params[:start_version]
+      
       # Mail our users
       if @app.user.notify_on_missing_release?
         if params[:start_version] && @app.releases.published.where("string_to_array(version, '.')::int[] = string_to_array(?, '.')::int[]", params[:start_version]).length == 0
