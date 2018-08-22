@@ -3,7 +3,7 @@
 .container.grid-lg
   - if @releases.length == 0
     .toast.my-2.text-center.toast-error
-      | Uh-Oh! The developer has forgotten to add notes for this release...
+      | Uh-Oh! We've let the developers know that they've forgotten to add notes for this release...
   - else
     = render partial: "release", collection: @releases
   - if @app.user.subscription.show_branding?
