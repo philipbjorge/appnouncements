@@ -10,9 +10,10 @@
       .hidden-releases.d-none
         = render partial: "release", collection: @older_releases
       .text-center
-        button class="btn btn-lg" onclick="document.querySelector('.hidden-releases').classList.remove('d-none'); this.classList.add('d-none')"
+        button.my-2 class="btn btn-lg" onclick="document.querySelector('.hidden-releases').classList.remove('d-none'); this.classList.add('d-none')"
           | View More
   - if @app.user.subscription.show_branding?
+    br
     .text-center
       small
         a [href="https://www.appnouncements.com/?utm_source=appnouncements_release_notes&utm_medium=watermark&utm_campaign=#{@app.id}__#{CGI.escape @app.display_name}"] Powered by Appnouncements
