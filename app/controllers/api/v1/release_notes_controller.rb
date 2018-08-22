@@ -11,7 +11,12 @@ module Api::V1
       @releases = @app.releases.published
       @releases = @releases.where("string_to_array(version, '.')::int[] >= string_to_array(?, '.')::int[]", params[:start_version]) if params[:start_version]
       @releases = @releases.where("string_to_array(version, '.')::int[] <= string_to_array(?, '.')::int[]", params[:end_version]) if params[:end_version]
-    
+      
+      # @missing_start_version = true if params[:start_version] && @app.releases.published.where("string_to_array(version, '.')::int[] = string_to_array(?, '.')::int[]", params[:start_version]).length == 0
+      # @missing_end_version = true if params[:end_version] && params[:start_version] != params[:end_version] && @app.releases.published.where("string_to_array(version, '.')::int[] = string_to_array(?, '.')::int[]", params[:end_version]).length == 0
+      # 
+      # # TODO: Mail our users
+      
       render layout: "webview"
     end
     

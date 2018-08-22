@@ -1,7 +1,11 @@
 / - if @preview
 /   | TODO: Show Toolbar
 .container.grid-lg
-  = render partial: "release", collection: @releases
+  - if @releases.length == 0
+    .toast.my-2.text-center.toast-error
+      | Uh-Oh! The developer has forgotten to add notes for this release...
+  - else
+    = render partial: "release", collection: @releases
   - if @app.user.subscription.show_branding?
     .text-center
       small
