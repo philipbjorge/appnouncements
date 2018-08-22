@@ -6,12 +6,12 @@
       | Uh-Oh! We've let the developers know that they've forgotten to add notes for this release...
   - else
     = render partial: "release", collection: @releases
-    - if @older_releases && @older_releases.length > 0
-      .hidden-releases.d-none
-        = render partial: "release", collection: @older_releases
-      .text-center
-        button.my-2 class="btn btn-lg" onclick="document.querySelector('.hidden-releases').classList.remove('d-none'); this.classList.add('d-none')"
-          | View More
+  - if @older_releases && @older_releases.length > 0
+    .hidden-releases.d-none
+      = render partial: "release", collection: @older_releases
+    .text-center
+      button.my-2 class="btn btn-lg" onclick="document.querySelector('.hidden-releases').classList.remove('d-none'); this.classList.add('d-none')"
+        | View More
   - if @app.user.subscription.show_branding?
     br
     .text-center
