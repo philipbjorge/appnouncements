@@ -30,11 +30,18 @@
           "$id": "/properties/features/properties/theming",
           "type": "boolean",
           "title": "Allow Theming?"
+        },
+        "email_notifications": {
+          "$id": "/properties/features/properties/email_notifications",
+          "type": "boolean",
+          "title": "Email Notification?"
         }
       },
       "required": [
         "app_limit",
-        "branding"
+        "branding",
+        "theming",
+        "email_notifications"
       ]
     },
     "badge": {
